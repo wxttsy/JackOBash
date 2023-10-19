@@ -6,18 +6,20 @@ using UnityEngine.TextCore.Text;
 public class DamageCollision : MonoBehaviour
 {
     // References:
-    private Collider _damageCollider;
+    private Collider damageCollider;
     // Variables:
+    [Tooltip("The amount of damage that will be applyed when the targetTag object has been hit.")]
     public int damage = 20;
+    [Tooltip("The tag of the object this object can hit.")]
     public string targetTag;
     private List<Collider> damagedTargetList;
     //=============================================Unity Built-in Methods===============================================
     private void Awake()
     {
         // Set up variables:
-        _damageCollider = GetComponent<Collider>();
+        damageCollider = GetComponent<Collider>();
         // Disable collider at start.
-        _damageCollider.enabled = false;
+        damageCollider.enabled = false;
         damagedTargetList = new List<Collider>();
     }
     private void OnTriggerEnter(Collider other)
@@ -39,12 +41,12 @@ public class DamageCollision : MonoBehaviour
     {// Enables the box collider attached to this object - This event is called through animation events.
         // Clear List
         damagedTargetList.Clear();
-        _damageCollider.enabled = true;
+        damageCollider.enabled = true;
     }
     public void DisableDamageCollider()
     {// Disables the box collider attached to this object - This event is called through animation events.
         // Clear List
         damagedTargetList.Clear();
-        _damageCollider.enabled = false;
+        damageCollider.enabled = false;
     }
 }
