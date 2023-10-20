@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         // Update movement speed.
         // !!Needs to be changed to a one time thing when upgrades happen so its not updating every frame, only when the values are changed.
         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-
+        Debug.Log(currentState);
         // Update Player based on state:
         switch (currentState){
             case STATE.FREE:
@@ -72,7 +73,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case STATE.ATTACKING:
                 // Set movement to 0. 
-                //movementVelocity = Vector3.zero;
+                animator.SetFloat("Speed", 0f);
+                movementVelocity = Vector3.zero;
                 // Slide the player slightly when attacking.
                 if (Time.time < attackStartTime + attackSlideDuration)
                 {
@@ -84,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
             case STATE.DASH:
 
                 movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
+                animator.SetFloat("Speed", 0f);
                 ChangeToAttackCheck();
                 break;
         }
@@ -135,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
             }
             oldMovementDirection = movementVelocity.normalized;
         }
+        animator.SetFloat("Speed", movementVelocity.magnitude);
     }
 //=============================================DamageCollider/Apply Damage==========================================
     public void EnableDamageCollider()

@@ -13,8 +13,8 @@ public class PlayerInput : MonoBehaviour
     // Update Input recieved:
     void Update()
     {
-        dashButtonPressed = Input.GetKeyDown(KeyCode.LeftShift);
-        attackButtonPressed = Input.GetMouseButtonDown(0);
+        dashButtonPressed = Input.GetButtonDown("Dash");
+        attackButtonPressed = Input.GetButtonDown("Attack");
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
     }
