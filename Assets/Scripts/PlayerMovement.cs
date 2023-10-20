@@ -1,4 +1,3 @@
-using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 oldMovementDirection;
     private Quaternion startOrientation;
     private float rotationTime = 0f;
-    private float rotationDuration = 0.2f;
-    private float gravity = -20f;
-    [Header("Movement")]
+    public float rotationDuration = 0.2f;
+    public float gravity = -20f;
     [Tooltip("Any changes to this setting will not be saved! This is displayed for visual purposes only. " +
         "This is the current speed at which the player will move based on the \nFormula: moveSpeedBase + (moveSpeedLevel * moveMultiplier).")]
     public float currentMoveSpeed = 7f;
@@ -29,34 +27,24 @@ public class PlayerMovement : MonoBehaviour
     public float moveMultiplier = 1;
     [Tooltip("Current movement speed upgraded level.")]
     public int moveSpeedLevel = 1;
-    public float dashSpeed = 9f;
 
-    // Sliding: This is for slight movement after attacking.
-    // NOTE: This will make the attack animation look smoother once implemented.
-    private float attackStartTime;
-    [Tooltip("This is how long to move forward when attacking.")]
-    public float attackSlideDuration = 0.2f;
-    [Tooltip("This is the speed at which to move when attacking.")]
-    public float attackSlideSpeed = 0.02f;
+    public SpawnerPlayer sp;
 
-    // State variables/Enum
-    enum STATE{
+
+    enum STATE
+    {
         FREE,
-        ATTACKING,
-        DASH,
-        HIT,
-        DEAD
+        ATTACKING
     }
     private STATE currentState;
-    [Tooltip("This is the current combo we have accumulated.")]
-    public int combo = 0;
-    //=============================================Unity Built-in Methods===============================================
+    // Start is called before the first frame update
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
         attackHitbox = GetComponentInChildren<DamageCollision>();
+        sp = GetComponent<SpawnerPlayer>();
     }
 
     // Update is called once per frame
@@ -65,29 +53,23 @@ public class PlayerMovement : MonoBehaviour
         // Update movement speed.
         // !!Needs to be changed to a one time thing when upgrades happen so its not updating every frame, only when the values are changed.
         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-        Debug.Log(currentState);
+
         // Update Player based on state:
         switch (currentState){
             case STATE.FREE:
                 CalculateMovement();
-                break;
-            case STATE.ATTACKING:
-                // Set movement to 0. 
-                animator.SetFloat("Speed", 0f);
-                movementVelocity = Vector3.zero;
-                // Slide the player slightly when attacking.
-                if (Time.time < attackStartTime + attackSlideDuration)
+
+                // Change to attack state
+                if (Input.GetMouseButtonDown(0)) 
                 {
-                    float timePassed = Time.time - attackStartTime;
-                    float lerpTime = timePassed / attackSlideDuration;
-                    movementVelocity = Vector3.Lerp(transform.forward * attackSlideSpeed, Vector3.zero, lerpTime);
+                    animator.SetTrigger("Attacking");
+                    currentState = STATE.ATTACKING;
+                    movementVelocity = Vector3.zero;
+                    //transform.rotation = Quaternion.LookRotation(oldMovementDirection);
+                    return;
                 }
                 break;
-            case STATE.DASH:
-
-                movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
-                animator.SetFloat("Speed", 0f);
-                ChangeToAttackCheck();
+            case STATE.ATTACKING:
                 break;
         }
 
@@ -99,13 +81,9 @@ public class PlayerMovement : MonoBehaviour
         movementVelocity += verticalVelocity * Vector3.up * Time.deltaTime;
         cc.Move(movementVelocity);
     }
-    //=============================================Calculate Movement===============================================
+
     private void CalculateMovement()
     {
-        // Update states:
-        // Change to attack state
-        ChangeToAttackCheck();
-        ChangeToDashCheck();
         // Calculate Movement based on Input.
         movementVelocity.Set(input.horizontalInput, 0f, input.verticalInput);
         movementVelocity.Normalize();
@@ -117,28 +95,31 @@ public class PlayerMovement : MonoBehaviour
         // Update movement to 'movementVelocity' variable which is used to apply movement.
         movementVelocity *= moveSpeedBase * Time.deltaTime;
 
-        // Update player direction - smooth rotation:
-        if (movementVelocity != Vector3.zero)
-        {
-            if (movementVelocity.normalized != oldMovementDirection)
-            {
-                startOrientation = transform.rotation;
-                rotationTime = rotationDuration;
-            }
-            Quaternion endOrientation = Quaternion.LookRotation(movementVelocity);
-            if (rotationTime < 0)
-            {
-                transform.rotation = endOrientation;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(endOrientation, startOrientation,
-                    rotationTime / rotationDuration);
-                rotationTime -= Time.deltaTime;
-            }
-            oldMovementDirection = movementVelocity.normalized;
-        }
-        animator.SetFloat("Speed", movementVelocity.magnitude);
+        // Update player direction - smooth:
+        //if (movementVelocity != Vector3.zero)
+        //{
+        //    if (movementVelocity.normalized != oldMovementDirection)
+        //    {
+        //        startOrientation = transform.rotation;
+        //        rotationTime = rotationDuration;
+        //    }
+        //    Quaternion endOrientation = Quaternion.LookRotation(movementVelocity);
+        //    if (rotationTime < 0)
+        //    {
+        //        transform.rotation = endOrientation;
+        //    }
+        //    else
+        //    {
+        //        transform.rotation = Quaternion.Slerp(endOrientation, startOrientation,
+        //            rotationTime / rotationDuration);
+        //        rotationTime -= Time.deltaTime;
+        //    }
+        //    oldMovementDirection = movementVelocity.normalized;
+        //}
+
+
+        transform.rotation = Quaternion.LookRotation(-sp.newDirection);
+
     }
 //=============================================DamageCollider/Apply Damage==========================================
     public void EnableDamageCollider()
@@ -153,83 +134,6 @@ public class PlayerMovement : MonoBehaviour
     }
     public void AttackAnimationEnd()
     {
-        SwitchStateTo(STATE.FREE);
-    }
-    public void DashAnimationEnd()
-    {
-        if (currentState == STATE.DASH) //This is a safe guard since using the same animation for move and dash. Remove this and add animationevent to dash when fin. Remember to remove this method from walk animation event.
-        {
-            SwitchStateTo(STATE.FREE);
-        }
-    }
-    //==============================================StateChanges===============================
-    private void SwitchStateTo(STATE _newState)
-    {
-        // Update variables:
-        input.ClearCache();
-
-        // Exit current state
-        switch (currentState)
-        {
-            case STATE.FREE:
-                break;
-            case STATE.ATTACKING:
-                break;
-            case STATE.DASH:
-                break;
-            case STATE.HIT:
-                break;
-            case STATE.DEAD:
-                break;
-        }
-        // Enter new state
-        switch (_newState)
-        {
-            case STATE.FREE:
-                break;
-            case STATE.ATTACKING:
-                // Update Animator: Play animation for attacking.
-                animator.SetTrigger("Attacking");
-                // Stop Movement
-                movementVelocity = Vector3.zero;
-                // Update Rotation to face the direction immediately
-                transform.rotation = Quaternion.LookRotation(oldMovementDirection);
-                // Get time from entering new state for attack sliding.
-                attackStartTime = Time.time;
-                break;
-            case STATE.DASH:
-                // Update Animator: Play animation for Dashing.
-                animator.SetTrigger("Dashing");
-                // Stop Movement
-                movementVelocity = Vector3.zero;
-                // Update Rotation to face the direction immediately
-                transform.rotation = Quaternion.LookRotation(oldMovementDirection);
-                break;
-            case STATE.HIT:
-                
-                break;
-            case STATE.DEAD:
-
-                break;
-        }
-        currentState = _newState;
-    }
-    //=============================================Tempory State change checks===============================================
-    private void ChangeToDashCheck()
-    {
-        if (input.dashButtonPressed)
-        {
-            SwitchStateTo(STATE.DASH);
-            
-            return;
-        }
-    }
-    private void ChangeToAttackCheck()
-    {
-        if (input.attackButtonPressed)
-        {
-            SwitchStateTo(STATE.ATTACKING);
-            return;
-        }
+        currentState = STATE.FREE;
     }
 }

@@ -6,20 +6,25 @@ using UnityEngine.TextCore.Text;
 public class DamageCollision : MonoBehaviour
 {
     // References:
-    private Collider damageCollider;
+    private Collider _damageCollider;
     // Variables:
-    [Tooltip("The amount of damage that will be applyed when the targetTag object has been hit.")]
     public int damage = 20;
-    [Tooltip("The tag of the object this object can hit.")]
     public string targetTag;
-    private List<Collider> damagedTargetList;
+    [SerializeField] private List<Collider> damagedTargetList;
+
+    public bool isDamageOrb;
     //=============================================Unity Built-in Methods===============================================
     private void Awake()
     {
         // Set up variables:
-        damageCollider = GetComponent<Collider>();
+        _damageCollider = GetComponent<Collider>();
         // Disable collider at start.
-        damageCollider.enabled = false;
+        if (!isDamageOrb)
+        {
+            _damageCollider.enabled = false;
+            Debug.Log("I am switched off");
+        }
+
         damagedTargetList = new List<Collider>();
     }
     private void OnTriggerEnter(Collider other)
@@ -41,12 +46,12 @@ public class DamageCollision : MonoBehaviour
     {// Enables the box collider attached to this object - This event is called through animation events.
         // Clear List
         damagedTargetList.Clear();
-        damageCollider.enabled = true;
+        _damageCollider.enabled = true;
     }
     public void DisableDamageCollider()
     {// Disables the box collider attached to this object - This event is called through animation events.
         // Clear List
         damagedTargetList.Clear();
-        damageCollider.enabled = false;
+        _damageCollider.enabled = false;
     }
 }

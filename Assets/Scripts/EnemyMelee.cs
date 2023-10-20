@@ -9,10 +9,9 @@ public class EnemyMelee : MonoBehaviour
     private CharacterController cc;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private Transform targetPlayer;
-    // Movement variables:
     [Tooltip("The speed at which this enemy will move.")]
     public float moveSpeed = 3;
-    //=============================================Unity Built-in Methods===============================================
+    // Start is called before the first frame update
     void Awake()
     {
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -25,7 +24,7 @@ public class EnemyMelee : MonoBehaviour
     {
         CalculateEnemyMovement();
     }
-    //=============================================Calculate Movement===============================================
+
     private void CalculateEnemyMovement(){
         if (Vector3.Distance(targetPlayer.position, transform.position) >= navMeshAgent.stoppingDistance){
             navMeshAgent.SetDestination(targetPlayer.position);

@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7285934680472184848}
   - component: {fileID: 7285934680472184851}
   m_Layer: 0
-  m_Name: ChatteringSkulls
+  m_Name: ChatteringSkulls 4
   m_TagString: Skull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,14 +135,14 @@ MonoBehaviour:
   enemyTag: 
   enemyGrabber: {fileID: 0}
   hitTransform: {fileID: 0}
-  theBigBang: {fileID: 0}
+  theBigBang: {fileID: 7285934680472184849}
   skulls: []
   timeSinceUsed: 0
-  timeOut: 5
+  timeOut: 10
   originalSkull: {fileID: 0}
   scriptName: 
   massDelete: 0
-  originalObjectPrefabName: ChatteringSkulls
+  originalObjectPrefabName: ChatteringSkullsSuperspreader
 --- !u!1 &7285934680660356765
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7285934680789122213}
   - component: {fileID: 7285934680789122212}
+  - component: {fileID: 8667658626891440397}
+  - component: {fileID: 1844721195022613314}
   m_Layer: 0
   m_Name: Skull2
   m_TagString: Untagged
@@ -272,6 +274,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8667658626891440397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285934680789122210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9dfcdcea4b94b47859d0c0eea93700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skullParent: {fileID: 0}
+--- !u!114 &1844721195022613314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285934680789122210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03f646a0d3a4ab46b2505a4c185214e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: Enemy
+  damagedTargetList: []
+  isDamageOrb: 1
 --- !u!1 &7285934681204231816
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +313,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7285934681204231819}
   - component: {fileID: 7285934681204231818}
+  - component: {fileID: 5822034955591621048}
+  - component: {fileID: 4913068773651736016}
   m_Layer: 0
   m_Name: Skull1
   m_TagString: Untagged
@@ -318,3 +351,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5822034955591621048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285934681204231816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9dfcdcea4b94b47859d0c0eea93700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skullParent: {fileID: 0}
+--- !u!114 &4913068773651736016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285934681204231816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03f646a0d3a4ab46b2505a4c185214e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: Enemy
+  damagedTargetList: []
+  isDamageOrb: 1

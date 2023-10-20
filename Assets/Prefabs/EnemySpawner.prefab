@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 0}
-  spawnTimeInterval: 2
-  enemiesToSpawn: 10
+  spawnTimeInterval: 0.15
+  enemiesToSpawn: 1265
 --- !u!1 &8458518525411655637
 GameObject:
   m_ObjectHideFlags: 0
