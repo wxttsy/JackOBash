@@ -33,18 +33,18 @@ public class Health : MonoBehaviour
         GameObject go = this.gameObject;
         //Apply the damage
         currentHealth -= damage;
- 
+        
         //Add 1 to the combo if enemy is killed.
         GameObject player = GameObject.FindWithTag("Player");
-        if (player != null){
-            PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
-            playerScript.combo += 1;
-        }
-        //Destroy enemy if health is less than 0
-        if (currentHealth <= 0)
-        {
-            Destroy(go);
-            return;
+        if (player != go){
+            //Destroy enemy if health is less than 0
+            if (currentHealth <= 0)
+            {
+                PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
+                playerScript.combo += 1;
+                Destroy(go);
+                return;
+            }
         }
         //Flash the object: White
         FlashStart();
