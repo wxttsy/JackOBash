@@ -17,8 +17,8 @@ public class Health : MonoBehaviour
     private float flashTime = 0.1f;
 
     // Health variables:
-    public int currentHealth;
-    public int maxHealth = 100;
+    public float currentHealth;
+    public float maxHealth = 100;
     //=============================================Unity Built-in Methods===============================================
     // Set health to max health on awake.
     void Awake()
