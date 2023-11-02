@@ -10,6 +10,9 @@ public class PlayerInput : MonoBehaviour
     public bool attackButtonPressed;
     public bool dashButtonPressed;
 
+    public float horizontalRotation;
+    public float verticalRotation;
+
     // Update Input recieved:
     void Update()
     {
@@ -17,6 +20,8 @@ public class PlayerInput : MonoBehaviour
         attackButtonPressed = Input.GetButtonDown("Attack");
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalRotation = Input.GetAxis("HorizontalRotation");
+        verticalRotation = Input.GetAxis("VerticalRotation");
     }
 
     private void OnDisable()

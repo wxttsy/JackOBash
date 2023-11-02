@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public float attackSlideDuration = 0.2f;
     [Tooltip("This is the speed at which to move when attacking.")]
     public float attackSlideSpeed = 0.02f;
-
+    Vector3 rot;
     // State variables/Enum
     enum STATE{
         FREE,
@@ -117,7 +117,15 @@ public class PlayerMovement : MonoBehaviour
         // Update movement to 'movementVelocity' variable which is used to apply movement.
         movementVelocity *= moveSpeedBase * Time.deltaTime;
 
-        // Update player direction - smooth rotation:
+        //IN PROGRESS: New rotation working with xbox controller.
+        rot = new Vector3(input.horizontalRotation, 0f, input.verticalRotation);
+        rot = Quaternion.Euler(0, -45, 0) * rot;
+        if (rot != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(rot);
+        }
+
+        /*// Update player direction - smooth rotation:
         if (movementVelocity != Vector3.zero)
         {
             if (movementVelocity.normalized != oldMovementDirection)
@@ -137,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
                 rotationTime -= Time.deltaTime;
             }
             oldMovementDirection = movementVelocity.normalized;
-        }
+        }*/
         animator.SetFloat("Speed", movementVelocity.magnitude);
     }
 //=============================================DamageCollider/Apply Damage==========================================
@@ -193,7 +201,6 @@ public class PlayerMovement : MonoBehaviour
                 // Stop Movement
                 movementVelocity = Vector3.zero;
                 // Update Rotation to face the direction immediately
-                transform.rotation = Quaternion.LookRotation(oldMovementDirection);
                 // Get time from entering new state for attack sliding.
                 attackStartTime = Time.time;
                 break;
@@ -203,7 +210,6 @@ public class PlayerMovement : MonoBehaviour
                 // Stop Movement
                 movementVelocity = Vector3.zero;
                 // Update Rotation to face the direction immediately
-                transform.rotation = Quaternion.LookRotation(oldMovementDirection);
                 break;
             case STATE.HIT:
                 
