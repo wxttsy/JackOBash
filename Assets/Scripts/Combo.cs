@@ -16,6 +16,8 @@ public class Combo : MonoBehaviour
     public float sugarRushOverride;
     public bool isSugarRushing;
     public bool isPrimed;
+    
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -91,7 +93,7 @@ public class Combo : MonoBehaviour
 
     public void EndSugarRush()
     {
-        Debug.Log("OH MY GOD IM LITERALLY ZOOMING RIGHT NOW");
+        //Debug.Log("OH MY GOD IM LITERALLY ZOOMING RIGHT NOW");
         playerScript.sugarRushValue = 1;
     }
 }

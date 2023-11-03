@@ -51,7 +51,7 @@ public class PlayerInput : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.down, out hit, 10))
         {
-            Debug.Log("I am on the ground");
+            //Debug.Log("I am on the ground");
             rs.currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
     }
