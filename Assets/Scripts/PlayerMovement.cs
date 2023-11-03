@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float rotationTime = 0f;
     private float rotationDuration = 0.2f;
     private float gravity = -20f;
+    public float sugarRushValue;
     [Header("Movement")]
     [Tooltip("Any changes to this setting will not be saved! This is displayed for visual purposes only. " +
         "This is the current speed at which the player will move based on the \nFormula: moveSpeedBase + (moveSpeedLevel * moveMultiplier).")]
@@ -50,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private STATE currentState;
     [Tooltip("This is the current combo we have accumulated.")]
     public int combo = 0;
+
+    public bool doComboMeterIncrease = false;
     //=============================================Unity Built-in Methods===============================================
     private void Awake()
     {
@@ -97,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply movement:
         movementVelocity += verticalVelocity * Vector3.up * Time.deltaTime;
-        cc.Move(movementVelocity);
+        cc.Move(movementVelocity * sugarRushValue);
     }
     //=============================================Calculate Movement===============================================
     private void CalculateMovement()
