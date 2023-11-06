@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+   
+
     //loads a manually inputed scene by name
     public void LoadSceneByName()
     {
         SceneManager.LoadScene("DebugScene");
     }
-    
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     //loads the next scene in build settings
     //will be updated so we can randomly load scenes
     public void LoadNextScene()
@@ -25,5 +31,5 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
-
+   
 }
