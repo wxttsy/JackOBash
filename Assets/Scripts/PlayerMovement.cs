@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         // Update movement speed.
         // !!Needs to be changed to a one time thing when upgrades happen so its not updating every frame, only when the values are changed.
         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         // Update Player based on state:
         switch (currentState){
             case STATE.FREE:
