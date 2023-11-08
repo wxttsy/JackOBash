@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &461989386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1756,12 +1756,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1167305064 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8850793548069870705, guid: 812cd433a4b4ccc488a7f5be55dd7106,
-    type: 3}
-  m_PrefabInstance: {fileID: 7011055472043165075}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205680566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,7 +2970,7 @@ PrefabInstance:
         type: 3}
       propertyPath: head
       value: 
-      objectReference: {fileID: 1167305064}
+      objectReference: {fileID: 0}
     - target: {fileID: 7011055472368594491, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: rs

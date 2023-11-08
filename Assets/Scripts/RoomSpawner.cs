@@ -19,6 +19,7 @@ public class RoomSpawner : MonoBehaviour
 
     private List<NavMeshBuildSource> navMeshDatas = new List<NavMeshBuildSource>();
     private List<NavMeshBuildMarkup> navMeshBuildMarkup = new List<NavMeshBuildMarkup>();
+    private NavMeshData nmdata;
 
     void Start()
     {
@@ -30,9 +31,9 @@ public class RoomSpawner : MonoBehaviour
         }
         NavMeshBuilder.CollectSources(null, LayerMask.GetMask("Ground"), NavMeshCollectGeometry.PhysicsColliders, 0, navMeshBuildMarkup, navMeshDatas);
         //Debug.Log(navMeshDatas.Count);
-        var nmData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
-        Debug.Log(nmData.sourceBounds);
-        NavMeshDataInstance d = NavMesh.AddNavMeshData(nmData);
+        nmdata = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
+        //Debug.Log(nmData.sourceBounds);
+        NavMeshDataInstance d = NavMesh.AddNavMeshData(nmdata);
         Debug.Log(d.valid);
     }
 
@@ -44,7 +45,8 @@ public class RoomSpawner : MonoBehaviour
             Destroy(currentRooms[0]);
             currentRooms.Remove(currentRooms[0]);
             SpawnRoom();
-            
+            RecreateNavMesh();
+
             //UnityEngine.AI.NavMeshBuilder.UpdateNavMeshDataAsync();
         }
 
@@ -57,7 +59,7 @@ public class RoomSpawner : MonoBehaviour
         currentSpawnedRoom = newRoom;
         positionOverride += currentSpawnedRoom.GetComponentInChildren<Collider>().bounds.size.z;
         currentRooms.Add(newRoom);
-        RecreateNavMesh();
+        
 
         roomCount++;
     }
@@ -66,7 +68,9 @@ public class RoomSpawner : MonoBehaviour
     {
         Debug.Log("Re-create nav mesh for new room.");
         NavMeshBuilder.CollectSources(null, LayerMask.GetMask("Ground"), NavMeshCollectGeometry.PhysicsColliders, 0, navMeshBuildMarkup, navMeshDatas);
-        var nmData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
-        NavMeshDataInstance d = NavMesh.AddNavMeshData(nmData);
+        NavMeshBuilder.UpdateNavMeshData(nmdata, NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)));
+        //var nmData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
+
+        NavMeshDataInstance d = NavMesh.AddNavMeshData(nmdata);
     }
 }
