@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516556767928219798}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: Room0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 3943364244631533183, guid: 65ce566d0fe25f34489559baa27130ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.43353266
+      value: -0.097
       objectReference: {fileID: 0}
     - target: {fileID: 3943364244631533183, guid: 65ce566d0fe25f34489559baa27130ed,
         type: 3}

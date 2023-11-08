@@ -44,6 +44,7 @@ public class RoomSpawner : MonoBehaviour
             Destroy(currentRooms[0]);
             currentRooms.Remove(currentRooms[0]);
             SpawnRoom();
+            
             //UnityEngine.AI.NavMeshBuilder.UpdateNavMeshDataAsync();
         }
 
@@ -56,8 +57,16 @@ public class RoomSpawner : MonoBehaviour
         currentSpawnedRoom = newRoom;
         positionOverride += currentSpawnedRoom.GetComponentInChildren<Collider>().bounds.size.z;
         currentRooms.Add(newRoom);
-
+        RecreateNavMesh();
 
         roomCount++;
+    }
+
+    public void RecreateNavMesh()
+    {
+        Debug.Log("Re-create nav mesh for new room.");
+        NavMeshBuilder.CollectSources(null, LayerMask.GetMask("Ground"), NavMeshCollectGeometry.PhysicsColliders, 0, navMeshBuildMarkup, navMeshDatas);
+        var nmData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
+        NavMeshDataInstance d = NavMesh.AddNavMeshData(nmData);
     }
 }
