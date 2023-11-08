@@ -121,14 +121,14 @@ public class PlayerMovement : MonoBehaviour
         movementVelocity *= moveSpeedBase * Time.deltaTime;
 
         //IN PROGRESS: New rotation working with xbox controller.
-        rot = new Vector3(input.horizontalRotation, 0f, input.verticalRotation);
+       /* rot = new Vector3(input.horizontalRotation, 0f, input.verticalRotation);
         rot = Quaternion.Euler(0, -45, 0) * rot;
         if (rot != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(rot);
-        }
+        }*/
 
-        /*// Update player direction - smooth rotation:
+        // Update player direction - smooth rotation:
         if (movementVelocity != Vector3.zero)
         {
             if (movementVelocity.normalized != oldMovementDirection)
@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
                 rotationTime -= Time.deltaTime;
             }
             oldMovementDirection = movementVelocity.normalized;
-        }*/
+        }
         animator.SetFloat("Speed", movementVelocity.magnitude);
     }
 //=============================================DamageCollider/Apply Damage==========================================
