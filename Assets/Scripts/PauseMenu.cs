@@ -6,10 +6,18 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GamePaused = false;
+    public static bool wasPaused = false;
     public GameObject pauseMenuUI;
+
+    private void Start()
+    {
+        pauseMenuUI.SetActive(false);
+    }
 
     void Update()
     {
+        //wasPaused makes it so theres a frame before the pause menu closes
+        wasPaused = GamePaused;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GamePaused)

@@ -28,9 +28,17 @@ public class Health : MonoBehaviour
             {
                 PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
                 playerScript.combo += 1;
-                playerScript.doComboMeterIncrease = true;
                 Destroy(go);
                 return;
+            }
+        }
+        else
+        {
+            if(currentHealth <= 0)
+            {
+                PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
+                playerScript.SwitchStateTo(PlayerMovement.STATE.DEAD);
+
             }
         }
     }
