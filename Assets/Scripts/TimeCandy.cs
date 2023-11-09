@@ -17,6 +17,9 @@ public class TimeCandy : MonoBehaviour
                 // Add candy amount to player's health.
                 playerHealthScript.currentHealth += candyTimeAmount;
                 Debug.Log("Picked up Time Candy");
+                GameObject effectsManagerObject = GameObject.FindWithTag("EffectsManager");
+                EffectsManager effectsManager = effectsManagerObject.GetComponent<EffectsManager>();
+                Instantiate(effectsManager.candyPickUpParticle, transform.position, transform.rotation);
                 //Destroy this candy object.
                 Destroy(gameObject);
             }

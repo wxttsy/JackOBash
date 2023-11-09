@@ -6,5 +6,6 @@ public class EffectsManager : MonoBehaviour
 {
     //Currently this is only holding the prefabs for effects.
     public GameObject hitParticle;
+    public GameObject candyPickUpParticle;
   
 }
