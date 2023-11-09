@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 100;
     public int scoreFromKill = 1;
+    private int pumpkinCrawlerCandyDropAmount = 10;
     //=============================================Unity Built-in Methods===============================================
     // Set health to max health on awake.
     void Awake()
@@ -52,6 +53,19 @@ public class Health : MonoBehaviour
                     CharacterController cc = go.GetComponent<CharacterController>();
                     Destroy(cc);
                     meleeEnemyScript.SwitchStateTo(EnemyMelee.STATE.DEAD);
+                    return;
+                }
+                //Pumpkin Crawler enemy death
+                PumpkinCrawler pumpkinCrawlerScript = go.GetComponent<PumpkinCrawler>();
+                if (pumpkinCrawlerScript != null)
+                {
+                    Destroy(go);
+                    for (int i = 0; i < pumpkinCrawlerCandyDropAmount; i++)
+                    {
+
+                        Vector3 scatter = new Vector3(Random.Range(-5, 5),0, Random.Range(-5, 5));
+                        Instantiate(candyManager.timeCandy, transform.position + scatter, transform.rotation);
+                    }
                     return;
                 }
 

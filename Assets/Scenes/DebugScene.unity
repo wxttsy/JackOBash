@@ -1062,7 +1062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698698306}
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 17.02, y: 24.22242, z: -14.820001}
+  m_LocalPosition: {x: 17.02, y: 24.410418, z: -14.820001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1775,7 +1775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 17.02, y: 24.22242, z: -14.820001}
+  m_LocalPosition: {x: 17.02, y: 24.410418, z: -14.820001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2836,9 +2836,9 @@ MonoBehaviour:
   roomCount: 0
   maxRooms: 4
   roomsToSpawn:
-  - {fileID: 3228820362630429138, guid: 778666f7c2b7b994b8047a8e4b198e24, type: 3}
-  - {fileID: 3228820362630429138, guid: 23a9f86360fdf0644a0167b33486edf9, type: 3}
-  - {fileID: 3228820362630429138, guid: 9c95e9f353091ab46900e4b317a942d4, type: 3}
+  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
+  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
+  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
   currentRooms: []
   positionOverride: 0
   roomToDelete: 0
@@ -4256,7 +4256,7 @@ PrefabInstance:
     - target: {fileID: 7011055472368594485, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5950012
+      value: 1.783
       objectReference: {fileID: 0}
     - target: {fileID: 7011055472368594485, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
