@@ -62,8 +62,13 @@ public class PlayerMovement : MonoBehaviour
     public int playerScore;
     public GameObject deadUI;
     //=============================================Unity Built-in Methods===============================================
+    private void Start()
+    {
+        deadUI.SetActive(false);
+    }
     private void Awake()
     {
+        deadUI.SetActive(false);
         cc = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
@@ -74,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        
         playerScore = combo;
       
         // Update movement speed.
@@ -230,6 +236,8 @@ public class PlayerMovement : MonoBehaviour
     public void DeathAnimationEnd()
     {
         deadUI.SetActive(true);
+        Time.timeScale = 0;
+        
     }
     //==============================================StateChanges===============================
     public void SwitchStateTo(STATE _newState)
@@ -288,7 +296,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case STATE.DEAD:
                 animator.SetTrigger("Death");
-
+                
                 Debug.Log("State: DEAD");
                 break;
 

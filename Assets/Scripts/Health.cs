@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    DeathScreen death;
     // Health variables:
     public float currentHealth;
     public float maxHealth = 100;
