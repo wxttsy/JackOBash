@@ -68,7 +68,7 @@ public class RoomSpawner : MonoBehaviour
     {
         Debug.Log("Re-create nav mesh for new room.");
         NavMeshBuilder.CollectSources(null, LayerMask.GetMask("Ground"), NavMeshCollectGeometry.PhysicsColliders, 0, navMeshBuildMarkup, navMeshDatas);
-        NavMeshBuilder.UpdateNavMeshData(nmdata, NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)));
+        NavMeshBuilder.UpdateNavMeshDataAsync(nmdata, NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)));
         //var nmData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(Vector3.zero, new Vector3(4096, 4096, 4096)), this.transform.position, this.transform.rotation);
 
         NavMeshDataInstance d = NavMesh.AddNavMeshData(nmdata);
