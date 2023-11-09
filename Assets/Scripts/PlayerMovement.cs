@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 oldMovementDirection;
     private Quaternion startOrientation;
     private float rotationTime = 0f;
-    private float rotationDuration = 0.2f;
+    private float rotationDuration = 0.05f;
     private float gravity = -20f;
     public float sugarRushValue;
     [Header("Movement")]
@@ -79,13 +79,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
-        playerScore = combo;
       
         // Update movement speed.
         // !!Needs to be changed to a one time thing when upgrades happen so its not updating every frame, only when the values are changed.
         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-        //Debug.Log(currentState);
         // Update Player based on state:
         switch (currentState)
         {
@@ -262,8 +259,10 @@ public class PlayerMovement : MonoBehaviour
                 //leaving sugar rush state reset all movement stats etc here
                 break;
             case STATE.SUGAR_RUSH_DASH:
+                //leaving sugar rush state reset all movement stats etc here
                 break;
             case STATE.SUGAR_RUSH_ATTACK:
+                //leaving sugar rush state reset all movement stats etc here
                 break;
         }
         // Enter new state
