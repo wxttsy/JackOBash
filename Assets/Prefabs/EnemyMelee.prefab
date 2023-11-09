@@ -163,11 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de17fdf7dd3236d45bf958a3d3e175e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 6872974815001349322}
-  body: {fileID: 0}
-  origColor: {r: 1, g: 0, b: 0, a: 1}
   currentHealth: 0
   maxHealth: 20
+  partSys: {fileID: 7725155143116266025, guid: c5388d1ee43334248aaf856a67a40ed6, type: 3}
 --- !u!95 &1921390139876938551
 Animator:
   serializedVersion: 4
@@ -265,12 +263,6 @@ PrefabInstance:
 --- !u!4 &2098852643756679923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5684d526c9195714eb0260bcdb2aae3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1921390137921291544}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6872974815001349322 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4194100248968148526, guid: 5684d526c9195714eb0260bcdb2aae3d,
     type: 3}
   m_PrefabInstance: {fileID: 1921390137921291544}
   m_PrefabAsset: {fileID: 0}

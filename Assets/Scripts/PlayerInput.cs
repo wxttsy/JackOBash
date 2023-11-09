@@ -15,6 +15,9 @@ public class PlayerInput : MonoBehaviour
     public float horizontalRotation;
     public float verticalRotation;
 
+    public GameObject itemInSlot;
+
+
     public void Start()
     {
         rs = GameObject.Find("RoomManager").GetComponent<RoomSpawner>();
@@ -29,6 +32,18 @@ public class PlayerInput : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         //horizontalRotation = Input.GetAxis("HorizontalRotation");
         //verticalRotation = Input.GetAxis("VerticalRotation");
+
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && itemInSlot != null)
+        {
+            UseItem();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && itemInSlot == null)
+        {
+            Debug.Log("I don't hava the item");
+        }
+
 
         DetermineFloor();
     }
@@ -54,5 +69,11 @@ public class PlayerInput : MonoBehaviour
             //Debug.Log("I am on the ground");
             rs.currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
+    }
+
+    public void UseItem()
+    {
+        Instantiate(itemInSlot, this.transform);
+        itemInSlot = null;
     }
 }

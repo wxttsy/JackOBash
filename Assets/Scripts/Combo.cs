@@ -8,7 +8,9 @@ public class Combo : MonoBehaviour
 {
     public TMP_Text comboDisplay;
     public float comboIncreaseFactor;
+    public float comboIncreaseInitial;
     public float comboDecreaseFactor;
+    public float comboDecreaseInitial;
     public float comboIncreaseMultiplier;
     public float comboMeter;
     GameObject player;
@@ -25,6 +27,8 @@ public class Combo : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMovement>();
         comboMeter = 0;
+        comboDecreaseInitial = comboDecreaseFactor;
+        comboIncreaseInitial = comboIncreaseFactor;
         UpdateCombo();
     }
 
@@ -54,8 +58,16 @@ public class Combo : MonoBehaviour
         {
             EndSugarRush();
             comboMeter = 0;
+            comboDecreaseFactor = comboDecreaseInitial;
             isSugarRushing = false;
         }
+
+        if(comboMeter <= 0)
+        {
+            comboMeter = 0;
+            comboDecreaseFactor = comboDecreaseInitial;
+        }
+
 
 
     }
@@ -71,6 +83,7 @@ public class Combo : MonoBehaviour
 
             if (playerScript.doComboMeterIncrease)
             {
+
                 comboMeter += comboIncreaseFactor * comboIncreaseMultiplier;
                 playerScript.doComboMeterIncrease = false;
             }
@@ -80,14 +93,13 @@ public class Combo : MonoBehaviour
 
     private void DepreciateMeter()
     {
-
-
-
+        comboDecreaseFactor += comboDecreaseFactor / 100 * Time.deltaTime;
         comboMeter -= comboDecreaseFactor * Time.deltaTime;
     }
 
     public void GoGoSugarRush()
     {
+        isSugarRushing = true;
         playerScript.sugarRushValue = sugarRushOverride;
     }
 
