@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     DeathScreen death;
     CandyManager candyManager;
+    ItemSpawner itemManager;
     EffectsManager effectsManager;
     // Health variables:
     public float currentHealth;
@@ -21,6 +22,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         GameObject candyManagerObject = GameObject.FindWithTag("CandyManager");
         candyManager = candyManagerObject.GetComponent<CandyManager>();
+
+        //Find the item manager for spawning items on certain combo levels
+        GameObject itemManagerObject = GameObject.FindWithTag("ItemManager");
+        itemManager = itemManagerObject.GetComponent<ItemSpawner>();
 
         GameObject effectsManagerObject = GameObject.FindWithTag("EffectsManager");
         effectsManager = effectsManagerObject.GetComponent<EffectsManager>();
@@ -100,11 +105,18 @@ public class Health : MonoBehaviour
         //comboCandyCheck will = 0 if this is true.
         float combo = playerScript.combo;
         float comboCandyCheck = combo % 5;
+        float comboItemCheck = combo % 2;
         //Debug.Log(comboCandyCheck);
-        if (comboCandyCheck == 0)
+        if (comboCandyCheck == 0 && comboItemCheck != 0)
         {
             //Drop Candy
             Instantiate(candyManager.timeCandy,transform.position,transform.rotation);
+        }
+
+        if (comboCandyCheck == 0 && comboItemCheck == 0)
+        {
+            //Drop item
+            Instantiate(itemManager.spawnedItem[Random.Range(0, itemManager.spawnedItem.Length-1)], transform.position, transform.rotation);
         }
     }
 
