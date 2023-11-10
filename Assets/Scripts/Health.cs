@@ -112,8 +112,6 @@ public class Health : MonoBehaviour
     {
         //Create a the hit effect particle object prefab that is being held in the effects manager.
         GameObject effect = Instantiate(effectsManager.hitParticle, transform.position, transform.rotation);
-        //Below is making sure to delete the effect after its been displayed. But only AFTER its done it's effect, 0.5f seems to work well. - Sarah.
-        Destroy(effect, 0.5f);
         
     }
 }
