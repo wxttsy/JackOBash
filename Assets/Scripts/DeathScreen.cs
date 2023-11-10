@@ -12,11 +12,7 @@ public class DeathScreen : MonoBehaviour
     public static bool wasPaused = false;
     public GameObject deathUI;
 
-    private void Awake()
-    {
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerMovement>();
-    }
+  
     private void Start()
     {
         deathUI.SetActive(false);

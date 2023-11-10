@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
-   
-
-    //loads a manually inputed scene by name
-    public void LoadSceneByName()
+    public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");
     }
@@ -31,5 +28,5 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
-   
+
 }
