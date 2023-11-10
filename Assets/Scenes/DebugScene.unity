@@ -2882,9 +2882,8 @@ MonoBehaviour:
   roomCount: 0
   maxRooms: 4
   roomsToSpawn:
-  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
-  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
-  - {fileID: 7744292624826379454, guid: 73cae6b18ab7d27409d6b7dd57407e27, type: 3}
+  - {fileID: 1765698802102765614, guid: ff19b7169fb3e4643abe0d981e88cd59, type: 3}
+  - {fileID: 3567747977510449476, guid: 6b7149f61b8f80445bfcacb765157446, type: 3}
   currentRooms: []
   positionOverride: 0
   roomToDelete: 0
