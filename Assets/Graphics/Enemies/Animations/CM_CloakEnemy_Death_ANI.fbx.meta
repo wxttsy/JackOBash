@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 571d66adcca97e0488bd1fdecb459348
+guid: 46623c3af154b934baaa7b537de60b5f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack01
-      takeName: Take 001
-      internalID: 1827226128182048838
-      firstFrame: 1
-      lastFrame: 15
+      name: GhostDeath
+      takeName: CloakEnemy_Death_ANI
+      internalID: 3416493891188805288
+      firstFrame: 121
+      lastFrame: 151
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,22 +57,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.4496124
-        functionName: EnableDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.79457366
-        functionName: DisableDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 1
-        functionName: AttackAnimationEnd
+        functionName: DeathAnimationEnd
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -81,7 +67,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 121
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -143,11 +129,12 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ff13de3f57caa24f86d858c0dd5ac1b,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0

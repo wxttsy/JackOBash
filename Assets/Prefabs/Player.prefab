@@ -157,7 +157,8 @@ MonoBehaviour:
   attackSlideDuration: 0.2
   attackSlideSpeed: 0.02
   combo: 0
-  doComboMeterIncrease: 0
+  playerScore: 0
+  deadUI: {fileID: 0}
 --- !u!95 &7011055472368594489
 Animator:
   serializedVersion: 4
@@ -191,13 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboDisplay: {fileID: 0}
-  comboIncreaseFactor: 5
-  comboDecreaseFactor: 2
-  comboIncreaseMultiplier: 1
-  comboMeter: 0
-  sugarRushOverride: 3
   isSugarRushing: 0
-  isPrimed: 0
+  maxCombo: 5
+  comboFull: 0
 --- !u!114 &7011055472368594488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  scoreFromKill: 1
 --- !u!1001 &8245592501086106728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,7 +245,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 36d4dd8731d09c44994444e65085d785,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36d4dd8731d09c44994444e65085d785,
         type: 3}

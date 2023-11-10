@@ -9,14 +9,14 @@ public class EnemyMelee : MonoBehaviour
     // References:
     private Animator animator;
     private DamageCollision attackHitbox;
-    enum STATE
+    public enum STATE
     {
         CHASE,
         ATTACKING,
         HIT,
         DEAD
     }
-    private STATE currentState;
+    public STATE currentState;
     private CharacterController cc;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private Transform targetPlayer;
@@ -44,6 +44,9 @@ public class EnemyMelee : MonoBehaviour
                 break;
             case STATE.ATTACKING:
                 break;
+            case STATE.DEAD:
+                
+                break;
         }
     }
     //=============================================Calculate Movement===============================================
@@ -55,7 +58,7 @@ public class EnemyMelee : MonoBehaviour
             SwitchStateTo(STATE.ATTACKING);
         }
     }
-    private void SwitchStateTo(STATE _newState)
+    public void SwitchStateTo(STATE _newState)
     {
         // Exit current state
         switch (currentState)
@@ -86,7 +89,7 @@ public class EnemyMelee : MonoBehaviour
 
                 break;
             case STATE.DEAD:
-
+                animator.SetTrigger("Death");
                 break;
         }
         currentState = _newState;
@@ -104,5 +107,12 @@ public class EnemyMelee : MonoBehaviour
     {
         attackHitbox.DisableDamageCollider();
 
+    }
+
+    public void DeathAnimationEnd()
+    {
+        //This method is called in an animation event at the end of the ghost attack animation.
+        //Ensures destroying AFTER the death animation has been played.
+        Destroy(gameObject);
     }
 }

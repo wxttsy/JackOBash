@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 oldMovementDirection;
     private Quaternion startOrientation;
     private float rotationTime = 0f;
-    private float rotationDuration = 0.2f;
+    private float rotationDuration = 0.05f;
     private float gravity = -20f;
     public float sugarRushValue;
     [Header("Movement")]
@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Current movement speed upgraded level.")]
     public int moveSpeedLevel = 1;
     public float dashSpeed = 9f;
+
+    //SUGAR RUSH
+    public float moveSpeedSR = 10f;
+    public bool sugarRushIsActivated = false;
+    public float SRTimer = 0;
+    public float sugarRushDuration = 26f;
 
     // Sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
@@ -74,18 +80,12 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         attackHitbox = GetComponentInChildren<DamageCollision>();
         comboScript = GetComponent<Combo>();
+        currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        
-        playerScore = combo;
-      
-        // Update movement speed.
-        // !!Needs to be changed to a one time thing when upgrades happen so its not updating every frame, only when the values are changed.
-        currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-        //Debug.Log(currentState);
         // Update Player based on state:
         switch (currentState)
         {
@@ -115,7 +115,18 @@ public class PlayerMovement : MonoBehaviour
 
             case STATE.SUGAR_RUSH:
                 CalculateMovement();
-                //attack
+                if (sugarRushIsActivated)
+                {
+                    if (SRTimer >= sugarRushDuration)
+                    {
+                        sugarRushIsActivated = false;
+                        comboScript.isSugarRushing = false;
+                        SRTimer = 0;
+                        combo = 0;
+                        currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
+                        SwitchStateTo(STATE.FREE);
+                    }
+                }
 
                 break;
 
@@ -139,9 +150,13 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
         }
-
-        // Apply Gravity:
-        if (!cc.isGrounded) { verticalVelocity = gravity; }
+        //Update sugar rush timer
+        if (sugarRushIsActivated)
+        {
+            SRTimer += 0.01f;
+        }
+            // Apply Gravity:
+            if (!cc.isGrounded) { verticalVelocity = gravity; }
         else { verticalVelocity = gravity * 0.3f; }
 
         // Apply movement:
@@ -167,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         movementVelocity = Quaternion.Euler(0, -45, 0) * movementVelocity;
 
         // Update movement to 'movementVelocity' variable which is used to apply movement.
-        movementVelocity *= moveSpeedBase * Time.deltaTime;
+        movementVelocity *= currentMoveSpeed * Time.deltaTime;
 
         //IN PROGRESS: New rotation working with xbox controller.
         /* rot = new Vector3(input.horizontalRotation, 0f, input.verticalRotation);
@@ -259,11 +274,12 @@ public class PlayerMovement : MonoBehaviour
             case STATE.DEAD:
                 break;
             case STATE.SUGAR_RUSH:
-                //leaving sugar rush state reset all movement stats etc here
+                
                 break;
             case STATE.SUGAR_RUSH_DASH:
                 break;
             case STATE.SUGAR_RUSH_ATTACK:
+
                 break;
         }
         // Enter new state
@@ -271,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
         {
             case STATE.FREE:
                 Debug.Log("State: FREE");
-                comboScript.isSugarRushing = false;
+                
                 break;
             case STATE.ATTACKING:
                 // Update Animator: Play animation for attacking.
@@ -288,7 +304,8 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetTrigger("Dashing");
                 // Stop Movement
                 movementVelocity = Vector3.zero;
-                // Update Rotation to face the direction immediately
+                //Spawn dash particle
+                SpawnDashParticle();
                 Debug.Log("State: DASH");
                 break;
             case STATE.HIT:
@@ -301,13 +318,20 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case STATE.SUGAR_RUSH:
-                moveMultiplier = 3f; //make set varible 
+                currentMoveSpeed = moveSpeedSR + (moveSpeedLevel * moveMultiplier);
                 //some damage multipler
                 //health invruablity thingo here to
-                comboScript.isSugarRushing = true;
+                if (!sugarRushIsActivated)
+                {
+                    sugarRushIsActivated = true;
+                    comboScript.isSugarRushing = true;
+                    SRTimer = 0;
+                }
+                
                 Debug.Log("State: SUGAR_RUSH");
                 break;
             case STATE.SUGAR_RUSH_ATTACK:
+                currentMoveSpeed = moveSpeedSR + (moveSpeedLevel * moveMultiplier);
                 // Update Animator: Play animation for attacking.
                 animator.SetTrigger("Attacking");
                 // Stop Movement
@@ -362,4 +386,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
     }
+    public void SpawnDashParticle()
+    {
+        GameObject effectsManagerObject = GameObject.FindWithTag("EffectsManager");
+        EffectsManager effectsManager = effectsManagerObject.GetComponent<EffectsManager>();
+
+        Instantiate(effectsManager.dashParticle, transform.position, transform.rotation);
+    }
+
 }
