@@ -28,7 +28,6 @@ public class DamageCollision : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("something triggered ontriddnfjak");
         // If thing we are colliding with is the same as the TargetTag we set in editor:
         if (other.tag == targetTag && !damagedTargetList.Contains(other))
         {

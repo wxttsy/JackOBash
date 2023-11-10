@@ -8863,6 +8863,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3599813753454841197, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 1517378965081023533, guid: 5c6799e6d05b120439a1b633c5595d21,
+        type: 3}
+    - target: {fileID: 3599813753454841197, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: enemiesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599813753454841197, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: spawnTimeInterval
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4787318982441533989, guid: cab18a8fafb57b5468e6aa952e1d036b,
         type: 3}
       propertyPath: m_Layer
