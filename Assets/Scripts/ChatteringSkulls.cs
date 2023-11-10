@@ -9,6 +9,9 @@ public class ChatteringSkulls : MonoBehaviour
     public float rotationSpeed = 10f;
     private float rotation;
 
+    public float timeActive;
+    public int timeToBeActive;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -24,6 +27,14 @@ public class ChatteringSkulls : MonoBehaviour
             rotation += rotationSpeed * Time.deltaTime;
             transform.position = target.transform.position;
             transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
+        }
+
+
+        timeActive += Time.deltaTime;
+
+        if (timeActive > timeToBeActive)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

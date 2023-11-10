@@ -13,17 +13,22 @@ public class DamageCollision : MonoBehaviour
     [Tooltip("The tag of the object this object can hit.")]
     public string targetTag;
     private List<Collider> damagedTargetList;
+    public bool isItem;
     //=============================================Unity Built-in Methods===============================================
     private void Awake()
     {
         // Set up variables:
         damageCollider = GetComponent<Collider>();
         // Disable collider at start.
-        damageCollider.enabled = false;
+        if (!isItem)
+        {
+            damageCollider.enabled = false;
+        }
         damagedTargetList = new List<Collider>();
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("something triggered ontriddnfjak");
         // If thing we are colliding with is the same as the TargetTag we set in editor:
         if (other.tag == targetTag && !damagedTargetList.Contains(other))
         {

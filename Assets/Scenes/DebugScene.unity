@@ -3671,7 +3671,7 @@ RectTransform:
   m_Children:
   - {fileID: 1104771435}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4091,6 +4091,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 639826772657863702, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: chatteringSkulls
+      value: 
+      objectReference: {fileID: 7285934680472184849, guid: 0fc11f194fa4a3e4e8ff3774d84f3385,
+        type: 3}
     - target: {fileID: 1290159656908761590, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
       propertyPath: m_Name
@@ -4099,7 +4105,7 @@ PrefabInstance:
     - target: {fileID: 4171063970383880247, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4171063970383880247, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
@@ -4160,6 +4166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2216184933423155318, guid: 812cd433a4b4ccc488a7f5be55dd7106,
+        type: 3}
+      propertyPath: maxCombo
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2216184933423155318, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: comboDisplay

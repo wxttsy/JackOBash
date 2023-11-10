@@ -32,10 +32,7 @@ public class Health : MonoBehaviour
         GameObject go = this.gameObject;
         ApplyHitEffect();
         //Apply the damage
-        if (currentHealth > 0){
-
-            currentHealth -= damage;
-        }
+        currentHealth -= damage;
         
         //Add 1 to the combo if enemy is killed.
         GameObject player = GameObject.FindWithTag("Player");
@@ -100,11 +97,18 @@ public class Health : MonoBehaviour
         //comboCandyCheck will = 0 if this is true.
         float combo = playerScript.combo;
         float comboCandyCheck = combo % 5;
+        float comboItemCheck = combo % 2;
         //Debug.Log(comboCandyCheck);
-        if (comboCandyCheck == 0)
+
+        //Spawn a Candy
+        if (comboCandyCheck == 0 && comboItemCheck != 0)
         {
-            //Drop Candy
             Instantiate(candyManager.timeCandy,transform.position,transform.rotation);
+        }
+        //Spawn a item
+        if (comboCandyCheck == 0 && comboItemCheck == 0)
+        {
+            GameObject go = Instantiate(candyManager.chatteringSkulls, transform.position, transform.rotation);
         }
     }
 
