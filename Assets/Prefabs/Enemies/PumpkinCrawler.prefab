@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 956581588494318126}
   - component: {fileID: 956581588494318124}
   - component: {fileID: 956581588494318127}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   targetTag: Player
+  isItem: 0
 --- !u!1 &1517378965081023533
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +74,7 @@ GameObject:
   - component: {fileID: 1517378965081023535}
   - component: {fileID: 956581588120377485}
   - component: {fileID: 956581588120377484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PumpkinCrawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -231,6 +232,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CM_Lootbox_PumpkinCrawler_01_Blockout
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bde16e52150367a4c9350d51fa625d3e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271889170577068709, guid: bde16e52150367a4c9350d51fa625d3e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50c96d7f36e2fe546a9de2be8658c977, type: 2}
+    - target: {fileID: 8767623764701248876, guid: bde16e52150367a4c9350d51fa625d3e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bde16e52150367a4c9350d51fa625d3e, type: 3}
