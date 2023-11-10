@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public float horizontalRotation;
     public float verticalRotation;
 
+    public GameObject itemInSlot;
+
     public void Start()
     {
         rs = GameObject.Find("RoomManager").GetComponent<RoomSpawner>();
@@ -31,6 +33,7 @@ public class PlayerInput : MonoBehaviour
         //verticalRotation = Input.GetAxis("VerticalRotation");
 
         DetermineFloor();
+        ItemCheck();
     }
 
     private void OnDisable()
@@ -54,5 +57,26 @@ public class PlayerInput : MonoBehaviour
             //Debug.Log("I am on the ground");
             rs.currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
+    }
+
+
+    //check whether the item can be used when a key is pressed. spit out a debug if item is null.
+    public void ItemCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && itemInSlot != null)
+        {
+            UseItem();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && itemInSlot == null)
+        {
+            Debug.Log("I don't hava the item");
+        }
+    }
+
+    public void UseItem()
+    {
+        //create the item in respect to player transform
+            Instantiate(itemInSlot, this.transform);
+            itemInSlot = null;
     }
 }
