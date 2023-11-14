@@ -11,6 +11,9 @@ public class TestLob : MonoBehaviour
     public float maxDistance;
     Vector3 nextpos;
 
+    public bool targetPlayer;
+    public Transform playerTarget;
+
     void Start()
     {
         startPos = transform.position;
@@ -20,8 +23,21 @@ public class TestLob : MonoBehaviour
             this.gameObject.transform.forward = transform.parent.forward;
         }
 
-        targetPos = new Vector3(0, 0, transform.forward.z * maxDistance);
 
+        if (targetPlayer)
+        {
+            playerTarget = FindObjectOfType<PlayerInput>().gameObject.transform;
+            targetPos = playerTarget.transform.position;
+        }
+        else
+        {
+            targetPos = new Vector3(0, 0, transform.forward.z * maxDistance);
+
+        }
+
+
+        Vector3 lookDirection = (targetPos - transform.position).normalized;
+        transform.forward = lookDirection;
 
     }
 
@@ -33,11 +49,14 @@ public class TestLob : MonoBehaviour
         float startZ = startPos.z;
         float endZ = targetPos.z;
         float dist = endZ - startZ;
+
+        float startX = startPos.x;
+        float endX = targetPos.x;
         
 
-        //
-        float nextZ = Mathf.MoveTowards(transform.position.z, endZ, travelSpeed * Time.deltaTime);
 
+        float nextZ = Mathf.MoveTowards(transform.position.z, endZ, travelSpeed * Time.deltaTime);
+        float nextX = Mathf.MoveTowards(transform.position.x, endX, travelSpeed * Time.deltaTime);
 
         float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextZ - startZ) / dist);
         
@@ -46,7 +65,7 @@ public class TestLob : MonoBehaviour
         float arc = arcHeight * (nextZ - startZ) * (nextZ - endZ) / (-0.25f * dist * dist);
 
 
-        nextpos = new Vector3(transform.position.x, baseY + arc, nextZ);
+        nextpos = new Vector3(nextX, baseY + arc, nextZ);
         
         transform.position = nextpos;
         
