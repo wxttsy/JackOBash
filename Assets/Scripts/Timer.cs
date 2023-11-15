@@ -7,35 +7,46 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public float maxTime = 100;
-    public float currentTime;
     public TMP_Text timeDisplay;
     public GameObject player;
     Health playerHp;
 
     public Slider timeSlider;
+    public Slider candySlider;
     // Start is called before the first frame update
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         playerHp = player.GetComponent<Health>();
-        currentTime = maxTime;
+        playerHp.currentHealth = maxTime;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        
         //Do not increment the timer if it is going to be less than 0. Instead display 0.
-        if (currentTime < 0)
+        if (playerHp.currentHealth < 0)
         {
-            currentTime = 0;
+            playerHp.currentHealth = 0;
             timeDisplay.text = "0";
+            timeSlider.value = (int)playerHp.currentHealth;
+            return;
+        }
+        if (playerHp.currentHealth > 100)
+        {
+            playerHp.currentHealth = 100;
+            timeDisplay.text = "100";
+            timeSlider.value = (int)playerHp.currentHealth;
+            playerHp.currentHealth -= 1 * Time.deltaTime;
             return;
         }
         //Otherwise, increment appropriately.
-        currentTime = playerHp.currentHealth;
         playerHp.currentHealth -= 1 * Time.deltaTime;
-        timeDisplay.text = "" + (int)currentTime;
+        timeDisplay.text = "" + ((int)playerHp.currentHealth+1) + "/100";
+        timeSlider.value = (int)playerHp.currentHealth;
 
-        
+
+
     }
 }

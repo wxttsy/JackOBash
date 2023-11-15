@@ -115,18 +115,6 @@ public class PlayerMovement : MonoBehaviour
 
             case STATE.SUGAR_RUSH:
                 CalculateMovement();
-                if (sugarRushIsActivated)
-                {
-                    if (SRTimer >= sugarRushDuration)
-                    {
-                        sugarRushIsActivated = false;
-                        comboScript.isSugarRushing = false;
-                        SRTimer = 0;
-                        combo = 0;
-                        currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
-                        SwitchStateTo(STATE.FREE);
-                    }
-                }
 
                 break;
 
@@ -153,7 +141,18 @@ public class PlayerMovement : MonoBehaviour
         //Update sugar rush timer
         if (sugarRushIsActivated)
         {
-            SRTimer += 0.01f;
+            GameObject timerGo = GameObject.FindWithTag("Timer");
+            Timer timer = timerGo.GetComponent<Timer>();
+            timer.candySlider.value -= 4 * Time.deltaTime;
+            if (timer.candySlider.value == timer.candySlider.minValue)
+            {
+                SwitchStateTo(STATE.FREE);
+                sugarRushIsActivated = false;
+                comboScript.isSugarRushing = false;
+                SRTimer = 0;
+                combo = 0;
+                currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
+            }
         }
             // Apply Gravity:
             if (!cc.isGrounded) { verticalVelocity = gravity; }
@@ -380,7 +379,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeToSugarRushCheck()
     {
-        if (comboScript.ComboFull())
+        GameObject timerGo = GameObject.FindWithTag("Timer");
+        Timer timer = timerGo.GetComponent<Timer>();
+        
+        if (timer.candySlider.value == timer.candySlider.maxValue)
         {
             SwitchStateTo(STATE.SUGAR_RUSH);
             return;

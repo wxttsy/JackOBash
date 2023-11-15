@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeCandy : MonoBehaviour
 {
     public int candyTimeAmount = 5;
+    public int candyBarAmount = 8;
     private void OnTriggerEnter(Collider other)
     {
         // If what we have collided with, is the player:
@@ -15,11 +16,25 @@ public class TimeCandy : MonoBehaviour
             if (playerHealthScript != null)
             {
                 // Add candy amount to player's health.
-                playerHealthScript.currentHealth += candyTimeAmount;
+                if (playerHealthScript.currentHealth > 100)
+                {
+                    playerHealthScript.currentHealth = 100;
+                }
+                else
+                {
+                    playerHealthScript.currentHealth += candyTimeAmount;
+                }
+                
                 Debug.Log("Picked up Time Candy");
                 GameObject effectsManagerObject = GameObject.FindWithTag("EffectsManager");
                 EffectsManager effectsManager = effectsManagerObject.GetComponent<EffectsManager>();
                 Instantiate(effectsManager.candyPickUpParticle, transform.position, transform.rotation);
+
+                //Add candy to candy bar
+                GameObject timerGo = GameObject.FindWithTag("Timer");
+                Timer timer = timerGo.GetComponent<Timer>();
+                timer.candySlider.value += candyBarAmount;
+
                 //Destroy this candy object.
                 Destroy(gameObject);
             }
