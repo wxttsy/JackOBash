@@ -9,10 +9,12 @@ public class Timer : MonoBehaviour
     public float maxTime = 100;
     public TMP_Text timeDisplay;
     public GameObject player;
-    Health playerHp;
+    public Health playerHp;
+    PlayerMovement pm;
     private float timePlayed = 0;
     public Slider timeSlider;
     public Slider candySlider;
+    public float depreciationValue;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class Timer : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerHp = player.GetComponent<Health>();
         playerHp.currentHealth = maxTime;
+        pm = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -34,16 +37,29 @@ public class Timer : MonoBehaviour
             timeSlider.value = (int)playerHp.currentHealth;
             return;
         }
-        if (playerHp.currentHealth > 100)
+        if (playerHp.currentHealth >= 100)
         {
             playerHp.currentHealth = 100;
             timeDisplay.text = "100";
             timeSlider.value = (int)playerHp.currentHealth;
-            playerHp.currentHealth -= 1 * Time.deltaTime;
             return;
         }
         //Otherwise, increment appropriately.
-        playerHp.currentHealth -= 1 * Time.deltaTime;
+
+        if (pm.sugarRushIsActivated)
+        {
+
+            playerHp.currentHealth += 1 * Time.deltaTime;
+        }
+        else
+        {
+
+            playerHp.currentHealth -= 1 * Time.deltaTime;
+        }
+
+
+
+
         timeDisplay.text = "" + ((int)playerHp.currentHealth+1) + "/100";
         timeSlider.value = (int)playerHp.currentHealth;
 

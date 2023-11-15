@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     public bool sugarRushIsActivated = false;
     public float SRTimer = 0;
     public float sugarRushDuration = 26f;
+    public Timer hp;
 
     // Sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         deadUI.SetActive(false);
+
     }
     private void Awake()
     {
@@ -82,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         attackHitbox = GetComponentInChildren<DamageCollision>();
         comboScript = GetComponent<Combo>();
         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
+        hp = GetComponent<Timer>();
     }
 
     // Update is called once per frame
@@ -145,12 +148,12 @@ public class PlayerMovement : MonoBehaviour
             GameObject timerGo = GameObject.FindWithTag("Timer");
             Timer timer = timerGo.GetComponent<Timer>();
             timer.candySlider.value -= 4 * Time.deltaTime;
+
             if (timer.candySlider.value == timer.candySlider.minValue)
             {
                 SwitchStateTo(STATE.FREE);
 
                 srParticles.Stop();
-
                 sugarRushIsActivated = false;
                 
                 comboScript.isSugarRushing = false;
@@ -389,6 +392,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (timer.candySlider.value == timer.candySlider.maxValue)
         {
+
             SwitchStateTo(STATE.SUGAR_RUSH);
             return;
         }

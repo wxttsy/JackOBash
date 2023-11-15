@@ -47,7 +47,8 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         // Create an enemy from the prefab attached to this object: Increase spawned counter.
-        Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        GameObject en = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        en.transform.parent = this.transform.parent;
         enemiesSpawned += 1;
     }
 }
