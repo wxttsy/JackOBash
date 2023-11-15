@@ -1,22 +1,29 @@
+using Cinemachine.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestLob : MonoBehaviour
 {
-    Vector3 targetPos;
+    public Transform targetPos;
+    Vector3 startPosVector;
+    Vector3 targetPosVector;
     public float travelSpeed;
     public float arcHeight;
-    Vector3 startPos;
+    public Transform startPos;
     public float maxDistance;
     Vector3 nextpos;
-
+    float sampleTime = 0;
     public bool targetPlayer;
     public Transform playerTarget;
 
+    public Vector3 midPointPos;
+
     void Start()
     {
-        startPos = transform.position;
+        startPos = transform;
+        startPosVector = startPos.position;
 
         if (transform.parent != null)
         {
@@ -27,17 +34,18 @@ public class TestLob : MonoBehaviour
         if (targetPlayer)
         {
             playerTarget = FindObjectOfType<PlayerInput>().gameObject.transform;
-            targetPos = playerTarget.transform.position;
+            targetPos = playerTarget.transform;
+            targetPosVector = targetPos.position;
         }
-        else
-        {
-            targetPos = new Vector3(0, 0, transform.forward.z * maxDistance);
+        //else
+        //{
+        //    targetPos = new Vector3(0, 0, transform.forward.z * maxDistance);
+        //
+        //}
 
-        }
 
-
-        Vector3 lookDirection = (targetPos - transform.position).normalized;
-        transform.forward = lookDirection;
+        midPointPos = new Vector3((startPos.position.x + targetPos.position.x) / 2, 0, (startPos.position.z + targetPos.position.z) / 2);
+        midPointPos.y = arcHeight;
 
     }
 
@@ -46,38 +54,54 @@ public class TestLob : MonoBehaviour
     {
 
         //create float references to initial starting points of object, and where it aims to be, then calculate the distance between those two points
-        float startZ = startPos.z;
-        float endZ = targetPos.z;
-        float dist = endZ - startZ;
-
-        float startX = startPos.x;
-        float endX = targetPos.x;
-        
 
 
-        float nextZ = Mathf.MoveTowards(transform.position.z, endZ, travelSpeed * Time.deltaTime);
-        float nextX = Mathf.MoveTowards(transform.position.x, endX, travelSpeed * Time.deltaTime);
 
-        float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextZ - startZ) / dist);
-        
-
-
-        float arc = arcHeight * (nextZ - startZ) * (nextZ - endZ) / (-0.25f * dist * dist);
+        sampleTime += travelSpeed * Time.deltaTime;
+        transform.position = evaluate(sampleTime);
+        transform.forward = evaluate(sampleTime * .001f) - transform.position;
 
 
-        nextpos = new Vector3(nextX, baseY + arc, nextZ);
-        
-        transform.position = nextpos;
-        
-        if(nextpos == targetPos)
+        if(sampleTime > 1f)
         {
-            Debug.Log("I hit");
+            Debug.Log("DOH I MISSED");
             Destroy(this.gameObject);
         }
 
-        
-
-
-
     }
+
+    public Vector3 evaluate(float t)
+    {
+
+        //midPointPos = new Vector3((startPos.position.x + targetPos.position.x) / 2, 0, (startPos.position.z + targetPos.position.z) / 2);
+        //midPointPos.y = arcHeight;
+
+
+        Vector3 ac = Vector3.Lerp(startPosVector, midPointPos, t);
+        Vector3 cb = Vector3.Lerp(midPointPos, targetPosVector, t);
+        return Vector3.Lerp(ac, cb, t);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+
+
+
+        for(int i = 0; i < 20; i++)
+        {
+            Gizmos.DrawWireSphere(evaluate(i / 20f), 0.1f);
+        }
+    }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("OH MY I HIT A THING");
+            Destroy(this.gameObject);
+        }
+    }
+
 }
