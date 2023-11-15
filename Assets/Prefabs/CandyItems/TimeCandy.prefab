@@ -260,7 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36093f5325ba63a46bea56f7ee9057c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candyTimeAmount: 5
+  candyTimeAmount: 3
+  candyBarAmount: 4
 --- !u!135 &3678631295927019846
 SphereCollider:
   m_ObjectHideFlags: 0

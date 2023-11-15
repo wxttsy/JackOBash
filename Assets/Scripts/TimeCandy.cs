@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeCandy : MonoBehaviour
 {
-    public int candyTimeAmount = 5;
+    public int candyTimeAmount = 1;
     public int candyBarAmount = 8;
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +23,7 @@ public class TimeCandy : MonoBehaviour
                 else
                 {
                     playerHealthScript.currentHealth += candyTimeAmount;
+                    Debug.Log("add time");
                 }
                 
                 Debug.Log("Picked up Time Candy");
