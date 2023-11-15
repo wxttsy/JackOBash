@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     // References:
     public GameObject _enemyPrefab;
+    RoomSpawner rs;
     // Variables:
     public float spawnTimeInterval;
     private float startTime;
@@ -16,9 +17,12 @@ public class EnemySpawner : MonoBehaviour
     void Awake()
     {
         // Initialise variables.
+        rs = FindObjectOfType<RoomSpawner>();
         startTime = Time.time;
         enemiesSpawned = 0;
         deactivated = false;
+        enemiesToSpawn += rs.roomCount * rs.roomCount/4;
+        Debug.Log(enemiesToSpawn);
     }
     private void Update()
     {
