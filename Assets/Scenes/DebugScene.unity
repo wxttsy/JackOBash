@@ -4091,6 +4091,96 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfBatHit
+      value: 
+      objectReference: {fileID: 5864750327168243817, guid: a5d43bf8ca58a104ab3cf07d37e6905a,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfBatSwing
+      value: 
+      objectReference: {fileID: 6193575233319564717, guid: bf65d1d4288ac2146ba90014e6b9e51e,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerDash
+      value: 
+      objectReference: {fileID: 2307060634185465156, guid: 65baa5a572cb67048af1bc06db1385cc,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfCandyPickup
+      value: 
+      objectReference: {fileID: 3067908218881074117, guid: 552ff67b57abc684792e1c2502371b16,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerDeath
+      value: 
+      objectReference: {fileID: 8415400680788974245, guid: 8ea37e5faebbbd140b87b361e9fc586c,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerHurt1
+      value: 
+      objectReference: {fileID: 4798520537741941242, guid: 75dcda35d21d9da4c868550685cd8857,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerHurt2
+      value: 
+      objectReference: {fileID: 6623602271430580476, guid: 2011930f67d97b845b47951f0c9537ee,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPowerPickup
+      value: 
+      objectReference: {fileID: 4360728639455253119, guid: 1fc4c121d735e9f488043eca37e86d96,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfBatSwingFinal
+      value: 
+      objectReference: {fileID: 1461139746702632750, guid: 6a0e5c5463ddc554b9e2af2a37bc8e7c,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfSugarRushExit
+      value: 
+      objectReference: {fileID: 8386504306490078628, guid: c313c467525599049986c733a5a13a32,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfSugarRushEntry
+      value: 
+      objectReference: {fileID: 7800402326046630961, guid: 4fe900a711e3aa34485d6d55f2fbbd78,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerFootsteps1
+      value: 
+      objectReference: {fileID: 3935722183928588809, guid: a6056534965f35b4a81714a61ef567f0,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerFootsteps2
+      value: 
+      objectReference: {fileID: 7914584659424531483, guid: 5d21ec1fc58901b4da6a7b13baf2036b,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerFootsteps3
+      value: 
+      objectReference: {fileID: 8864405799450786092, guid: 20a01cf7c4f7f7a43a3cf29803915b57,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPlayerFootsteps4
+      value: 
+      objectReference: {fileID: 8335483336865390616, guid: d0d2f5d631243674b8a8b7d16b4d9da2,
+        type: 3}
     - target: {fileID: 639826772657863702, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
       propertyPath: chatteringSkulls

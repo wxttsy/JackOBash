@@ -17,9 +17,13 @@ public class AudioManager : MonoBehaviour
     public GameObject sfBatSwing;
     public GameObject sfBatSwingFinal;
     public GameObject sfBatHit;
-    public GameObject sfPlayerHurt;
+    public GameObject sfPlayerHurt1;
+    public GameObject sfPlayerHurt2;
     public GameObject sfPlayerDeath;
-    public GameObject sfPlayerFootsteps;
+    public GameObject sfPlayerFootsteps1;
+    public GameObject sfPlayerFootsteps2;
+    public GameObject sfPlayerFootsteps3;
+    public GameObject sfPlayerFootsteps4;
     public GameObject sfPlayerDash;
     public GameObject sfPowerPickup;
     public GameObject sfCandyPickup;
