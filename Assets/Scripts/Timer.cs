@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public TMP_Text timeDisplay;
     public GameObject player;
     public Health playerHp;
-    PlayerMovement pm;
+    PlayerMovement _playerMovement;
     private float timePlayed = 0;
     public Slider timeSlider;
     public Slider candySlider;
@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerHp = player.GetComponent<Health>();
         playerHp.currentHealth = maxTime;
-        pm = player.GetComponent<PlayerMovement>();
+        _playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class Timer : MonoBehaviour
         }
         //Otherwise, increment appropriately.
 
-        if (pm.sugarRushIsActivated)
+        if (_playerMovement.sugarRushIsActivated)
         {
 
             playerHp.currentHealth += 1 * Time.deltaTime;
