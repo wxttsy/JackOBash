@@ -35,7 +35,7 @@ public class Combo : MonoBehaviour
 
         if (player != null)
         {
-            comboDisplay.text = "" + playerScript.combo;
+            //comboDisplay.text = "" + playerScript.combo;
 
         }
 

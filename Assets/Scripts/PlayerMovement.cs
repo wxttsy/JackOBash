@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private DamageCollision attackHitbox;
     private Combo comboScript;
+    public ParticleSystem srParticles;
 
     // Movement:
     private Vector3 movementVelocity;
@@ -147,7 +148,11 @@ public class PlayerMovement : MonoBehaviour
             if (timer.candySlider.value == timer.candySlider.minValue)
             {
                 SwitchStateTo(STATE.FREE);
+
+                srParticles.Stop();
+
                 sugarRushIsActivated = false;
+                
                 comboScript.isSugarRushing = false;
                 SRTimer = 0;
                 combo = 0;
@@ -286,7 +291,6 @@ public class PlayerMovement : MonoBehaviour
         {
             case STATE.FREE:
                 Debug.Log("State: FREE");
-                
                 break;
             case STATE.ATTACKING:
                 // Update Animator: Play animation for attacking.
@@ -322,6 +326,7 @@ public class PlayerMovement : MonoBehaviour
                 //health invruablity thingo here to
                 if (!sugarRushIsActivated)
                 {
+                    srParticles.Play();
                     sugarRushIsActivated = true;
                     comboScript.isSugarRushing = true;
                     SRTimer = 0;
