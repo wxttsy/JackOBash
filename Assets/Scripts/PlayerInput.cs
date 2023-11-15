@@ -17,9 +17,16 @@ public class PlayerInput : MonoBehaviour
 
     public GameObject itemInSlot;
 
+    Vector3 mousePos;
+    Vector3 hitPoint;
+    LayerMask isGround;
+    public Transform fireOrientation;
+    Vector3 newDirection;
+
     public void Start()
     {
         rs = GameObject.Find("RoomManager").GetComponent<RoomSpawner>();
+        isGround = LayerMask.GetMask("Ground");
     }
 
     // Update Input recieved:
@@ -31,6 +38,27 @@ public class PlayerInput : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         //horizontalRotation = Input.GetAxis("HorizontalRotation");
         //verticalRotation = Input.GetAxis("VerticalRotation");
+
+        mousePos = Input.mousePosition;
+        hitPoint.y = transform.position.y;
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit, 1000, isGround))
+        {
+            hitPoint.x = hit.point.x;
+            hitPoint.z = hit.point.z;
+        }
+        Debug.DrawLine(transform.position, hitPoint);
+
+        Vector3 targetDirection = hitPoint - fireOrientation.position;
+
+        //newDirection = Vector3.RotateTowards(fireOrientation.forward, targetDirection, 1, 1);
+
+        fireOrientation.forward = targetDirection;
+
+
+
 
         DetermineFloor();
         ItemCheck();

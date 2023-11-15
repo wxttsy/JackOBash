@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public bool sugarRushIsActivated = false;
     public float SRTimer = 0;
     public float sugarRushDuration = 26f;
+    GameObject srParticle;
 
     // Sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
@@ -119,11 +120,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (SRTimer >= sugarRushDuration)
                     {
+                        Destroy(srParticle);
                         sugarRushIsActivated = false;
                         comboScript.isSugarRushing = false;
                         SRTimer = 0;
-                        combo = 0;
                         currentMoveSpeed = moveSpeedBase + (moveSpeedLevel * moveMultiplier);
+                        combo = 0;
                         SwitchStateTo(STATE.FREE);
                     }
                 }
@@ -382,6 +384,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (comboScript.ComboFull())
         {
+            srParticle = Instantiate(FindObjectOfType<EffectsManager>().rushParticle, this.gameObject.transform);
             SwitchStateTo(STATE.SUGAR_RUSH);
             return;
         }

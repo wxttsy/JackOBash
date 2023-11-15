@@ -8,5 +8,6 @@ public class EffectsManager : MonoBehaviour
     public GameObject hitParticle;
     public GameObject candyPickUpParticle;
     public GameObject dashParticle;
+    public GameObject rushParticle;
   
 }

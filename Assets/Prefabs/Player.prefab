@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   targetTag: Enemy
+  isItem: 0
 --- !u!1 &7011055472368594481
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +137,8 @@ MonoBehaviour:
   rs: {fileID: 0}
   horizontalRotation: 0
   verticalRotation: 0
+  itemInSlot: {fileID: 0}
+  fireOrientation: {fileID: 7011055472368594485}
 --- !u!114 &7011055472368594484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +157,10 @@ MonoBehaviour:
   moveMultiplier: 7.84
   moveSpeedLevel: 1
   dashSpeed: 25
+  moveSpeedSR: 10
+  sugarRushIsActivated: 0
+  SRTimer: 0
+  sugarRushDuration: 26
   attackSlideDuration: 0.2
   attackSlideSpeed: 0.02
   combo: 0

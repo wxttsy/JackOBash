@@ -108,7 +108,7 @@ public class Health : MonoBehaviour
         //Spawn a item
         if (comboCandyCheck == 0 && comboItemCheck == 0)
         {
-            GameObject go = Instantiate(candyManager.chatteringSkulls, transform.position, transform.rotation);
+            Instantiate(candyManager.items[Random.Range(0, candyManager.items.Length-1)], transform.position, transform.rotation);
         }
     }
 

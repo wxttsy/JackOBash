@@ -3732,6 +3732,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7285934680472184849, guid: 0fc11f194fa4a3e4e8ff3774d84f3385,
         type: 3}
+    - target: {fileID: 639826773066233013, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: rushParticle
+      value: 
+      objectReference: {fileID: 3813656768658089959, guid: b0fb4017e62cdf945982fd14aaab0756,
+        type: 3}
     - target: {fileID: 1290159656908761590, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
       propertyPath: m_Name
@@ -3839,7 +3845,7 @@ PrefabInstance:
     - target: {fileID: 7011055472368594484, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: sugarRushDuration
-      value: 900
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7011055472368594485, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
