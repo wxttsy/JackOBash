@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsMenu;
-    public GameObject UIGroup;
-   // public GameObject Menu2;
+    public GameObject Ui1;
+    public GameObject Ui2;
 
     // Start is called before the first frame update
     void Awake ()
     {
-        UIGroup.SetActive (true);
+     
         optionsMenu.SetActive (false);
     }
 
@@ -23,7 +24,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void onClickOptions()
     {
-        UIGroup.SetActive(false);
+        Ui1.SetActive(false);
+        Ui2.SetActive(false);
         optionsMenu.SetActive(true);
         Time.timeScale = 0f;
         Debug.Log("onClickOptions CLicked");
@@ -32,7 +34,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void BackButton()
     {
-        UIGroup.SetActive(true);
+        Ui1.SetActive(true);
+        Ui2.SetActive(true);
         optionsMenu.SetActive(false);
         Time.timeScale = 0f;
         Debug.Log("BACK CLICKED");
