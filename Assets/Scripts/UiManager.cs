@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+<<<<<<< Updated upstream:Assets/Scripts/UiManager.cs
+=======
+   
+
+    //loads a manually inputed scene by name
+>>>>>>> Stashed changes:Assets/Scripts/Ui/UiManager.cs
     public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");

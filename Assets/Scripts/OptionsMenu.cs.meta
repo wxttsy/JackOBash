@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Scripts/OptionsMenu.cs.meta
 <<<<<<< Updated upstream
 guid: 50d86c3ee3bbbda45b4c74a884fc3467
 =======
 guid: cb886b314c0193241aef2dc265ccda5c
 >>>>>>> Stashed changes
+=======
+guid: 33d9500592b15bf4da58c9d89d3d0e9f
+>>>>>>> Stashed changes:Assets/Scripts/Ui/OptionsMenu.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
