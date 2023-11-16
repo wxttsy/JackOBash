@@ -1984,6 +1984,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976865260}
   m_CullTransparentMesh: 1
+--- !u!1 &988534481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988534483}
+  - component: {fileID: 988534482}
+  m_Layer: 0
+  m_Name: PumpkinCrawlerMovement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &988534482
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988534481}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d7422e5ada91e3747b880f8a0f8c7b89, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &988534483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988534481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004176093
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,6 +4233,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
+      propertyPath: sfMenuClick
+      value: 
+      objectReference: {fileID: 1576391211259712273, guid: f7d8aa56f86e88849a86ea7f9b436f59,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
       propertyPath: sfPlayerDash
       value: 
       objectReference: {fileID: 2307060634185465156, guid: 65baa5a572cb67048af1bc06db1385cc,
@@ -4114,6 +4248,12 @@ PrefabInstance:
       propertyPath: sfCandyPickup
       value: 
       objectReference: {fileID: 3067908218881074117, guid: 552ff67b57abc684792e1c2502371b16,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPartyPopper
+      value: 
+      objectReference: {fileID: 4103509884765984659, guid: 5f7667b05198b554ba81a219b70f3a71,
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
@@ -4147,6 +4287,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
+      propertyPath: sfDancingSkulls
+      value: 
+      objectReference: {fileID: 985932135471785526, guid: e752635cf7852174da5a3065e216257e,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
       propertyPath: sfSugarRushExit
       value: 
       objectReference: {fileID: 8386504306490078628, guid: c313c467525599049986c733a5a13a32,
@@ -4156,6 +4302,12 @@ PrefabInstance:
       propertyPath: sfSugarRushEntry
       value: 
       objectReference: {fileID: 7800402326046630961, guid: 4fe900a711e3aa34485d6d55f2fbbd78,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfChatteringSkulls
+      value: 
+      objectReference: {fileID: 985932135471785526, guid: e752635cf7852174da5a3065e216257e,
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
@@ -4180,6 +4332,12 @@ PrefabInstance:
       propertyPath: sfPlayerFootsteps4
       value: 
       objectReference: {fileID: 8335483336865390616, guid: d0d2f5d631243674b8a8b7d16b4d9da2,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfPumpkinCrawlerDeath
+      value: 
+      objectReference: {fileID: 5507744473507310024, guid: 5816fcdb28b9db244883e7bd4905576c,
         type: 3}
     - target: {fileID: 639826772657863702, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}

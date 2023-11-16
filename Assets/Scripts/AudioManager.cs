@@ -29,35 +29,26 @@ public class AudioManager : MonoBehaviour
     public GameObject sfCandyPickup;
     public GameObject sfSugarRushEntry;
     public GameObject sfSugarRushExit;
-    public GameObject sfComboUp;
-    public GameObject sfComboDrop;
 
     [Header("Ability sfx")]
     public GameObject sfPartyPopper;
-    public GameObject sfPartyBlowerLaunch;
-    public GameObject sfPartyBlowerHit;
     public GameObject sfSpilledPunchLaunch;
     public GameObject sfSpilledPunchLand;
-    public GameObject sfDancingSkulls;
+    public GameObject sfChatteringSkulls;
 
     [Header("Enemy sfx")]
-    public GameObject sfMelee1Growl;
-    public GameObject sfMelee2Growl;
-    public GameObject sfRanged1Growl;
-    public GameObject sfRanged2Growl;
-    public GameObject sfPumpkinCrawlerGrowl;
-    public GameObject sfMelee1Hurt;
-    public GameObject sfMelee2Hurt;
-    public GameObject sfRanged1Hurt;
-    public GameObject sfRanged2Hurt;
-    public GameObject sfPumpkinCrawlerHurt;
-    public GameObject sfMelee1Death;
-    public GameObject sfMelee2Death;
-    public GameObject sfRanged1Death;
-    public GameObject sfRanged2Death;
+    public GameObject sfPumpkinCrawlerMovement;
+    public GameObject sfMeleeHurt1;
+    public GameObject sfMeleeHurt2;
+    public GameObject sfRangedHurt1;
+    public GameObject sfRangedHurt2;
+    public GameObject sfMeleeDeath1;
+    public GameObject sfMeleeDeath2;
+    public GameObject sfRangedDeath1;
+    public GameObject sfRangedDeath2;
     public GameObject sfPumpkinCrawlerDeath;
-    public GameObject sfRanged1Hit;
-    public GameObject sfRanged2Hit;
+    public GameObject sfRangedAttack;
+    public GameObject sfMeleeAttack;
 
     [Header("Miscellaneous sfx")]
     public GameObject sfMenuClick;
