@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - ItemManager
+  - BarDisplayUI
+  - GameManager
   - CandyManager
   - EffectsManager
-  - ItemManager
-  - Timer
   layers:
   - Default
   - TransparentFX
