@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     // Set health to max health on awake.
     void Awake()
     {
+
         //Get references to candy manager and effects manager
         //-Candy for dropping if an enemy is killed, effects for applying a hit effect in apply damage.
         currentHealth = maxHealth;
@@ -24,6 +25,8 @@ public class Health : MonoBehaviour
 
         GameObject effectsManagerObject = GameObject.FindWithTag("EffectsManager");
         effectsManager = effectsManagerObject.GetComponent<EffectsManager>();
+
+        Debug.Log(candyManager.itemsToGive.Length);
     }
     //=============================================Methods to manage Health=====================================
     public void ApplyDamage(int damage)
@@ -108,7 +111,8 @@ public class Health : MonoBehaviour
         //Spawn a item
         if (comboCandyCheck == 0 && comboItemCheck == 0)
         {
-            GameObject go = Instantiate(candyManager.chatteringSkulls, transform.position, transform.rotation);
+            GameObject playerTransform = GameObject.FindWithTag("Player");
+            GameObject go = Instantiate(candyManager.itemsToGive[Random.Range(0, candyManager.itemsToGive.Length)], playerTransform.transform.position, playerTransform.transform.rotation);
         }
     }
 

@@ -9,5 +9,5 @@ public class CandyManager : MonoBehaviour
 
 
     //Items
-    public GameObject chatteringSkulls;
+    public GameObject[] itemsToGive;
 }

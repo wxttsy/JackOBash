@@ -16,6 +16,9 @@ public class RoomSpawner : MonoBehaviour
     public List<GameObject> currentRooms = new List<GameObject> ();
     public float positionOverride = 0;
     public int roomToDelete = 0;
+    public GameObject player;
+
+
 
     private List<NavMeshBuildSource> navMeshDatas = new List<NavMeshBuildSource>();
     private List<NavMeshBuildMarkup> navMeshBuildMarkup = new List<NavMeshBuildMarkup>();
@@ -40,7 +43,20 @@ public class RoomSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentRoom.gameObject == currentRooms[currentRooms.Count-2].gameObject)
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(player.transform.position, Vector3.down, out hit, 10))
+        {
+            //Debug.Log("I am on the ground");
+            currentRoom = hit.collider.gameObject.transform.parent.gameObject;
+        }
+
+
+
+
+
+        if (currentRoom.gameObject == currentRooms[currentRooms.Count-2].gameObject)
         {
             Destroy(currentRooms[0]);
             currentRooms.Remove(currentRooms[0]);

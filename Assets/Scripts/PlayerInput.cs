@@ -9,9 +9,6 @@ public class PlayerInput : MonoBehaviour
     public float verticalInput;
     public bool attackButtonPressed;
     public bool dashButtonPressed;
-
-    public RoomSpawner rs;
-
     public float horizontalRotation;
     public float verticalRotation;
 
@@ -19,7 +16,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Start()
     {
-        rs = GameObject.Find("RoomManager").GetComponent<RoomSpawner>();
+
     }
 
     // Update Input recieved:
@@ -32,7 +29,7 @@ public class PlayerInput : MonoBehaviour
         //horizontalRotation = Input.GetAxis("HorizontalRotation");
         //verticalRotation = Input.GetAxis("VerticalRotation");
 
-        DetermineFloor();
+        //DetermineFloor();
         ItemCheck();
     }
 
@@ -47,16 +44,6 @@ public class PlayerInput : MonoBehaviour
         verticalInput = 0;
         attackButtonPressed = false;
         dashButtonPressed = false;
-    }
-
-    public void DetermineFloor()
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, 10))
-        {
-            //Debug.Log("I am on the ground");
-            rs.currentRoom = hit.collider.gameObject.transform.parent.gameObject;
-        }
     }
 
 
