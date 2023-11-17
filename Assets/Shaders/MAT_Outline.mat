@@ -114,7 +114,7 @@ Material:
     - _LightIntensity: 0.2
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Outline_Thickness: 0.0447
+    - _Outline_Thickness: 0.08
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
