@@ -4111,6 +4111,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
+      propertyPath: sfMeleeHurt1
+      value: 
+      objectReference: {fileID: 3482674981530712923, guid: 1c1b72e9b52672e46b6d203093785858,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfMeleeHurt2
+      value: 
+      objectReference: {fileID: 4572872465820571194, guid: b42ee38cfbd9f9a40b89d0c629c74efa,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
       propertyPath: sfPlayerDash
       value: 
       objectReference: {fileID: 2307060634185465156, guid: 65baa5a572cb67048af1bc06db1385cc,
@@ -4120,6 +4132,18 @@ PrefabInstance:
       propertyPath: sfCandyPickup
       value: 
       objectReference: {fileID: 3067908218881074117, guid: 552ff67b57abc684792e1c2502371b16,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfMeleeDeath1
+      value: 
+      objectReference: {fileID: 3900342405226405843, guid: 7f311066ba0435b4ab890c4b47e33667,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfMeleeDeath2
+      value: 
+      objectReference: {fileID: 3228611838658731274, guid: e9ce026594d1f49418a9e9bc0a216092,
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
@@ -4150,6 +4174,30 @@ PrefabInstance:
       propertyPath: sfPowerPickup
       value: 
       objectReference: {fileID: 4360728639455253119, guid: 1fc4c121d735e9f488043eca37e86d96,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfRangedHurt1
+      value: 
+      objectReference: {fileID: 8553312601625248817, guid: bca5054ede0dff54b81e8c7129d0e13f,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfRangedHurt2
+      value: 
+      objectReference: {fileID: 5417865518384218961, guid: 15cabd298675b774997af2170e2b939a,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfRangedDeath1
+      value: 
+      objectReference: {fileID: 3521292069758609428, guid: e9569f6395b2f6a49984e38ea06913f6,
+        type: 3}
+    - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
+        type: 3}
+      propertyPath: sfRangedDeath2
+      value: 
+      objectReference: {fileID: 1331353228351271976, guid: 662ade2b0f929514e852d9a806098f60,
         type: 3}
     - target: {fileID: 639826771609299145, guid: 17bf7bd5300e7c74cbb25308230783c2,
         type: 3}
