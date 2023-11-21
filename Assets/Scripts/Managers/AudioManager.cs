@@ -12,7 +12,6 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     //Init game object prefabs for sound here:
-
     [Header("Player sfx")]
     public GameObject sfBatSwing;
     public GameObject sfBatSwingFinal;
@@ -64,6 +63,9 @@ public class AudioManager : MonoBehaviour
 
     public void AudioPlayer(GameObject soundPrefab)
     {
+        AudioSource audioSource = soundPrefab.GetComponent<AudioSource>();
+
         //Play sound here.
+        audioSource.Play();
     }
 }
