@@ -5,13 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - ItemManager
+  - BarDisplayUI
+  - GameManager
   - CandyManager
   - EffectsManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OutlinedObjects
   - Water
   - UI
   - Ground
