@@ -29,7 +29,12 @@ public class HealthCandy : MonoBehaviour
                     playerHealthScript.currentHealth += candyHealthAmount;
                     Debug.Log("add time");
                 }
-                
+                //Play Sound
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>(); 
+                audioManager.PlayAudio(audioManager.sfCandyPickup);
+
+                //Play Effect
                 Debug.Log("Picked up Time Candy");
                 GameObject gameManagerObject = GameObject.FindWithTag("GameManager");
                 GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
