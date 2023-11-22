@@ -38,16 +38,37 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         
         GameObject player = GameObject.FindWithTag("Player");
-        if (player != go){ 
+        if (player != go)
+        {
             // We are an enemy.
             // Destroy enemy if health is less than 0:
-            if (currentHealth <= 0) {
+            if (currentHealth <= 0)
+            {
                 //Add killCounter (For item drop management).
                 UpdateThisKill(player);
 
                 // We are a Melee enemy and we died from this hit.
                 EnemyMelee meleeEnemyScript = go.GetComponent<EnemyMelee>();
-                if (meleeEnemyScript != null){
+                if (meleeEnemyScript != null)
+                {
+                    //Get random number for death type
+                    int rand;
+                    rand = Random.Range(0, 2);
+                    Debug.Log(rand);
+                    //MeleeDeath 1 sound
+                    if (rand == 0)
+                    {
+                        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                        audioManager.PlayAudio(audioManager.sfMeleeDeath1);
+                    }
+                    //MeleeDeath 2 sound
+                    else if (rand == 1)
+                    {
+                        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                        audioManager.PlayAudio(audioManager.sfMeleeDeath2);
+                    }
                     CharacterController cc = go.GetComponent<CharacterController>();
                     Destroy(cc);
                     meleeEnemyScript.SwitchStateTo(EnemyMelee.STATE.DEAD);
@@ -55,23 +76,54 @@ public class Health : MonoBehaviour
                 }
                 //We are a Pumpkin Crawler and we died from this hit.
                 PumpkinCrawler pumpkinCrawlerScript = go.GetComponent<PumpkinCrawler>();
-                if (pumpkinCrawlerScript != null) {
+                if (pumpkinCrawlerScript != null)
+                {
                     Destroy(go);
-                    // Drop multiple Time Candies:
-                    for (int i = 0; i < pumpkinCrawlerCandyDropAmount; i++) {
+                    //PumpkinCrawlerDeath Sound
+                    GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                    AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                    audioManager.PlayAudio(audioManager.sfPumpkinCrawlerDeath);
 
-                        Vector3 scatter = new Vector3(Random.Range(-5, 5),0, Random.Range(-5, 5));
+                    // Drop multiple Time Candies:
+                    for (int i = 0; i < pumpkinCrawlerCandyDropAmount; i++)
+                    {
+
+                        Vector3 scatter = new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
                         Instantiate(gameManager.healthCandy, transform.position + scatter, transform.rotation);
                     }
                     return;
                 }
             }
-        }else{
-            // We are the player and we died from this hit.
-            if (currentHealth <= 0){
-                Player playerScript = player.GetComponent<Player>();
-                playerScript.SwitchStateTo(Player.STATE.DEAD);
+            //We are an enemy and health is above 0 after hit
+            if (currentHealth > 0)
+            {
+                //Play BatHit sound (As if enemies are hit by the bat)
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                audioManager.PlayAudio(audioManager.sfBatHit);
             }
+        }
+        else
+        {
+
+            //We are the player and we died from this hit.
+            if (currentHealth <= 0)
+            {
+                Player playerScript = player.GetComponent<Player>();
+                if (playerScript.currentState != Player.STATE.DEAD)
+                {
+                    playerScript.SwitchStateTo(Player.STATE.DEAD);
+                }
+            }
+            //We are the player and we didnt die from this hit
+            else if (currentHealth > 0 )
+            {
+                //Play PlayerHurt sound
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                audioManager.PlayAudio(audioManager.sfPlayerHurt1);
+            }
+
         }
     }
     //*******************************************************************************************************************
@@ -92,11 +144,17 @@ public class Health : MonoBehaviour
 
         // Enemy drops a Candy:
         if (candyDropCheck == 0 && itemDropCheck != 0) {
+
             Instantiate(gameManager.healthCandy,transform.position,transform.rotation);
         }
         // Enemy drops an Item:
         if (candyDropCheck == 0 && itemDropCheck == 0) {
             GameObject itemDrop = gameManager.items[Random.Range(0, gameManager.items.Length)];
+            //Play PowerPickUp sound
+            GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+            AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+            audioManager.PlayAudio(audioManager.sfPowerPickup);
+
             GameObject go = Instantiate(itemDrop, transform.position, transform.rotation);
         }
     }

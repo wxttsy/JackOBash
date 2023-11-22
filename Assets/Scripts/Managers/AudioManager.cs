@@ -61,11 +61,31 @@ public class AudioManager : MonoBehaviour
     //Later the sound settings menu will be using this script to adjust volume
     //Aswell as - Methods here for playing a sound. Once sounds are set up as prefabs and init'd here, let me know and I'll walk through setting up the audioplayer method.
 
-    public void AudioPlayer(GameObject soundPrefab)
+    public void PlayAudio(GameObject soundPrefab)
+    {
+        AudioSource audioSource = soundPrefab.GetComponent<AudioSource>();
+        
+            //Play sound here.
+            audioSource.Play();
+    }
+
+    public void StopAudio(GameObject soundPrefab)
     {
         AudioSource audioSource = soundPrefab.GetComponent<AudioSource>();
 
-        //Play sound here.
-        audioSource.Play();
+        //Stop sound here.
+        audioSource.Stop();
     }
+
+    /*
+    public void test()
+    {
+        //Get audio manager game object
+        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+        //Get audio manager script from the object
+        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+        //Get the prefab you want to play
+        audioManager.PlayAudio(audioManager.sfCandyPickup);
+    }
+   */
 }

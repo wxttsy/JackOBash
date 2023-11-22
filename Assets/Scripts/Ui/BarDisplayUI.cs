@@ -51,7 +51,15 @@ public class BarDisplayUI : MonoBehaviour
         }
         //Otherwise, increment appropriately.
         UpdateSugarRushTimer();
-        healthText.text = "" + ((int)playerHealthScript.currentHealth+1) + "/" + playerHealthScript.maxHealth;
+        if (playerHealthScript.currentHealth > 0)
+        {
+            healthText.text = "" + ((int)playerHealthScript.currentHealth + 1) + "/" + playerHealthScript.maxHealth;
+        }
+        else
+        {
+            healthText.text = "" + ((int)playerHealthScript.currentHealth) + "/" + playerHealthScript.maxHealth;
+
+        }
         healthSlider.value = (int)playerHealthScript.currentHealth;
     }
     void UpdateSugarRushTimer()
@@ -59,11 +67,11 @@ public class BarDisplayUI : MonoBehaviour
         Player playerScript = player.GetComponent<Player>();
         if (playerScript.sugarRushIsActivated)
         {
-            playerHealthScript.currentHealth += 1 * Time.deltaTime;
+            if (playerHealthScript.currentHealth > 0 ) playerHealthScript.currentHealth += 1 * Time.deltaTime;
         }
         else
         {
-            playerHealthScript.currentHealth -= 1 * Time.deltaTime;
+            if (playerHealthScript.currentHealth > 0) playerHealthScript.currentHealth -= 1 * Time.deltaTime;
         }
     }
 }

@@ -8,8 +8,7 @@ TagManager:
   - ItemManager
   - BarDisplayUI
   - GameManager
-  - CandyManager
-  - EffectsManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX

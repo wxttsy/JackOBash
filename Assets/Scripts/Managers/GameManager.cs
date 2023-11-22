@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
     void Update(){
         RaycastHit hit;
         if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10)) {
-            //Debug.Log("I am on the ground");
             currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
 
