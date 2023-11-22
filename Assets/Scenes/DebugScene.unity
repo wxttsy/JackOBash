@@ -1422,6 +1422,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2145500549}
     m_Modifications:
+    - target: {fileID: 5361135499385405312, guid: 6eb8633c195905a40ba69e4386907835,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5361135499385405313, guid: 6eb8633c195905a40ba69e4386907835,
         type: 3}
       propertyPath: m_RootOrder
@@ -2480,6 +2485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChatteringSkulls
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674189360646025741, guid: e752635cf7852174da5a3065e216257e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2674189360646025741, guid: e752635cf7852174da5a3065e216257e,
         type: 3}
@@ -3806,11 +3816,6 @@ PrefabInstance:
     - target: {fileID: 3536908335902234948, guid: f7d8aa56f86e88849a86ea7f9b436f59,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8277503369434724964, guid: f7d8aa56f86e88849a86ea7f9b436f59,
-        type: 3}
-      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
