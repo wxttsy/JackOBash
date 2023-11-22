@@ -8,13 +8,12 @@ TagManager:
   - ItemManager
   - BarDisplayUI
   - GameManager
-  - CandyManager
-  - EffectsManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OutlinedObjects
   - Water
   - UI
   - Ground

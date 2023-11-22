@@ -20,6 +20,10 @@ public class ChatteringSkulls : MonoBehaviour
     //*******************************************************************************************************************
     private void Start(){
         player = GameObject.FindGameObjectWithTag("Player");
+        //Play ChatteringSkulls sound on instantiation 
+        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+        audioManager.PlayAudio(audioManager.sfChatteringSkulls);
     }
 
     //*******************************************************************************************************************
@@ -34,6 +38,12 @@ public class ChatteringSkulls : MonoBehaviour
         }
         // Update the time left on this item: Destroy it if item has expired.
         itemDurationTimer += Time.deltaTime;
-        if (itemDurationTimer > itemDuration){ Destroy(this.gameObject); }
+        if (itemDurationTimer > itemDuration)
+        {
+            GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+            AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+            audioManager.StopAudio(audioManager.sfChatteringSkulls);
+            Destroy(this.gameObject); 
+        }
     }
 }

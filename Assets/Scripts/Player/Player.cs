@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         DEAD,
 
     }
-    private STATE currentState;
+    [HideInInspector] public STATE currentState;
 
     // Other: ????
     [Header("****Other****")]
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
             case STATE.ATTACKING: 
                 _animator.SetFloat("Speed", 0f);
                 movementVelocity = Vector3.zero;
+                
                 // Slide the player slightly when attacking.
                 if (Time.time < attackStartTime + attackSlideDuration)
                 {
@@ -184,16 +185,28 @@ public class Player : MonoBehaviour
 
         // Sugar rush is enabled:
         if (sugarRushIsActivated){
+
             barDisplayUIScript.sugarRushSlider.value -= 4 * Time.deltaTime;
             if (barDisplayUIScript.sugarRushSlider.value == barDisplayUIScript.sugarRushSlider.minValue){
+                //Play SugarRushExit sound
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                audioManager.PlayAudio(audioManager.sfSugarRushExit);
+
                 _sugarRushParticleEffect.Stop();
                 sugarRushIsActivated = false;
                 currentMoveSpeed = moveSpeedNormal;
             }
         }else{ // Sugar rush is disabled:
             currentMoveSpeed = moveSpeedNormal;
+          
             if (barDisplayUIScript.sugarRushSlider.value >= barDisplayUIScript.sugarRushSlider.maxValue)
             {
+                //Play SugarRushEntry sound
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                audioManager.PlayAudio(audioManager.sfSugarRushEntry);
+
                 currentMoveSpeed = moveSpeedSugarRush;
                 sugarRushIsActivated = true;
                 _sugarRushParticleEffect.Play();
@@ -206,13 +219,42 @@ public class Player : MonoBehaviour
     //*******************************************************************************************************************
     public void SwitchStateTo(STATE _newState){
         // Update variables:
+
+        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
         _input.ClearCache();
         // Enter new state:
         switch (_newState) {
             case STATE.FREE:
+                //Get random number for footstep type
+                //int rand;
+                //rand = Random.Range(0, 4);
+                ////Footstep1 sound
+                //if (rand == 0)
+                //{
+                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps1);
+                //}
+                ////Footstep2 sound
+                //else if (rand == 1)
+                //{
+                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps2);
+                //}
+                ////Footstep3 sound
+                //else if (rand == 2)
+                //{
+                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps3);
+                //}
+                ////Footstep4 sound
+                //else if (rand == 3)
+                //{
+                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps4);
+                //}
+
                 break;
 
             case STATE.ATTACKING:
+                //Play bat swing sound
+                audioManager.PlayAudio(audioManager.sfBatSwing);
                 _animator.SetTrigger("Attacking");
                 // Stop Movement
                 movementVelocity = Vector3.zero;
@@ -221,6 +263,8 @@ public class Player : MonoBehaviour
                 break;
 
             case STATE.DASH:
+                //Play dash sound
+                audioManager.PlayAudio(audioManager.sfPlayerDash);
                 _animator.SetTrigger("Dashing");
                 // Stop Movement
                 movementVelocity = Vector3.zero;
@@ -229,6 +273,9 @@ public class Player : MonoBehaviour
                 break;
 
             case STATE.DEAD:
+                
+                audioManager.PlayAudio(audioManager.sfPlayerDeath);
+                Debug.Log("Deathstate switch");
                 _animator.SetTrigger("Death");
                 break;
         }
