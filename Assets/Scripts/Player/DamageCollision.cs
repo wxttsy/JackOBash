@@ -18,6 +18,9 @@ public class DamageCollision : MonoBehaviour
     public string targetTag;
     [Tooltip("Tick this box if the object is an Item or Candy.")]
     public bool isItem;
+    [Tooltip("Click this to destroy once the item does damage.")]
+    public bool singleTap;
+
 
     private List<Collider> damagedTargetList;
     //*******************************************************************************************************************
@@ -46,6 +49,11 @@ public class DamageCollision : MonoBehaviour
             {
                 // Apply damage to the object we are colliding with.
                 healthScriptOfCollidingObject.ApplyDamage(damage);
+
+                if (singleTap)
+                {
+                    Destroy(this.gameObject);
+                }
             }
             damagedTargetList.Add(other);
         }

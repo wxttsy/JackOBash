@@ -3860,6 +3860,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7578042938996987014, guid: 04ed3e2f427b22f41b321b88bb6cf5c1,
+        type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 7965235197114420472, guid: 25a96d8284d7dc44a992dd214784930e,
+        type: 3}
     - target: {fileID: 8265856903164521429, guid: 04ed3e2f427b22f41b321b88bb6cf5c1,
         type: 3}
       propertyPath: m_Layer
