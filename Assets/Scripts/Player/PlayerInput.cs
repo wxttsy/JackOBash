@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,9 +25,9 @@ public class PlayerInput : MonoBehaviour
 
     Vector2 rot;
 
-    Boolean attackIsTrue;
+    public bool attackIsTrue;
 
-    Boolean dashIsTrue;
+    bool dashIsTrue;
 
     //*******************************************************************************************************************
     //-------------------------------------------------Awake-------------------------------------------------------------
@@ -37,24 +38,25 @@ public class PlayerInput : MonoBehaviour
         //stuff that performs input actions
         controls = new PlayerControls1();
 
-        controls.Gameplay.Attack.performed += ctx => Attack(ctx);
-        controls.Gameplay.Attack.canceled += ctx => AttackReset(ctx);
+        //controls.Gameplay.Attack.performed += ctx => Attack(ctx);
+        //controls.Gameplay.Attack.canceled += ctx => AttackReset(ctx);
 
-        controls.Gameplay.Dash.performed += ctx => Dash();
-        controls.Gameplay.Dash.canceled += ctx => DashReset();
-
-        controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
-
-        controls.Gameplay.Rotate.performed += ctx => rot = ctx.ReadValue<Vector2>();
-        controls.Gameplay.Rotate.canceled += ctx => rot = Vector2.zero;
-
+        //controls.Gameplay.Dash.performed += ctx => Dash(ctx);
+        //
+        //
+        //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+        //
+        //controls.Gameplay.Rotate.performed += ctx => rot = ctx.ReadValue<Vector2>();
+        //controls.Gameplay.Rotate.canceled += ctx => rot = Vector2.zero;
+        
 
     }
     //*******************************************************************************************************************
     //--------------------------------------------------Update-----------------------------------------------------------
     //*******************************************************************************************************************
-    void Update(){
+    void Update()
+    {
 
         dashButtonPressed = dashIsTrue;
         attackButtonPressed = attackIsTrue;
@@ -66,26 +68,72 @@ public class PlayerInput : MonoBehaviour
     //*******************************************************************************************************************
     //-----------------------------------------------Things--------------------------------------------------------------
     //*******************************************************************************************************************
-    void Attack(InputAction.CallbackContext context)
+    public void Attack(InputAction.CallbackContext context)
     {
         Debug.Log(context.phase);
-        attackIsTrue = true;
+
+
+        if (context.started)
+        {
+            attackIsTrue = true;
+        }
+        if (context.performed && !context.started)
+        {
+            attackIsTrue = false;
+        }
+        if (context.canceled)
+        {
+            attackIsTrue = false;
+        }
+        
     }
 
-    void AttackReset(InputAction.CallbackContext context)
+
+
+    public void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
-        attackIsTrue = false;
+   
+        {
+            dashIsTrue = false;
+        }
+        if (context.started)
+        {
+            dashIsTrue = true;
+        }
+        if (context.performed && !context.started)
+        {
+            dashIsTrue = false;
+        }
+        if (context.canceled)
+        {
+            dashIsTrue = false;
+        }
     }
 
-    void Dash()
+    public void Move(InputAction.CallbackContext context)
     {
-        dashIsTrue = true;
+        if (context.performed)
+        {
+            move = context.ReadValue<Vector2>();
+        }
+
+        if (context.canceled)
+        {
+            move = Vector2.zero;
+        }
     }
 
-    void DashReset()
+    public void Rotate(InputAction.CallbackContext context)
     {
-        dashIsTrue = false;
+        if (context.performed)
+        {
+            rot = context.ReadValue<Vector2>();
+        }
+
+        if (context.canceled)
+        {
+            rot = Vector2.zero;
+        }
     }
 
     private void OnEnable()
