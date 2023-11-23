@@ -111,8 +111,14 @@ public class Player : MonoBehaviour
             
             case STATE.DASH:
                 _animator.SetFloat("Speed", 0f);
-                movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
-                ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
+                rot = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
+                rot = Quaternion.Euler(0, -45, 0) * rot;
+                   
+                movementVelocity = rot * dashSpeed * Time.deltaTime;
+                
+
+                    oldMovementDirection = movementVelocity.normalized;
+                    ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
                 break;
         }
         // Check if we can change into Sugar Rush:
@@ -146,15 +152,16 @@ public class Player : MonoBehaviour
         movementVelocity *= currentMoveSpeed * Time.deltaTime;
 
         //IN PROGRESS: New rotation working with xbox controller.
-        /* rot = new Vector3(input.horizontalRotation, 0f, input.verticalRotation);
+        rot = new Vector3(_input.horizontalRotation, 0f, _input.verticalRotation);
          rot = Quaternion.Euler(0, -45, 0) * rot;
          if (rot != Vector3.zero)
          {
              transform.rotation = Quaternion.LookRotation(rot);
-         }*/
+         }
+
 
         // Update player direction - smooth rotation:
-        if (movementVelocity != Vector3.zero)
+       /* if (movementVelocity != Vector3.zero)
         {
             if (movementVelocity.normalized != oldMovementDirection)
             {
@@ -173,7 +180,7 @@ public class Player : MonoBehaviour
                 rotationTime -= Time.deltaTime;
             }
             oldMovementDirection = movementVelocity.normalized;
-        }
+        }*/
         _animator.SetFloat("Speed", movementVelocity.magnitude);
     }
     //*******************************************************************************************************************
