@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6491675175199615483}
   - component: {fileID: 6491675175199615480}
   - component: {fileID: 1703907496379605524}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BookShelfDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}

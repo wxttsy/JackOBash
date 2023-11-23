@@ -25,11 +25,11 @@ public class EnemySpawnTrigger : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            SpawnController.gameObject.SetActive(false);
-        }
-    }
-}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        SpawnController.gameObject.SetActive(false);
+    //    }
+    //}
+}   //
