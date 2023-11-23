@@ -91,6 +91,7 @@ MonoBehaviour:
   currentState: 0
   moveSpeed: 4
   orb: {fileID: 5237104522734594367, guid: d4a32b5798e97184289eb19cf2883826, type: 3}
+  cooldownTime: 2
 --- !u!114 &477706602
 MonoBehaviour:
   m_ObjectHideFlags: 0

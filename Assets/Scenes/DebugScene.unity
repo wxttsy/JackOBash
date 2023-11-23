@@ -5396,7 +5396,7 @@ PrefabInstance:
     - target: {fileID: 7011055472368594484, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: moveSpeedNormal
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7011055472368594484, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
@@ -5406,7 +5406,7 @@ PrefabInstance:
     - target: {fileID: 7011055472368594484, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}
       propertyPath: moveSpeedSugarRush
-      value: 14
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 7011055472368594484, guid: 812cd433a4b4ccc488a7f5be55dd7106,
         type: 3}

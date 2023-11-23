@@ -21,7 +21,12 @@ public class EnemyRanged : MonoBehaviour
     private Transform targetPlayer;
     [Tooltip("The speed at which this enemy will move.")]
     public float moveSpeed = 3;
+
+
+    [Header("Throw Settings")]
     public GameObject orb;
+    float currentTime;
+    public int cooldownTime;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,10 +38,10 @@ public class EnemyRanged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateState();
         switch (currentState)
         {
             case STATE.CHASE:
-                CalculateEnemyMovement();
                 break;
             case STATE.ATTACKING:
                 break;
@@ -46,29 +51,31 @@ public class EnemyRanged : MonoBehaviour
         }
     }
 
-    private void CalculateEnemyMovement()
+    private void UpdateState()
     {
-        if (currentState == STATE.ATTACKING) return;
 
-        if (Vector3.Distance(targetPlayer.position, transform.position) > navMeshAgent.stoppingDistance-2)
+        float distance = Vector3.Distance(targetPlayer.position, transform.position);
+
+        if (distance > navMeshAgent.stoppingDistance + 2)
         {
-            navMeshAgent.SetDestination(targetPlayer.position);
+
+            SwitchStateTo(STATE.CHASE);
         }
-        else if (Vector3.Distance(targetPlayer.position, transform.position) <= navMeshAgent.stoppingDistance + 2)
+        else if (distance < navMeshAgent.stoppingDistance - 2)
         {
             Debug.Log("YOINK");
-            SwitchStateTo(STATE.ATTACKING);
+            SwitchStateTo(STATE.FLEE);
 
         }
-        
-        if (Vector3.Distance(targetPlayer.position, transform.position) < navMeshAgent.stoppingDistance+2)
+        else
         {
-            navMeshAgent.SetDestination(transform.position - targetPlayer.position*5);
+            SwitchStateTo(STATE.ATTACKING);
         }
 
-        // Update Rotation to face the direction immediately
-        Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
-        transform.rotation = newRotation;
+
+        
+
+
     }
 
 
@@ -81,6 +88,8 @@ public class EnemyRanged : MonoBehaviour
                 break;
             case STATE.ATTACKING:
                 break;
+            case STATE.FLEE:
+                break;
             case STATE.HIT:
                 break;
             case STATE.DEAD:
@@ -90,6 +99,7 @@ public class EnemyRanged : MonoBehaviour
         switch (_newState)
         {
             case STATE.CHASE:
+                navMeshAgent.SetDestination(targetPlayer.position);
                 break;
             case STATE.ATTACKING:
                 // Update Animator: Play animation for attacking.
@@ -99,6 +109,9 @@ public class EnemyRanged : MonoBehaviour
                 // Update Rotation to face the direction immediately
                 Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
                 transform.rotation = newRotation;
+                break;
+            case STATE.FLEE:
+                navMeshAgent.SetDestination(transform.position - targetPlayer.position * 5);
                 break;
             case STATE.HIT:
 
@@ -113,6 +126,13 @@ public class EnemyRanged : MonoBehaviour
 
     public void OrbSpawn()
     {
-        Instantiate(orb, this.transform);
+        if(currentTime >= cooldownTime)
+        {
+            Instantiate(orb, this.transform);
+            currentTime = 0;
+        }
+
+        currentTime += Time.deltaTime;
+
     }
 }
