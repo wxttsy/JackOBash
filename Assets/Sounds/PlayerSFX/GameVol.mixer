@@ -17,7 +17,7 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 9911c4c59722a8c4599e4214ae43c23d
-    name: GameVolFloat
+    name: GameSound
   m_AudioMixerGroupViews:
   - guids:
     - b0e1b6bcabb5fbb4dbd452a64e04f85b

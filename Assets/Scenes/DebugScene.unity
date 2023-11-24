@@ -310,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 3536908335902234948, guid: f7d8aa56f86e88849a86ea7f9b436f59,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3536908335902234948, guid: f7d8aa56f86e88849a86ea7f9b436f59,
         type: 3}
@@ -754,7 +754,7 @@ Transform:
   - {fileID: 1638045259}
   - {fileID: 1585271519}
   m_Father: {fileID: 220713877}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &444775900
 PrefabInstance:
@@ -1115,6 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629465659}
   - component: {fileID: 629465660}
+  - component: {fileID: 629465661}
   m_Layer: 5
   m_Name: BackgroundSlider
   m_TagString: Untagged
@@ -1196,7 +1197,33 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 629465661}
+        m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
+        m_MethodName: SetLevelGameSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &629465661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629465658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b5561c1e61ab14ea12e041f256349c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: c95bfbc7d3c97c04a8dce08250e6ed76, type: 2}
+  slider: {fileID: 629465660}
 --- !u!1 &644308508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,6 +2526,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000292535}
     m_Modifications:
+    - target: {fileID: 1657270429159555690, guid: 65baa5a572cb67048af1bc06db1385cc,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
+        type: 2}
     - target: {fileID: 2307060634185465156, guid: 65baa5a572cb67048af1bc06db1385cc,
         type: 3}
       propertyPath: m_Name
@@ -2833,6 +2866,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0d2f5d631243674b8a8b7d16b4d9da2, type: 3}
+--- !u!1001 &1300577101
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 220713877}
+    m_Modifications:
+    - target: {fileID: 5466778836532958937, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_Name
+      value: PLACEHOLDER BACKGROUND SOUND
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797832024663683073, guid: 3d2ba38d77082254c820b7b7d7e62a65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d2ba38d77082254c820b7b7d7e62a65, type: 3}
 --- !u!1 &1385441244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6193575233319564717, guid: bf65d1d4288ac2146ba90014e6b9e51e,
@@ -2852,6 +2954,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000292535}
     m_Modifications:
+    - target: {fileID: 96208716181605640, guid: 75dcda35d21d9da4c868550685cd8857,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
+        type: 2}
     - target: {fileID: 4646286339339624511, guid: 75dcda35d21d9da4c868550685cd8857,
         type: 3}
       propertyPath: m_RootOrder
@@ -3362,6 +3470,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000292535}
     m_Modifications:
+    - target: {fileID: 2431262945323188888, guid: a6056534965f35b4a81714a61ef567f0,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
+        type: 2}
     - target: {fileID: 3753431791358530457, guid: a6056534965f35b4a81714a61ef567f0,
         type: 3}
       propertyPath: m_RootOrder
@@ -3812,6 +3926,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8277503369434724964, guid: f7d8aa56f86e88849a86ea7f9b436f59,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d8aa56f86e88849a86ea7f9b436f59, type: 3}
 --- !u!1 &1781684355 stripped
@@ -4109,6 +4229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1964782653}
   - component: {fileID: 1964782654}
+  - component: {fileID: 1964782655}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -4190,7 +4311,33 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1964782655}
+        m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
+        m_MethodName: SetLevelSFXsound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1964782655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964782652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b5561c1e61ab14ea12e041f256349c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: d2fd8bb519e9ad94888cfddff276b76b, type: 2}
+  slider: {fileID: 1964782654}
 --- !u!1 &2000292534
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,7 +4381,7 @@ Transform:
   - {fileID: 1799599445}
   - {fileID: 1146335659}
   m_Father: {fileID: 220713877}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026958344 stripped
 GameObject:
@@ -4484,7 +4631,7 @@ Transform:
   - {fileID: 724910733}
   - {fileID: 1171177583}
   m_Father: {fileID: 220713877}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803285176520757931
 GameObject:
@@ -4514,6 +4661,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: BatHit
       objectReference: {fileID: 0}
+    - target: {fileID: 6083611855792502132, guid: a5d43bf8ca58a104ab3cf07d37e6905a,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
+        type: 2}
     - target: {fileID: 8299480447608099305, guid: a5d43bf8ca58a104ab3cf07d37e6905a,
         type: 3}
       propertyPath: m_RootOrder
@@ -4891,7 +5044,7 @@ PrefabInstance:
     - target: {fileID: 6668090470199290480, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6668090470199290480, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
