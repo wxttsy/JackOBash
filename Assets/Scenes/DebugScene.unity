@@ -1348,11 +1348,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1610529015}
-<<<<<<< Updated upstream
-  m_RootOrder: 4
-=======
-  m_RootOrder: 3
->>>>>>> Stashed changes
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1546,23 +1542,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2145500549}
     m_Modifications:
-<<<<<<< Updated upstream
-=======
+
     - target: {fileID: 5361135499385405312, guid: 6eb8633c195905a40ba69e4386907835,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5361135499385405312, guid: 6eb8633c195905a40ba69e4386907835,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
-        type: 2}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     - target: {fileID: 5361135499385405313, guid: 6eb8633c195905a40ba69e4386907835,
         type: 3}
       propertyPath: m_RootOrder
@@ -1656,11 +1642,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1610529015}
-<<<<<<< Updated upstream
-  m_RootOrder: 3
-=======
-  m_RootOrder: 2
->>>>>>> Stashed changes
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2640,6 +2622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2674189360646025741, guid: e752635cf7852174da5a3065e216257e,
         type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674189360646025741, guid: e752635cf7852174da5a3065e216257e,
+        type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -3528,10 +3515,7 @@ RectTransform:
   m_Children:
   - {fileID: 629465659}
   - {fileID: 1964782653}
-<<<<<<< Updated upstream
-  - {fileID: 1505333145}
-=======
->>>>>>> Stashed changes
+
   - {fileID: 774904442}
   - {fileID: 644308509}
   - {fileID: 1724071156}
@@ -3825,11 +3809,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1610529015}
-<<<<<<< Updated upstream
-  m_RootOrder: 5
-=======
-  m_RootOrder: 4
->>>>>>> Stashed changes
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4192,24 +4172,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8277503369434724964, guid: f7d8aa56f86e88849a86ea7f9b436f59,
-        type: 3}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-=======
-=======
->>>>>>> Stashed changes
+
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: d2fd8bb519e9ad94888cfddff276b76b,
         type: 2}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d8aa56f86e88849a86ea7f9b436f59, type: 3}
 --- !u!1 &1781684355 stripped
