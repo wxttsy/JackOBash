@@ -5128,7 +5128,7 @@ PrefabInstance:
     - target: {fileID: 6668090470199290480, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668090470199290480, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
@@ -5657,3 +5657,116 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812cd433a4b4ccc488a7f5be55dd7106, type: 3}
+--- !u!1 &7091928655258078432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7011055472368594481, guid: 812cd433a4b4ccc488a7f5be55dd7106,
+    type: 3}
+  m_PrefabInstance: {fileID: 7091928655258078431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7091928655258078433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7011055472368594491, guid: 812cd433a4b4ccc488a7f5be55dd7106,
+    type: 3}
+  m_PrefabInstance: {fileID: 7091928655258078431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091928655258078432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11fa7d6a023897e4ab50baf28167682b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7091928655258078434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091928655258078432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 07d782457151bbd468f0e82eea0250eb,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7091928655258078433}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7e8d3dd5-1ae4-4bd7-b5af-ad562464d949
+    m_ActionName: Gameplay/Attack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7091928655258078433}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f6ed1e72-0b2a-441a-a41e-1994b387c1a4
+    m_ActionName: Gameplay/Move
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7091928655258078433}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9504e470-c06c-4e55-9bc0-cdf47ac33246
+    m_ActionName: Gameplay/Dash
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7091928655258078433}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9d363857-c811-48e9-bc7a-e4ac9e95b974
+    m_ActionName: Gameplay/Rotate
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

@@ -116,7 +116,8 @@ public class Player : MonoBehaviour
             
             case STATE.DASH:
                 _animator.SetFloat("Speed", 0f);
-                //get direction of movement (left stick)
+                //get direction of movement (left stick)     //For some reason i have to do this again within this state.dash. If i take out the two lines below 
+                //(which is repeated code from CalcMovement(), the character just dashes on the spot
                 moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
                 moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
                 //look in direction of movement
@@ -179,7 +180,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        //new movement direction with controller (left stick)
+        //Update new movement direction with controller (left stick)
 
         //If player is moving
         if (moveDir != Vector3.zero)
@@ -187,11 +188,12 @@ public class Player : MonoBehaviour
             //Keep old movement direction in variable
             oldMoveDir = new Vector3(moveDir.x, moveDir.y, moveDir.z); // = moveDir
         }
-        //update movement direction
+        //Update current movement direction
         moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
         moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
+        moveDir.Normalize();
 
-        //If player is moving (with new movementdirection)
+        //If player is moving 
         if (moveDir != Vector3.zero)
         {
             //Player transform looks in the direction of the movement

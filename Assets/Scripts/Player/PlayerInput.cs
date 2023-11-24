@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -16,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     public float horizontalRotation;
     public float verticalRotation;
 
-    PlayerControls1 controls;
+    PlayerControls controls;
 
     Vector2 move;
 
@@ -33,7 +36,7 @@ public class PlayerInput : MonoBehaviour
     {
 
         //stuff that performs input actions
-        controls = new PlayerControls1();
+        controls = new PlayerControls();
 
         //controls.Gameplay.Attack.performed += ctx => Attack(ctx);
         //controls.Gameplay.Attack.canceled += ctx => AttackReset(ctx);
