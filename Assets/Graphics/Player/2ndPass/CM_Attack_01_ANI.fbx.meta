@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd268443f7d54b24eb02583daa0a11ab
+guid: 4c0e94b15d3545943a1c34419fa28fe0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Enemy_attack
-      takeName: Enemy_attack
-      internalID: -8558090452749817158
-      firstFrame: 1
-      lastFrame: 30
+      name: Attack_01
+      takeName: Attack_01
+      internalID: -2516013265382948196
+      firstFrame: 32.7
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,14 +57,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.43374667
+      - time: 0.36486486
         functionName: EnableDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7481734
+      - time: 0.75675684
         functionName: DisableDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -81,7 +81,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 31
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -143,7 +143,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b348fb23a2842834b87277211ac5cfba,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 506f46c61dfb8a54eb7c9a02e0a4876e,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2

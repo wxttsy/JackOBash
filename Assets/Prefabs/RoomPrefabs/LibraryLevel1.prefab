@@ -8858,6 +8858,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2351415273601932917, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 5991727192585599368, guid: 3a1327a62e3cc7346a6760a8c2280c26,
+        type: 3}
     - target: {fileID: 2384599037851710665, guid: cab18a8fafb57b5468e6aa952e1d036b,
         type: 3}
       propertyPath: m_Layer
@@ -8879,6 +8885,12 @@ PrefabInstance:
       propertyPath: spawnTimeInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4571604029012992774, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 5991727192585599368, guid: 3a1327a62e3cc7346a6760a8c2280c26,
+        type: 3}
     - target: {fileID: 4787318982441533989, guid: cab18a8fafb57b5468e6aa952e1d036b,
         type: 3}
       propertyPath: m_Layer
@@ -8954,6 +8966,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8281523620415326539, guid: cab18a8fafb57b5468e6aa952e1d036b,
+        type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 3850431024156277761, guid: 83b952a098026c44db0e729c69a56f71,
+        type: 3}
     - target: {fileID: 8312459988786734071, guid: cab18a8fafb57b5468e6aa952e1d036b,
         type: 3}
       propertyPath: m_Layer

@@ -8,7 +8,7 @@ public class EnemyMelee : MonoBehaviour
 {
     // References:
     private Animator animator;
-    private DamageCollision attackHitbox;
+    [SerializeField] public DamageCollision attackHitbox;
     public enum STATE
     {
         CHASE,
@@ -30,7 +30,7 @@ public class EnemyMelee : MonoBehaviour
         targetPlayer = GameObject.FindWithTag("Player").transform;
         navMeshAgent.speed = moveSpeed;
         currentState = STATE.CHASE;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         attackHitbox = GetComponentInChildren<DamageCollision>();
     }
 
@@ -60,18 +60,6 @@ public class EnemyMelee : MonoBehaviour
     }
     public void SwitchStateTo(STATE _newState)
     {
-        // Exit current state
-        switch (currentState)
-        {
-            case STATE.CHASE:
-                break;
-            case STATE.ATTACKING:
-                break;
-            case STATE.HIT:
-                break;
-            case STATE.DEAD:
-                break;
-        }
         // Enter new state
         switch (_newState)
         {
@@ -96,7 +84,12 @@ public class EnemyMelee : MonoBehaviour
     }
     public void AttackAnimationEnd()
     {
-        SwitchStateTo(STATE.CHASE);
+        //This method is called in an animation event at the end of the attack animation.
+        //It uses the EnemyMelee script on the visual object.
+        //This means we need to get the melee script attached to the parented object "Zombie" and update its state from there.
+        GameObject parentObject = transform.parent.gameObject;
+        EnemyMelee parentScript = parentObject.GetComponent<EnemyMelee>();
+        parentScript.SwitchStateTo(STATE.CHASE);
     }
     public void EnableDamageCollider()
     {
@@ -111,8 +104,8 @@ public class EnemyMelee : MonoBehaviour
 
     public void DeathAnimationEnd()
     {
-        //This method is called in an animation event at the end of the ghost attack animation.
-        //Ensures destroying AFTER the death animation has been played.
-        Destroy(gameObject);
+        //This method is called in an animation event at the end of the attack animation.
+        //It uses the EnemyMelee script on the visual object and destroy's its parent object.
+        Destroy(transform.parent.gameObject);
     }
 }

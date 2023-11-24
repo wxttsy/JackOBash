@@ -93,6 +93,33 @@ public class Health : MonoBehaviour
                     }
                     return;
                 }
+                // We are a Ranged enemy and we died from this hit.
+                EnemyRanged rangedEnemyScript = go.GetComponent<EnemyRanged>();
+                if (rangedEnemyScript != null)
+                {
+                    //Get random number for death type
+                    int rand;
+                    rand = Random.Range(0, 2);
+                    Debug.Log(rand);
+                    //MeleeDeath 1 sound
+                    if (rand == 0)
+                    {
+                        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                        audioManager.PlayAudio(audioManager.sfMeleeDeath1);
+                    }
+                    //MeleeDeath 2 sound
+                    else if (rand == 1)
+                    {
+                        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                        audioManager.PlayAudio(audioManager.sfMeleeDeath2);
+                    }
+                    CharacterController cc = go.GetComponent<CharacterController>();
+                    Destroy(cc);
+                    rangedEnemyScript.SwitchStateTo(EnemyRanged.STATE.DEAD);
+                    return;
+                }
             }
             //We are an enemy and health is above 0 after hit
             if (currentHealth > 0)
