@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -12,15 +12,9 @@ public class OptionsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Awake ()
     {
-     
         optionsMenu.SetActive (false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void onClickOptions()
     {
