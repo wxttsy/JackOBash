@@ -117,10 +117,7 @@ public class PlayerInput : MonoBehaviour
             move = context.ReadValue<Vector2>();
         }
 
-        if (context.canceled)
-        {
-            move = Vector2.zero;
-        }
+        
     }
 
     public void Rotate(InputAction.CallbackContext context)
@@ -130,10 +127,7 @@ public class PlayerInput : MonoBehaviour
             rot = context.ReadValue<Vector2>();
         }
 
-        if (context.canceled)
-        {
-            rot = Vector2.zero;
-        }
+        
     }
 
     private void OnEnable()
