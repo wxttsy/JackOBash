@@ -1028,7 +1028,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1087989639}
+<<<<<<< Updated upstream
   m_RootOrder: 5
+=======
+  m_RootOrder: 4
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1450,7 +1454,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1087989639}
+<<<<<<< Updated upstream
   m_RootOrder: 3
+=======
+  m_RootOrder: 2
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1868,9 +1876,14 @@ RectTransform:
   m_LocalScale: {x: 0.72661215, y: 0.72661215, z: 0.72661215}
   m_ConstrainProportionsScale: 0
   m_Children:
+<<<<<<< Updated upstream
   - {fileID: 1629603218}
   - {fileID: 1673758019}
   - {fileID: 1374095834}
+=======
+  - {fileID: 1673758019}
+  - {fileID: 1629603218}
+>>>>>>> Stashed changes
   - {fileID: 800793262}
   - {fileID: 1682492703}
   - {fileID: 497327566}
@@ -2760,7 +2773,11 @@ RectTransform:
   - {fileID: 1002536571}
   - {fileID: 892458930}
   m_Father: {fileID: 1087989639}
+<<<<<<< Updated upstream
   m_RootOrder: 0
+=======
+  m_RootOrder: 1
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2811,10 +2828,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1154942422}
   m_HandleRect: {fileID: 366438212}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3014,7 +3031,11 @@ RectTransform:
   - {fileID: 1342346387}
   - {fileID: 2013356124}
   m_Father: {fileID: 1087989639}
+<<<<<<< Updated upstream
   m_RootOrder: 1
+=======
+  m_RootOrder: 0
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3065,10 +3086,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1295213282}
   m_HandleRect: {fileID: 289478468}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3129,7 +3150,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1087989639}
+<<<<<<< Updated upstream
   m_RootOrder: 4
+=======
+  m_RootOrder: 3
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

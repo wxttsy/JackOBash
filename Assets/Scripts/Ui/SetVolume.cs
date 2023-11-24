@@ -17,7 +17,11 @@ public class SetVolume : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< Updated upstream
        
+=======
+
+>>>>>>> Stashed changes
     }
     public void SetLevelSFXsound(float sliderValue)
     {
@@ -32,5 +36,9 @@ public class SetVolume : MonoBehaviour
     }
 
 
+<<<<<<< Updated upstream
 }
 
+=======
+}
+>>>>>>> Stashed changes
