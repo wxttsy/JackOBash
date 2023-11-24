@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyRanged : MonoBehaviour
 {
     // References:
-    private Animator animator;
+    public Animator animator;
     public enum STATE
     {
         CHASE,
@@ -33,22 +33,29 @@ public class EnemyRanged : MonoBehaviour
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         targetPlayer = GameObject.FindWithTag("Player").transform;
         navMeshAgent.speed = moveSpeed;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateState();
-        switch (currentState)
-        {
-            case STATE.CHASE:
-                break;
-            case STATE.ATTACKING:
-                break;
-            case STATE.DEAD:
 
-                break;
+        if(currentState != STATE.DEAD)
+        {
+            UpdateState();
+            switch (currentState)
+            {
+                case STATE.CHASE:
+                    break;
+                case STATE.ATTACKING:
+                    break;
+                case STATE.DEAD:
+
+                    break;
+            }
         }
+
+
     }
 
     private void UpdateState()
@@ -63,7 +70,7 @@ public class EnemyRanged : MonoBehaviour
         }
         else if (distance < navMeshAgent.stoppingDistance - 2)
         {
-            Debug.Log("YOINK");
+
             SwitchStateTo(STATE.FLEE);
 
         }
@@ -103,7 +110,6 @@ public class EnemyRanged : MonoBehaviour
                 break;
             case STATE.ATTACKING:
                 // Update Animator: Play animation for attacking.
-                Debug.Log("YOINK");
                 OrbSpawn();
                 // Stop Movement
                 // Update Rotation to face the direction immediately
@@ -117,6 +123,7 @@ public class EnemyRanged : MonoBehaviour
 
                 break;
             case STATE.DEAD:
+                Debug.Log("I AM DEAD AHHHHHHHH");
                 animator.SetTrigger("Death");
                 break;
         }
@@ -134,5 +141,12 @@ public class EnemyRanged : MonoBehaviour
 
         currentTime += Time.deltaTime;
 
+    }
+
+    public void DeathAnimationEnd()
+    {
+        //This method is called in an animation event at the end of the ghost attack animation.
+        //Ensures destroying AFTER the death animation has been played.
+        Destroy(gameObject);
     }
 }

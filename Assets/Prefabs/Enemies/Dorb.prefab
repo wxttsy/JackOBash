@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4174060096573027147}
   - component: {fileID: 1186185262821294997}
   - component: {fileID: -7209368082203387300}
+  - component: {fileID: -5531744765617034483}
   m_Layer: 0
   m_Name: Dorb
   m_TagString: Untagged
@@ -114,3 +115,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5531744765617034483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174060096573027144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3d7529bffb31940aced527bc0f292a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

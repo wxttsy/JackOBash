@@ -65,7 +65,8 @@ public class Lob : MonoBehaviour
 
         if (sampleTime > 1f)
         {
-            Debug.Log("DOH I MISSED");
+            GameObject ddorb = Instantiate(dorb, this.transform);
+            ddorb.transform.parent = null;
             Destroy(this.gameObject);
         }
 
@@ -100,16 +101,11 @@ public class Lob : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("OH MY I HIT A THING");
+            GameObject ddorb = Instantiate(dorb, this.transform);
+            ddorb.transform.parent = null;
             Destroy(this.gameObject);
         }
     }
 
-    public void OnDestroy()
-    {
-        GameObject ddorb = Instantiate(dorb, this.transform);
-        ddorb.transform.parent = null;
-
-    }
 
 }

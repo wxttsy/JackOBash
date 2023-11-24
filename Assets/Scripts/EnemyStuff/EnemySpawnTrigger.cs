@@ -20,6 +20,8 @@ public class EnemySpawnTrigger : MonoBehaviour
     {
         if(gameManager.currentRoom == this.transform.parent.gameObject)
         {
+            Debug.Log(transform.parent.name);
+            Debug.Log("I am actve");
             SpawnController.SetActive(true);
         }
     }

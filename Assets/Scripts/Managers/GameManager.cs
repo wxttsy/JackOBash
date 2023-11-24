@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Re-create nav mesh for new room.");
         NavMeshBuilder.CollectSources(null, LayerMask.GetMask("Ground"), NavMeshCollectGeometry.PhysicsColliders, 0, navMeshBuildMarkup, navMeshDatas);
-        NavMeshBuilder.UpdateNavMeshDataAsync(nmdata, NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(currentRoom.transform.position, new Vector3(512, 512, 512)));
+        NavMeshBuilder.UpdateNavMeshDataAsync(nmdata, NavMesh.GetSettingsByIndex(0), navMeshDatas, new Bounds(currentRoom.transform.position, new Vector3(1024, 1024, 1024)));
         
         NavMeshDataInstance d = NavMesh.AddNavMeshData(nmdata);
     }
