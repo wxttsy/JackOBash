@@ -4645,6 +4645,7 @@ MonoBehaviour:
   dashButtonPressed: 0
   horizontalRotation: 0
   verticalRotation: 0
+  attackIsTrue: 0
 --- !u!143 &227381512314872549
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4754,6 +4755,7 @@ GameObject:
   - component: {fileID: 227381512314872555}
   - component: {fileID: 227381512314872550}
   - component: {fileID: 227381512314872551}
+  - component: {fileID: 227381512314872559}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4761,6 +4763,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &227381512314872559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227381512314872558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2946b4e01bf765b4cac558a5f7481ffd,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d7f5321-8eaf-415d-80d6-79c65285e02c
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b15b324-3f20-4b69-a6d4-39602204b14b
+    m_ActionName: Player/Rotate[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e231a72-2e24-4805-962c-39fb8b204d6a
+    m_ActionName: Player/Attack[/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ee631bc-ab71-451a-b6f5-88f40e4a9188
+    m_ActionName: Player/Dash[/XInputControllerWindows/leftTrigger]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1803285176520757931
 GameObject:
   m_ObjectHideFlags: 0
