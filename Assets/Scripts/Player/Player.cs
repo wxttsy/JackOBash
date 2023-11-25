@@ -102,8 +102,8 @@ public class Player : MonoBehaviour
             case STATE.ATTACKING: 
                 _animator.SetFloat("Speed", 0f);
                 movementVelocity = Vector3.zero;
-                //look in direction of right stick (aim)
-                transform.rotation = Quaternion.LookRotation(rot);
+                //look in direction of right stick (aim) (use oldRot incase stick goes back to zero)
+                transform.rotation = Quaternion.LookRotation(oldRot);
 
                 // Slide the player slightly when attacking.
                 if (Time.time < attackStartTime + attackSlideDuration)
@@ -116,14 +116,9 @@ public class Player : MonoBehaviour
             
             case STATE.DASH:
                 _animator.SetFloat("Speed", 0f);
-                //get direction of movement (left stick)     //For some reason i have to do this again within this state.dash. If i take out the two lines below 
-                //(which is repeated code from CalcMovement(), the character just dashes on the spot
-                moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
-                moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
-                //look in direction of movement
-                transform.rotation = Quaternion.LookRotation(moveDir);
+                
                 //dash in that direction??
-                movementVelocity = moveDir * dashSpeed * Time.deltaTime;
+                movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
                 oldMovementDirection = movementVelocity.normalized;
                 ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
                 break;
@@ -161,16 +156,23 @@ public class Player : MonoBehaviour
         //IN PROGRESS
 
         //update current rotation with right stick input
+        if (rot != Vector3.zero)
+        {
+            oldRot = rot;
+        }
         rot = new Vector3(_input.horizontalRotation, 0f, _input.verticalRotation);
         rot = Quaternion.Euler(0, -45, 0) * rot;
         //If player isnt moving
         if (moveDir == Vector3.zero)
         {
+
             //If player isnt looking around (right stick 0)
             if (rot == Vector3.zero)
             {
+
                 //Player transform looks in movement direction before they stopped
-                transform.rotation = Quaternion.LookRotation(oldMoveDir);
+                transform.rotation = Quaternion.LookRotation(oldRot);
+
             }
             //If player is looking around (right stick 0)
             else if (rot != Vector3.zero)
@@ -180,24 +182,23 @@ public class Player : MonoBehaviour
             }
         }
 
-        //Update new movement direction with controller (left stick)
+        //new movement direction with controller (left stick)
 
-        //If player is moving
-        if (moveDir != Vector3.zero)
-        {
-            //Keep old movement direction in variable
-            oldMoveDir = new Vector3(moveDir.x, moveDir.y, moveDir.z); // = moveDir
-        }
-        //Update current movement direction
+
+        //update movement direction
         moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
         moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
-        moveDir.Normalize();
 
-        //If player is moving 
+        //If player is moving (with new movementdirection)
         if (moveDir != Vector3.zero)
         {
             //Player transform looks in the direction of the movement
             transform.rotation = Quaternion.LookRotation(moveDir);
+
+            if (rot == Vector3.zero)
+            {
+                rot = moveDir;
+            }
         }
 
 

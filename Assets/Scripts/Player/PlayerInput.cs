@@ -35,125 +35,60 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
 
-        //stuff that performs input actions
-        controls = new PlayerControls();
-
-        //controls.Gameplay.Attack.performed += ctx => Attack(ctx);
-        //controls.Gameplay.Attack.canceled += ctx => AttackReset(ctx);
-
-        //controls.Gameplay.Dash.performed += ctx => Dash(ctx);
-        //
-        //
-        //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
-        //
-        //controls.Gameplay.Rotate.performed += ctx => rot = ctx.ReadValue<Vector2>();
-        //controls.Gameplay.Rotate.canceled += ctx => rot = Vector2.zero;
 
 
-    }
-    //*******************************************************************************************************************
-    //--------------------------------------------------Update-----------------------------------------------------------
-    //*******************************************************************************************************************
-    void Update()
-    {
-
-        dashButtonPressed = dashIsTrue;
-        attackButtonPressed = attackIsTrue;
-        horizontalInput = move.x;
-        verticalInput = move.y;
-        horizontalRotation = rot.x;
-        verticalRotation = rot.y;
-    }
-    //*******************************************************************************************************************
-    //-----------------------------------------------Things--------------------------------------------------------------
-    //*******************************************************************************************************************
-    public void Attack(InputAction.CallbackContext context)
-    {
-        Debug.Log(context.phase);
+            //stuff that performs input actions
+            controls = new PlayerControls();
 
 
-        if (context.started)
-        {
-            attackIsTrue = true;
+            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+
+
+            controls.Gameplay.Rotate.performed += ctx => rot = ctx.ReadValue<Vector2>();
+
+
+
         }
-        if (context.performed && !context.started)
+        //*******************************************************************************************************************
+        //--------------------------------------------------Update-----------------------------------------------------------
+        //*******************************************************************************************************************
+        void Update()
         {
-            attackIsTrue = false;
+
+            dashButtonPressed = controls.Gameplay.Dash.triggered;
+            attackButtonPressed = controls.Gameplay.Attack.triggered;
+            horizontalInput = move.x;
+            verticalInput = move.y;
+            horizontalRotation = rot.x;
+            verticalRotation = rot.y;
         }
-        if (context.canceled)
+        //*******************************************************************************************************************
+        //-----------------------------------------------Things--------------------------------------------------------------
+        //*******************************************************************************************************************
+
+
+        private void OnEnable()
         {
-            attackIsTrue = false;
+            controls.Gameplay.Enable();
         }
 
-    }
-
-
-
-    public void Dash(InputAction.CallbackContext context)
-    {
-
+        void OnDisable()
         {
-            dashIsTrue = false;
-        }
-        if (context.started)
-        {
-            dashIsTrue = true;
-        }
-        if (context.performed && !context.started)
-        {
-            dashIsTrue = false;
-        }
-        if (context.canceled)
-        {
-            dashIsTrue = false;
-        }
-    }
-
-    public void Move(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            move = context.ReadValue<Vector2>();
+            controls.Gameplay.Disable();
+            ClearCache();
         }
 
 
-    }
+        //*******************************************************************************************************************
+        //-----------------------------------------------Cache Update--------------------------------------------------------
+        //*******************************************************************************************************************
 
-    public void Rotate(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+
+        public void ClearCache()
         {
-            rot = context.ReadValue<Vector2>();
+            horizontalInput = 0;
+            verticalInput = 0;
+            attackButtonPressed = false;
+            dashButtonPressed = false;
         }
-
-
     }
-
-    private void OnEnable()
-    {
-        controls.Gameplay.Enable();
-    }
-
-    void OnDisable()
-    {
-        controls.Gameplay.Disable();
-    }
-
-
-    //*******************************************************************************************************************
-    //-----------------------------------------------Cache Update--------------------------------------------------------
-    //*******************************************************************************************************************
-    //private void OnDisable()
-    //{
-    //    ClearCache();
-    //}
-
-    public void ClearCache()
-    {
-        horizontalInput = 0;
-        verticalInput = 0;
-        attackButtonPressed = false;
-        dashButtonPressed = false;
-    }
-}
