@@ -51,8 +51,7 @@ public class EnemyRanged : MonoBehaviour
                 //Stop moving
                 navMeshAgent.SetDestination(transform.position);
                 break;
-        }
-        
+        }    
     }
     //=============================================Calculate Movement===============================================
     private void CalculateEnemyMovement()
@@ -69,8 +68,8 @@ public class EnemyRanged : MonoBehaviour
         }
         else if (distToPlayer < navMeshAgent.stoppingDistance + 2)
         {
-            //NOTE: This is buggy- Not correct implementation but it works for now - Sarah.
-            navMeshAgent.SetDestination(transform.position - targetPlayer.position * 5);
+            //TODO: This is buggy- Not correct implementation but it works for now - Sarah.
+            navMeshAgent.SetDestination(transform.position - targetPlayer.position*5);
         }
         
         oldPosition = transform.position;
@@ -85,10 +84,6 @@ public class EnemyRanged : MonoBehaviour
             case STATE.ATTACKING:
                 // Update Animator: Play animation for attacking.
                 animator.SetTrigger("Attacking");
-                // Stop Movement
-                // Update Rotation to face the direction immediately
-                Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
-                transform.rotation = newRotation;
                 break;
             case STATE.HIT:
 
@@ -114,8 +109,5 @@ public class EnemyRanged : MonoBehaviour
         //This method is called in an animation event at the end of the attack animation.
         //It uses the EnemyMelee script on the visual object and destroy's its parent object.
         Destroy(transform.parent.gameObject);
-    }
-
-
-
+    } 
 }

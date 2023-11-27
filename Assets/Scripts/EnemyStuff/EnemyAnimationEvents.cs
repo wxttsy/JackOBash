@@ -52,4 +52,8 @@ public class EnemyAnimationEvents : MonoBehaviour
         EnemyRanged parentScript = parentObject.GetComponent<EnemyRanged>();
         Instantiate(parentScript.projectile, parentObject.transform);
     }
+    public void PlayDeathSound()
+    {
+        return;
+    }
 }

@@ -1218,24 +1218,6 @@ PrefabInstance:
       propertyPath: spawnTimeInterval
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 176529582608503166, guid: 1916a5a43e13ee046b200434d85e6083,
-        type: 3}
-      propertyPath: _enemyPrefab
-      value: 
-      objectReference: {fileID: 5991727192585599368, guid: 3a1327a62e3cc7346a6760a8c2280c26,
-        type: 3}
-    - target: {fileID: 176529582870569293, guid: 1916a5a43e13ee046b200434d85e6083,
-        type: 3}
-      propertyPath: _enemyPrefab
-      value: 
-      objectReference: {fileID: 5991727192585599368, guid: 3a1327a62e3cc7346a6760a8c2280c26,
-        type: 3}
-    - target: {fileID: 176529583156032572, guid: 1916a5a43e13ee046b200434d85e6083,
-        type: 3}
-      propertyPath: _enemyPrefab
-      value: 
-      objectReference: {fileID: 3850431024156277761, guid: 83b952a098026c44db0e729c69a56f71,
-        type: 3}
     - target: {fileID: 2660418580705014479, guid: 1916a5a43e13ee046b200434d85e6083,
         type: 3}
       propertyPath: m_Layer

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject healthCandy;
     [Header("****Items****")]
     public GameObject[] items;
+    public GameObject[] itemsSR;
     [Header("****Effects****")]
     public GameObject hitParticle;
     public GameObject candyPickUpParticle;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     void Update(){
         RaycastHit hit;
         if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10)) {
+            //ERROR: ? Not entirely sure how this works, need Tom to have a look at it. @TOM
             currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
 

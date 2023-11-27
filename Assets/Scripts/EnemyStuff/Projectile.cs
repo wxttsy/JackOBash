@@ -42,8 +42,13 @@ public class Projectile : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         if (other.tag == player.tag)
         {
-            Health playerHealthScript = GetComponent<Health>();
-            playerHealthScript.currentHealth -= projectileDamage;
+            Player playerScript = player.GetComponent<Player>();
+            if (!playerScript.sugarRushIsActivated)
+            {
+                Health playerHealthScript = other.GetComponent<Health>();
+                playerHealthScript.ApplyDamage(projectileDamage);
+            }
+            
             Destroy(gameObject);
         }
     }
