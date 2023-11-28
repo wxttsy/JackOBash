@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
     //*******************************************************************************************************************
     void Update(){
         RaycastHit hit;
-        if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10)) {
-            //ERROR: ? Not entirely sure how this works, need Tom to have a look at it. @TOM
+        if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10, LayerMask.GetMask("Ground"))){
             currentRoom = hit.collider.gameObject.transform.parent.gameObject;
         }
 

@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
             if (rot == Vector3.zero)
                 rot = moveDir;
         }
-        _animator.SetFloat("Speed", movementVelocity.magnitude);
+        _animator.SetFloat("Speed", 1);
     }
     //*******************************************************************************************************************
     //-------------------------------------------------Sugar Rush--------------------------------------------------------
