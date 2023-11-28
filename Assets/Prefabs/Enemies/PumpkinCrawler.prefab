@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 10
+  maxHealth: 20
   scoreFromKill: 20
 --- !u!114 &956581588120377484
 MonoBehaviour:
