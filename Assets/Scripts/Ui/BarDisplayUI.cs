@@ -55,11 +55,13 @@ public class BarDisplayUI : MonoBehaviour
         UpdateSugarRushTimer();
         if (playerHealthScript.currentHealth > 0)
         {
-            healthText.text = "" + ((int)playerHealthScript.currentHealth + 1) + "/" + playerHealthScript.maxHealth;
+            healthText.text = "" + ((int)playerHealthScript.currentHealth + 1);
+                //+ "/" + playerHealthScript.maxHealth;
         }
         else
         {
-            healthText.text = "" + ((int)playerHealthScript.currentHealth) + "/" + playerHealthScript.maxHealth;
+            healthText.text = "" + ((int)playerHealthScript.currentHealth);
+                //+ "/" + playerHealthScript.maxHealth;
 
         }
         healthSlider.value = (int)playerHealthScript.currentHealth;
