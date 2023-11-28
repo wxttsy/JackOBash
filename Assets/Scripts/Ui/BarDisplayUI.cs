@@ -39,6 +39,8 @@ public class BarDisplayUI : MonoBehaviour
             playerHealthScript.currentHealth = 0;
             healthText.text = "0";
             healthSlider.value = (int)playerHealthScript.currentHealth;
+            Player playerScript = player.GetComponent<Player>();
+            playerScript.SwitchStateTo(Player.STATE.DEAD);
             return;
         }
         // Do not increment the player's health if it is going to be more than the max health value: Instead display max health value.

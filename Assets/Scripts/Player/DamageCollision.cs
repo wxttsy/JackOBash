@@ -45,7 +45,26 @@ public class DamageCollision : MonoBehaviour
             if (healthScriptOfCollidingObject != null)
             {
                 // Apply damage to the object we are colliding with.
-                healthScriptOfCollidingObject.ApplyDamage(damage);
+                //Check if we are the player
+                if (gameObject == GameObject.FindGameObjectWithTag("Player"))
+                {
+                    //Are we in sugar rush? Deal double damage if we are.
+                    Player playerScript = gameObject.GetComponent<Player>();
+                    if (playerScript.sugarRushIsActivated)
+                    {
+                        healthScriptOfCollidingObject.ApplyDamage(damage * 2);
+                    }
+                    else
+                    {
+                        healthScriptOfCollidingObject.ApplyDamage(damage);
+                    }
+
+                }
+                else
+                {
+                    //Otherwise apply damage normally.
+                    healthScriptOfCollidingObject.ApplyDamage(damage);
+                }
             }
             damagedTargetList.Add(other);
         }

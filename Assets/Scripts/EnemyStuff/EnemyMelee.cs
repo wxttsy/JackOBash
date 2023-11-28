@@ -70,8 +70,8 @@ public class EnemyMelee : MonoBehaviour
                 animator.SetTrigger("Attacking");
                 // Stop Movement
                 // Update Rotation to face the direction immediately
-                Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
-                transform.rotation = newRotation;
+                //Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
+                //transform.rotation = newRotation;
                 break;
             case STATE.HIT:
 
@@ -108,4 +108,5 @@ public class EnemyMelee : MonoBehaviour
         //It uses the EnemyMelee script on the visual object and destroy's its parent object.
         Destroy(transform.parent.gameObject);
     }
+
 }

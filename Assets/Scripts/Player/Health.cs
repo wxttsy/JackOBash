@@ -33,9 +33,7 @@ public class Health : MonoBehaviour
     public void ApplyDamage(int damage){
         // Get current game object this health script is attached to.
         GameObject go = this.gameObject;
-        ApplyHitEffect();
-        //Apply the damage
-        currentHealth -= damage;
+        
         
         GameObject player = GameObject.FindWithTag("Player");
         if (player != go)
@@ -129,6 +127,9 @@ public class Health : MonoBehaviour
                 AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
                 audioManager.PlayAudio(audioManager.sfBatHit);
             }
+            ApplyHitEffect();
+            //Apply the damage
+            currentHealth -= damage;
         }
         else
         {
@@ -145,6 +146,15 @@ public class Health : MonoBehaviour
             //We are the player and we didnt die from this hit
             else if (currentHealth > 0 )
             {
+                Player playerScript = player.GetComponent<Player>();
+                if (!playerScript.sugarRushIsActivated)
+                {
+                    ApplyHitEffect();
+                    //Apply the damage
+                    currentHealth -= damage;
+                }
+                
+
                 //Play PlayerHurt sound
                 GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
                 AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
@@ -176,7 +186,20 @@ public class Health : MonoBehaviour
         }
         // Enemy drops an Item:
         if (candyDropCheck == 0 && itemDropCheck == 0) {
-            GameObject itemDrop = gameManager.items[Random.Range(0, gameManager.items.Length)];
+            //Check if we are dropping a sugar rush item.
+            int item = Random.Range(0, gameManager.items.Length);
+            GameObject itemDrop;
+            if (!playerScript.sugarRushIsActivated)
+            {
+                //Get normal item
+                itemDrop = gameManager.items[item];
+            }
+            else
+            {
+                //Get sugar rush item
+                itemDrop = gameManager.itemsSR[item];
+            }
+            
             //Play PowerPickUp sound
             GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
             AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();

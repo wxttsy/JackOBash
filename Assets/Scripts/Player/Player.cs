@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         [Tooltip("A true or false value which enables and disables Sugar rush.")]
     public bool sugarRushIsActivated = false;
 
-
     // Attack sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
     [Header("****Attacks****")]
@@ -55,7 +54,7 @@ public class Player : MonoBehaviour
     public float attackSlideDuration = 0.2f;
         [Tooltip("This is the speed at which to move when attacking.")]
     public float attackSlideSpeed = 0.02f;
-    
+    private float attackAnimationDuration;
     // States:
     public enum STATE
     {
@@ -65,7 +64,8 @@ public class Player : MonoBehaviour
         DEAD,
 
     }
-    [HideInInspector] public STATE currentState;
+    //[HideInInspector]
+    public STATE currentState;
 
     // Other: ????
     [Header("****Other****")]
@@ -113,12 +113,29 @@ public class Player : MonoBehaviour
                     float lerpTime = timePassed / attackSlideDuration;
                     movementVelocity = Vector3.Lerp(rot * attackSlideSpeed, Vector3.zero, lerpTime);
                 }
+
+                if (_input.attackButtonPressed && _characterController.isGrounded)
+                {
+                    string currentClipName = _animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+                    attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+                    if (currentClipName != "Attack_03" && attackAnimationDuration > 0.5f && attackAnimationDuration < 0.7f)
+                    {
+                        _input.attackButtonPressed = false;
+                        SwitchStateTo(STATE.ATTACKING);
+                        CalculateMovement();
+                    }
+                }
                 break;
             
             case STATE.DASH:
                 _animator.SetFloat("Speed", 0f);
                 movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
                 ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
+                break;
+            case STATE.DEAD:
+                // Stop Movement
+                movementVelocity = Vector3.zero;
                 break;
         }
         // Check if we can change into Sugar Rush:
@@ -303,13 +320,14 @@ public class Player : MonoBehaviour
                 break;
 
             case STATE.ATTACKING:
-                //Play bat swing sound
-                audioManager.PlayAudio(audioManager.sfBatSwing);
                 _animator.SetTrigger("Attacking");
                 // Stop Movement
                 movementVelocity = Vector3.zero;
                 // Get time from entering new state for attack sliding.
                 attackStartTime = Time.time;
+
+                if (_attackHitbox != null)
+                    _attackHitbox.DisableDamageCollider();
                 break;
 
             case STATE.DASH:
@@ -323,8 +341,6 @@ public class Player : MonoBehaviour
                 break;
 
             case STATE.DEAD:
-                
-                audioManager.PlayAudio(audioManager.sfPlayerDeath);
                 Debug.Log("Deathstate switch");
                 _animator.SetTrigger("Death");
                 break;
@@ -365,5 +381,18 @@ public class Player : MonoBehaviour
         Instantiate(gameManager.dashParticle, transform.position, transform.rotation);
     }
 
-    
+    public void PlayBatSwing()
+    {
+        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+        //Play bat swing sound
+        audioManager.PlayAudio(audioManager.sfBatSwing);
+    }
+
+    public void PlayDeathSound()
+    {
+        GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+        AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+        audioManager.PlayAudio(audioManager.sfPlayerDeath);
+    }
 }

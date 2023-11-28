@@ -27,10 +27,8 @@ public class PumpkinCrawler : MonoBehaviour
         }
         else if (Vector3.Distance(targetPlayer.position, transform.position) < navMeshAgent.stoppingDistance + 2)
         {
-            navMeshAgent.SetDestination(transform.position);
+            //TODO: not working.
+            navMeshAgent.SetDestination(transform.position - targetPlayer.position * 5);
         }
-        // Update Rotation to face the direction immediately
-        //Quaternion newRotation = Quaternion.LookRotation(targetPlayer.position - transform.position);
-       // transform.rotation = newRotation;
     }
 }
