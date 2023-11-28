@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
                 break;
             case STATE.DEAD:
                 // Stop Movement
+                _animator.SetFloat("Speed", 0f);
                 movementVelocity = Vector3.zero;
                 break;
         }
@@ -241,7 +242,7 @@ public class Player : MonoBehaviour
         //    }
         //    oldMovementDirection = movementVelocity.normalized;
         //}
-        //_animator.SetFloat("Speed", movementVelocity.magnitude);
+        _animator.SetFloat("Speed", movementVelocity.magnitude);
     }
     //*******************************************************************************************************************
     //-------------------------------------------------Sugar Rush--------------------------------------------------------
