@@ -18,10 +18,6 @@ public class Player : MonoBehaviour
     public ParticleSystem _sugarRushParticleEffect;
 
     // Rotation:
-    private Vector3 oldMovementDirection;
-    private Quaternion startOrientation;
-    private float rotationTime = 0f;
-    private float rotationDuration = 0.05f;
     private Vector3 rot;
     private Vector3 oldRot;
     private Vector3 moveDir;
@@ -170,78 +166,43 @@ public class Player : MonoBehaviour
         movementVelocity *= currentMoveSpeed * Time.deltaTime;
 
         //*********************************************************************
-        //IN PROGRESS: New rotation working with xbox controller. (right stick)
+        //     New rotation working with xbox controller. (right stick)
         //*********************************************************************
-
-        //update current rotation with right stick input
-
-        //Keep old rot if player moves joystick in a direction
+        // Update current rotation with right stick input.
+        // Keep old rot if player moves joystick in a direction:
         if (rot != Vector3.zero)
-        {
             oldRot = rot;
-        }
+
         rot = new Vector3(_input.horizontalRotation, 0f, _input.verticalRotation);
         rot = Quaternion.Euler(0, -45, 0) * rot;
-        //If player isnt moving
-        if (moveDir == Vector3.zero)
-        {
+        // If player isnt moving:
+        if (moveDir == Vector3.zero) {
 
-            //If player isnt looking around (right stick 0)
-            if (rot == Vector3.zero)
-            {
-
-                //Player transform looks in movement direction before they stopped
+            // If player isnt looking around (right stick 0):
+            if (rot == Vector3.zero){
+                // Player transform looks in movement direction before they stopped.
                 transform.rotation = Quaternion.LookRotation(oldRot);
-
             }
-            //If player is looking around (right stick 0)
-            else if (rot != Vector3.zero)
-            {
-                //Player transform looks in direction player is directing right stick
+            // If player is looking around (right stick 0):
+            else if (rot != Vector3.zero){
+                // Player transform looks in direction player is directing right stick.
                 transform.rotation = Quaternion.LookRotation(rot);
             }
         }
 
-        //new movement direction with controller (left stick)
-
-       
+        //*** New movement direction with controller (left stick)
         //update movement direction
         moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
         moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
 
         //If player is moving (with new movementdirection)
-        if (moveDir != Vector3.zero)
-        {
+        if (moveDir != Vector3.zero) {
             //Player transform looks in the direction of the movement
             transform.rotation = Quaternion.LookRotation(moveDir);
 
             if (rot == Vector3.zero)
-            {
                 rot = moveDir;
-            }
         }
-
-        // Update player direction - smooth rotation:
-        //if (movementVelocity != Vector3.zero)
-        //{
-        //    if (movementVelocity.normalized != oldMovementDirection)
-        //    {
-        //        startOrientation = transform.rotation;
-        //        rotationTime = rotationDuration;
-        //    }
-        //    Quaternion endOrientation = Quaternion.LookRotation(movementVelocity);
-        //    if (rotationTime < 0)
-        //    {
-        //        transform.rotation = endOrientation;
-        //    }
-        //    else
-        //    {
-        //        transform.rotation = Quaternion.Slerp(endOrientation, startOrientation,
-        //            rotationTime / rotationDuration);
-        //        rotationTime -= Time.deltaTime;
-        //    }
-        //    oldMovementDirection = movementVelocity.normalized;
-        //}
         _animator.SetFloat("Speed", movementVelocity.magnitude);
     }
     //*******************************************************************************************************************
