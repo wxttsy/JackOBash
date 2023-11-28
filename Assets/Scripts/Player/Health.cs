@@ -33,8 +33,21 @@ public class Health : MonoBehaviour
     public void ApplyDamage(int damage){
         // Get current game object this health script is attached to.
         GameObject go = this.gameObject;
-        
-        
+
+
+        ApplyHitEffect();
+        //Apply the damage
+        currentHealth -= damage;
+
+        //We are an enemy and health is above 0 after hit
+        if (currentHealth > 0)
+        {
+            //Play BatHit sound (As if enemies are hit by the bat)
+            GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+            AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+            audioManager.PlayAudio(audioManager.sfBatHit);
+        }
+
         GameObject player = GameObject.FindWithTag("Player");
         if (player != go)
         {
@@ -119,17 +132,7 @@ public class Health : MonoBehaviour
                     return;
                 }
             }
-            //We are an enemy and health is above 0 after hit
-            if (currentHealth > 0)
-            {
-                //Play BatHit sound (As if enemies are hit by the bat)
-                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
-                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
-                audioManager.PlayAudio(audioManager.sfBatHit);
-            }
-            ApplyHitEffect();
-            //Apply the damage
-            currentHealth -= damage;
+
         }
         else
         {
