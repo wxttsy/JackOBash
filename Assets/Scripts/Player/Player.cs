@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
             case STATE.DASH:
                 _animator.SetFloat("Speed", 0f);
                 movementVelocity = transform.forward * dashSpeed * Time.deltaTime;
-                ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
+                ChangeToAttackCheck(_input.attackButtonPressed, UiManager.wasPaused);
                 break;
             case STATE.DEAD:
                 // Stop Movement
@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
     //*******************************************************************************************************************
     private void CalculateMovement(){
         // Update states:
-        ChangeToAttackCheck(_input.attackButtonPressed, PauseMenu.wasPaused);
+        ChangeToAttackCheck(_input.attackButtonPressed, UiManager.wasPaused);
         ChangeToDashCheck(_input.dashButtonPressed);
         
         // Calculate Movement based on Input.
