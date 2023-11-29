@@ -17,7 +17,7 @@ public class BarDisplayUI : MonoBehaviour
     Health playerHealthScript;
 
     public TMP_Text timeSurvived;
-    private int timePlayed = 0;
+    private float timePlayed = 0;
 
     //*******************************************************************************************************************
     //---------------------------------------------------Awake-----------------------------------------------------------
