@@ -21107,25 +21107,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1603006353031229179}
     m_Modifications:
-    - target: {fileID: 2924264042607328540, guid: 90bb8529b85cb8d4489a2253ec01654d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5669915493311042841, guid: 90bb8529b85cb8d4489a2253ec01654d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6149519160998741413, guid: 90bb8529b85cb8d4489a2253ec01654d,
         type: 3}
       propertyPath: m_Name
       value: DoorAnimHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149519160998741413, guid: 90bb8529b85cb8d4489a2253ec01654d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6149519160998741419, guid: 90bb8529b85cb8d4489a2253ec01654d,
         type: 3}
