@@ -16,7 +16,8 @@ public class BarDisplayUI : MonoBehaviour
     private GameObject player;
     Health playerHealthScript;
 
-    private float timePlayed = 0;
+    public TMP_Text timeSurvived;
+    private int timePlayed = 0;
 
     //*******************************************************************************************************************
     //---------------------------------------------------Awake-----------------------------------------------------------
@@ -31,8 +32,10 @@ public class BarDisplayUI : MonoBehaviour
     //*******************************************************************************************************************
     //---------------------------------------------------Update----------------------------------------------------------
     //*******************************************************************************************************************
-    private void Update() {
+    private void Update() 
+    {
         timePlayed += 1 * Time.deltaTime;
+        timeSurvived.SetText(timePlayed.ToString());
 
         // Do not decrement the player's health if it is going to be less than 0: Instead display 0.
         if (playerHealthScript.currentHealth < 0){

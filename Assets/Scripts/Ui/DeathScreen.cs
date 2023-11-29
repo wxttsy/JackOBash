@@ -26,7 +26,7 @@ public class DeathScreen : MonoBehaviour
     {
         if (player != null)
         {
-            finalScore.text = "Score " + playerScript.playerScore;
+            finalScore.text = "Score: " + playerScript.playerScore;
            
         }
     }
