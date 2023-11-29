@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     // Room management Variables:
     private GameObject currentSpawnedRoom;
-    [HideInInspector] public GameObject currentRoom;
+    public GameObject currentRoom;
     public int maxRooms;
     [HideInInspector] public int roomCount;
     private float positionOverride = 0;
