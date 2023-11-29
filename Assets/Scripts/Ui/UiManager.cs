@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
-   
+
 
     //loads a manually inputed scene by name
+    //will be updated so we can randomly load scenes
     public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");
