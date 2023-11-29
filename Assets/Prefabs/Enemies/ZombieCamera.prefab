@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67d96dd54427f44c8bcc3bbdfc69844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackHitbox: {fileID: 0}
   currentState: 0
   moveSpeed: 3
 --- !u!95 &4992682296247035760
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 20
+  maxHealth: 5
   scoreFromKill: 5
 --- !u!1001 &7741319734925158542
 PrefabInstance:

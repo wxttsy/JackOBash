@@ -77,9 +77,9 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136873968023162966}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b348fb23a2842834b87277211ac5cfba, type: 3}
+  m_Avatar: {fileID: 9000000, guid: f0005a5a62551854cbabc41056431077, type: 3}
   m_Controller: {fileID: 9100000, guid: 20673ef218a3b8c48bb433573f71ea77, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 20
+  maxHealth: 5
   scoreFromKill: 5
 --- !u!114 &7370596810312911360
 MonoBehaviour:
