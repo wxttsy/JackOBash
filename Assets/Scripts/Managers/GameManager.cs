@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     void Update(){
         RaycastHit hit;
         if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10, LayerMask.GetMask("Ground"))){
-            currentRoom = hit.collider.gameObject.transform.parent.gameObject;
+            currentRoom = hit.collider.gameObject.transform.root.gameObject;
         }
 
         if (currentRoom.gameObject == currentRooms[currentRooms.Count - 2].gameObject){

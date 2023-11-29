@@ -208,7 +208,7 @@ public class Health : MonoBehaviour
             AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
             audioManager.PlayAudio(audioManager.sfPowerPickup);
 
-            GameObject go = Instantiate(itemDrop, transform.position, transform.rotation);
+            GameObject go = Instantiate(itemDrop, player.transform);
         }
     }
     //*******************************************************************************************************************
