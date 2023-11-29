@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     private List<NavMeshBuildSource> navMeshDatas = new List<NavMeshBuildSource>();
     private List<NavMeshBuildMarkup> navMeshBuildMarkup = new List<NavMeshBuildMarkup>();
     private NavMeshData nmdata;
+
+    // Boolean for UI
+    public bool UIIsActive;
     //*******************************************************************************************************************
     //--------------------------------------------------Start-----------------------------------------------------------
     //*******************************************************************************************************************

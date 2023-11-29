@@ -18,7 +18,6 @@ public class UiManager : MonoBehaviour
     }
 
     //loads the next scene in build settings
-    //will be updated so we can randomly load scenes
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

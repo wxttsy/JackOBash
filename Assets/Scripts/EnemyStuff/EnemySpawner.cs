@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private float startTime;
     public int enemiesToSpawn;
     private int enemiesSpawned;
-    private bool deactivated;
+    [SerializeField] private bool deactivated;
     //=============================================Unity Built-in Methods===============================================
     void Awake()
     {
@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
-        if(gameManager.currentRoom == this.gameObject.transform.parent.gameObject)
+        if (gameManager.currentRoom == this.gameObject.transform.parent.root.gameObject)
         {
             deactivated = false;
         }
