@@ -10079,13 +10079,25 @@ PrefabInstance:
     - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
       propertyPath: roomsToSpawn.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
       propertyPath: roomsToSpawn.Array.data[0]
       value: 
       objectReference: {fileID: 6028775925839073988, guid: 1e9e88d99f8ae3c4e955d62f17b9e9f2,
+        type: 3}
+    - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
+        type: 3}
+      propertyPath: roomsToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 621811153170373865, guid: 655ceca1640cb7d468bf3551ffb7f6d0,
+        type: 3}
+    - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
+        type: 3}
+      propertyPath: roomsToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 8820096996595591745, guid: 39629aa93245c3f4ea4ec6ae2c004278,
         type: 3}
     - target: {fileID: 6668090470199290483, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
