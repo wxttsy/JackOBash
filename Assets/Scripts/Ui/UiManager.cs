@@ -32,11 +32,13 @@ public class UiManager : MonoBehaviour
 
     private void Awake()
     {
+
         player = GameObject.FindWithTag("Player");
         if (player != null)
             playerScript = player.GetComponent<Player>();
 
         Resume();
+
         if (optionsMenu != null)
         {
             optionsMenu.SetActive(false);
@@ -45,7 +47,6 @@ public class UiManager : MonoBehaviour
     private void Start()
     {
         eventSystem.firstSelectedGameObject = mainMenuFirst;
-
 
         if (deathUI != null)
         {
@@ -88,8 +89,8 @@ public class UiManager : MonoBehaviour
     }
     public void LoadMainMenu()
     {
+        
         SceneManager.LoadScene("MainMenu");
-        eventSystem.firstSelectedGameObject = mainMenuFirst;
     }
 
     //Quits game intended to use on a button
@@ -127,37 +128,36 @@ public class UiManager : MonoBehaviour
     //================================================OPTIONS MENU=============================================================================
     public void OptionsButtonpPressed()
     {
-
-        if (mainORpause != null)
+        if (optionsMenu != null)
         {
+            eventSystem.SetSelectedGameObject(optionsBack);
+
             optionsMenu.SetActive(true);
             mainORpause.SetActive(false);
-
-            if (gameUI != null)
-            {
-                gameUI.SetActive(false);
-            }
-
-            Time.timeScale = 0f;
-            Debug.Log("onClickOptions CLicked");
-            eventSystem.firstSelectedGameObject = optionsBack;
         }
+
+        //if (gameUI != null)
+        //{
+        //    gameUI.SetActive(false);
+        //}
+
+        Time.timeScale = 0f;
+        Debug.Log("onClickOptions CLicked");
+
 
     }
 
     public void BackButton()
     {
+        eventSystem.firstSelectedGameObject = mainMenuFirst;
 
-        if (mainORpause != null)
-        {
-            mainORpause.SetActive(true);
+        mainORpause.SetActive(true);
 
 
-            optionsMenu.SetActive(false);
-            Time.timeScale = 0f;
-            Debug.Log("BACK CLICKED");
-            eventSystem.firstSelectedGameObject = mainMenuFirst;
-        }
+        optionsMenu.SetActive(false);
+        Time.timeScale = 0f;
+        Debug.Log("BACK CLICKED");
+
     }
 
 }
