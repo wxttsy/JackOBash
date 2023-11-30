@@ -9,7 +9,7 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] EventSystem eventSystem;
     [SerializeField] GameObject mainMenuFirst;
-
+    [SerializeField] GameObject optionsBack;
 
     //DeathScript
     public TMP_Text finalScore;
@@ -26,7 +26,8 @@ public class UiManager : MonoBehaviour
 
     //OptionsMenu
     public GameObject optionsMenu;
-    public GameObject Ui1;
+    public GameObject mainORpause;
+    public GameObject gameUI;
     //OptionsMenu
 
     private void Awake()
@@ -45,6 +46,7 @@ public class UiManager : MonoBehaviour
     {
         eventSystem.firstSelectedGameObject = mainMenuFirst;
 
+
         if (deathUI != null)
         {
             deathUI.SetActive(false);
@@ -54,13 +56,15 @@ public class UiManager : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         if (player != null)
         {
             finalScore.text = "Score: " + playerScript.playerScore;
 
         }
-        
+
+
+        //=====================================================PAUSE MENU========================================================================
 
         //wasPaused makes it so theres a frame before the pause menu closes
         wasPaused = GamePaused;
@@ -85,6 +89,7 @@ public class UiManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        eventSystem.firstSelectedGameObject = mainMenuFirst;
     }
 
     //Quits game intended to use on a button
@@ -93,12 +98,14 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
+    //===========================================PAUSE MENU==================================================================================
 
     public void Resume()
     {
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(false);
+            gameUI.SetActive(true);
             Time.timeScale = 1.0f;
             GamePaused = false;
         }
@@ -117,27 +124,39 @@ public class UiManager : MonoBehaviour
 
 
 
-
-    public void OptionsButton()
+    //================================================OPTIONS MENU=============================================================================
+    public void OptionsButtonpPressed()
     {
-        if (Ui1 != null)
+
+        if (mainORpause != null)
         {
-            Ui1.SetActive(false);
             optionsMenu.SetActive(true);
+            mainORpause.SetActive(false);
+
+            if (gameUI != null)
+            {
+                gameUI.SetActive(false);
+            }
+
             Time.timeScale = 0f;
             Debug.Log("onClickOptions CLicked");
+            eventSystem.firstSelectedGameObject = optionsBack;
         }
 
     }
 
     public void BackButton()
     {
-        if (Ui1 != null)
+
+        if (mainORpause != null)
         {
-            Ui1.SetActive(true);
+            mainORpause.SetActive(true);
+
+
             optionsMenu.SetActive(false);
             Time.timeScale = 0f;
             Debug.Log("BACK CLICKED");
+            eventSystem.firstSelectedGameObject = mainMenuFirst;
         }
     }
 
