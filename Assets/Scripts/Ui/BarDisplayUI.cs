@@ -22,7 +22,8 @@ public class BarDisplayUI : MonoBehaviour
     //*******************************************************************************************************************
     //---------------------------------------------------Awake-----------------------------------------------------------
     //*******************************************************************************************************************
-    private void Awake(){
+    private void Awake()
+    {
         timePlayed = 0;
         player = GameObject.FindWithTag("Player");
         playerHealthScript = player.GetComponent<Health>();
@@ -32,20 +33,22 @@ public class BarDisplayUI : MonoBehaviour
     //*******************************************************************************************************************
     //---------------------------------------------------Update----------------------------------------------------------
     //*******************************************************************************************************************
-    private void Update() 
+    private void Update()
     {
         timePlayed += 1 * Time.deltaTime;
         timeSurvived.SetText(timePlayed.ToString());
         Player playerScript = player.GetComponent<Player>();
 
         // Do not decrement the player's health if it is going to be less than 0: Instead display 0.
-        if (playerHealthScript.currentHealth < 0){
+        if (playerHealthScript.currentHealth < 0)
+        {
             playerHealthScript.currentHealth = 0;
             playerScript.SwitchStateTo(Player.STATE.DEAD);
             return;
         }
         // Do not increment the player's health if it is going to be more than the max health value: Instead display max health value.
-        if (playerHealthScript.currentHealth > playerHealthScript.maxHealth) {
+        if (playerHealthScript.currentHealth > playerHealthScript.maxHealth)
+        {
             playerHealthScript.currentHealth = playerHealthScript.maxHealth;
             UpdateSugarRushTimer();
             return;
@@ -60,7 +63,7 @@ public class BarDisplayUI : MonoBehaviour
         Player playerScript = player.GetComponent<Player>();
         if (playerScript.sugarRushIsActivated)
         {
-            if (playerHealthScript.currentHealth > 0 ) playerHealthScript.currentHealth += 1 * Time.deltaTime;
+            if (playerHealthScript.currentHealth > 0) playerHealthScript.currentHealth += 1 * Time.deltaTime;
         }
         else
         {

@@ -9,6 +9,7 @@ TagManager:
   - BarDisplayUI
   - GameManager
   - AudioManager
+  - UiManager
   layers:
   - Default
   - TransparentFX

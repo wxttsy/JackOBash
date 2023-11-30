@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] EventSystem eventSystem;
     [SerializeField] GameObject mainMenuFirst;
     [SerializeField] GameObject optionsBack;
+    [SerializeField] GameObject pauseFirst;
+    [SerializeField] GameObject deathFirst;
+
+
 
     //DeathScript
     public TMP_Text finalScore;
@@ -60,37 +66,38 @@ public class UiManager : MonoBehaviour
     {
         if (player != null)
         {
-            finalScore.text = "Score: " + playerScript.playerScore;
+            finalScore.text = "" + playerScript.playerScore;
 
         }
 
 
         //=====================================================PAUSE MENU========================================================================
-
-        //wasPaused makes it so theres a frame before the pause menu closes
-        wasPaused = GamePaused;
-        if (Input.GetKeyDown(KeyCode.Escape))
+        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        if (_input.pauseButtonPressed)
         {
             if (GamePaused)
             {
+                
                 Resume();
             }
             else
             {
+                
                 Pause();
             }
+                _input.ClearCache();
         }
 
     }
-
+    //=============================================================MAIN MENU============================================
     public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");
     }
     public void LoadMainMenu()
     {
-        
         SceneManager.LoadScene("MainMenu");
+        eventSystem.SetSelectedGameObject(mainMenuFirst);
     }
 
     //Quits game intended to use on a button
@@ -103,24 +110,35 @@ public class UiManager : MonoBehaviour
 
     public void Resume()
     {
+        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        _input.controls.Player.Enable();
+        _input.controls.UI.Disable();
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(false);
+            
             gameUI.SetActive(true);
             Time.timeScale = 1.0f;
             GamePaused = false;
+            Debug.Log("Game Resumed");
         }
     }
 
     //Completly pauses the game setting the games time to zero and the pause menu to be active
     public void Pause()
     {
-        if (pauseMenuUI != null)
-        {
-            pauseMenuUI.SetActive(true);
-            Time.timeScale = 0;
-            GamePaused = true;
-        }
+        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        _input.controls.UI.Enable();
+        _input.controls.Player.Disable();
+        pauseMenuUI.SetActive(true);
+        eventSystem.SetSelectedGameObject(pauseFirst);
+
+        gameUI.SetActive(false);
+
+        Time.timeScale = 0;
+        GamePaused = true;
+
+        Debug.Log("Game Paused");
     }
 
 
@@ -149,10 +167,10 @@ public class UiManager : MonoBehaviour
 
     public void BackButton()
     {
-        eventSystem.firstSelectedGameObject = mainMenuFirst;
+        eventSystem.SetSelectedGameObject(mainMenuFirst);
+        eventSystem.SetSelectedGameObject(pauseFirst);
 
         mainORpause.SetActive(true);
-
 
         optionsMenu.SetActive(false);
         Time.timeScale = 0f;
