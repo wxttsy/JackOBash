@@ -23,13 +23,19 @@ public class DoorOpenHandler : MonoBehaviour
         hasOpenedDoor = false;
 
 
+
         _player = FindObjectOfType<Player>();
         _gm = FindObjectOfType<GameManager>();
         _enSpawns = GetComponentsInChildren<EnemySpawner>();
 
+        if (_gm.currentRoom != this.gameObject.transform.root.gameObject)
+        {
+            this.enabled = false;
+        }
+
 
         // get the total number of enemies in the room as an int
-        for(int i = 0; i < _enSpawns.Length; i++)
+        for (int i = 0; i < _enSpawns.Length; i++)
         {
             enemiesInRoom += _enSpawns[i].enemiesToSpawn;
         }

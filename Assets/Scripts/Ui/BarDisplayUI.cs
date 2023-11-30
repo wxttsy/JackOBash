@@ -36,38 +36,23 @@ public class BarDisplayUI : MonoBehaviour
     {
         timePlayed += 1 * Time.deltaTime;
         timeSurvived.SetText(timePlayed.ToString());
+        Player playerScript = player.GetComponent<Player>();
 
         // Do not decrement the player's health if it is going to be less than 0: Instead display 0.
         if (playerHealthScript.currentHealth < 0){
             playerHealthScript.currentHealth = 0;
-            healthText.text = "0";
-            healthSlider.value = (int)playerHealthScript.currentHealth;
-            Player playerScript = player.GetComponent<Player>();
             playerScript.SwitchStateTo(Player.STATE.DEAD);
             return;
         }
         // Do not increment the player's health if it is going to be more than the max health value: Instead display max health value.
         if (playerHealthScript.currentHealth > playerHealthScript.maxHealth) {
             playerHealthScript.currentHealth = playerHealthScript.maxHealth;
-            healthText.text = "MAX";
-            healthSlider.value = (int)playerHealthScript.currentHealth;
             UpdateSugarRushTimer();
             return;
         }
         //Otherwise, increment appropriately.
         UpdateSugarRushTimer();
-        if (playerHealthScript.currentHealth > 0)
-        {
-            healthText.text = "" + ((int)playerHealthScript.currentHealth + 1);
-        }
-        else
-        {
-            healthText.text = "" + ((int)playerHealthScript.currentHealth);
-
-        }
-        if (healthText.text == "100"){
-            healthText.text = "MAX";
-        }
+        healthText.text = "" + playerScript.playerScore;
         healthSlider.value = (int)playerHealthScript.currentHealth;
     }
     void UpdateSugarRushTimer()
