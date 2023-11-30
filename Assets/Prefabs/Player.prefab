@@ -134,6 +134,7 @@ MonoBehaviour:
   verticalInput: 0
   attackButtonPressed: 0
   dashButtonPressed: 0
+  pauseButtonPressed: 0
   horizontalRotation: 0
   verticalRotation: 0
   attackIsTrue: 0
@@ -273,7 +274,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c5937ca91fcb62447be89d4b283e3870, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 506f46c61dfb8a54eb7c9a02e0a4876e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 506f46c61dfb8a54eb7c9a02e0a4876e, type: 3}
 --- !u!4 &1470111714755195464 stripped
 Transform:
