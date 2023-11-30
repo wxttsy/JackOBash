@@ -89,6 +89,8 @@ public class Player : MonoBehaviour
     //--------------------------------------------------Update-----------------------------------------------------------
     //*******************************************************************************************************************
     private void Update() {
+        
+        
         // Update Player based on state:
         switch (currentState){
             case STATE.FREE: 
@@ -150,6 +152,7 @@ public class Player : MonoBehaviour
     //---------------------------------------------Calculate Movement----------------------------------------------------
     //*******************************************************************************************************************
     private void CalculateMovement(){
+        
         // Update states:
         ChangeToAttackCheck(_input.attackButtonPressed, UiManager.wasPaused);
         ChangeToDashCheck(_input.dashButtonPressed);

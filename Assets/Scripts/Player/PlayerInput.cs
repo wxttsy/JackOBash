@@ -15,11 +15,12 @@ public class PlayerInput : MonoBehaviour
     public float verticalInput;
     public bool attackButtonPressed;
     public bool dashButtonPressed;
+    public bool pauseButtonPressed;
 
     public float horizontalRotation;
     public float verticalRotation;
 
-    PlayerControls controls;
+    public PlayerControls controls;
 
     Vector2 move;
 
@@ -29,30 +30,26 @@ public class PlayerInput : MonoBehaviour
 
     bool dashIsTrue;
 
+
+
     //*******************************************************************************************************************
     //-------------------------------------------------Awake-------------------------------------------------------------
     //*******************************************************************************************************************
     private void Awake()
     {
-
         //stuff that performs input actions
         controls = new PlayerControls();
-
-      
-        controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-
-        
-        controls.Player.Rotate.performed += ctx => rot = ctx.ReadValue<Vector2>();
-
-
-
+        controls.Player.Enable();
     }
     //*******************************************************************************************************************
     //--------------------------------------------------Update-----------------------------------------------------------
     //*******************************************************************************************************************
     void Update()
     {
+        move = controls.Player.Move.ReadValue<Vector2>();
+        rot = controls.Player.Rotate.ReadValue<Vector2>();
 
+        pauseButtonPressed = controls.Player.Pause.triggered;
         dashButtonPressed = controls.Player.Dash.triggered;
         attackButtonPressed = controls.Player.Attack.triggered;
         horizontalInput = move.x;
@@ -65,12 +62,12 @@ public class PlayerInput : MonoBehaviour
     //*******************************************************************************************************************
     
 
-    private void OnEnable()
+    public void OnEnable()
     {
         controls.Player.Enable();
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         controls.Player.Disable();
         ClearCache();
@@ -88,5 +85,6 @@ public class PlayerInput : MonoBehaviour
         verticalInput = 0;
         attackButtonPressed = false;
         dashButtonPressed = false;
+        pauseButtonPressed = false;
     }
 }
