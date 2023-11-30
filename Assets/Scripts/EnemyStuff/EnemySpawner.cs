@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     // References:
-    public GameObject _enemyPrefab;
+    public GameObject[] _enemyPrefab;
     private GameManager gameManager;
     // Variables:
     public float spawnTimeInterval;
@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         // Create an enemy from the prefab attached to this object: Increase spawned counter.
-        GameObject enemyObject = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemyObject = Instantiate(_enemyPrefab[Random.Range(0, _enemyPrefab.Length-1)], transform.position, Quaternion.identity);
         enemyObject.transform.parent = this.transform.parent;
         enemiesSpawned += 1;
     }
