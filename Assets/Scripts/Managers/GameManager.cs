@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     // Room management Variables:
     private GameObject currentSpawnedRoom;
-    [HideInInspector] public GameObject currentRoom;
+    public GameObject currentRoom;
     public int maxRooms;
     [HideInInspector] public int roomCount;
     private float positionOverride = 0;
@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     private List<NavMeshBuildSource> navMeshDatas = new List<NavMeshBuildSource>();
     private List<NavMeshBuildMarkup> navMeshBuildMarkup = new List<NavMeshBuildMarkup>();
     private NavMeshData nmdata;
+
+    // Boolean for UI
+    public bool UIIsActive;
     //*******************************************************************************************************************
     //--------------------------------------------------Start-----------------------------------------------------------
     //*******************************************************************************************************************
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
     void Update(){
         RaycastHit hit;
         if (Physics.Raycast(_playerObject.transform.position, Vector3.down, out hit, 10, LayerMask.GetMask("Ground"))){
-            currentRoom = hit.collider.gameObject.transform.parent.gameObject;
+            currentRoom = hit.collider.gameObject.transform.root.gameObject;
         }
 
         if (currentRoom.gameObject == currentRooms[currentRooms.Count - 2].gameObject){
