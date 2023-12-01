@@ -7,22 +7,28 @@ public class EnemySpawner : MonoBehaviour
     // References:
     public GameObject[] _enemyPrefab;
     private GameManager gameManager;
+    public Transform targetPlayer;
+    public SpawnController spawnController;
     // Variables:
     public float spawnTimeInterval;
     private float startTime;
     public int enemiesToSpawn;
+    public float distToPlayer;
     private int enemiesSpawned;
+    public float tooClose;
     [SerializeField] private bool deactivated;
     //=============================================Unity Built-in Methods===============================================
     void Awake()
     {
         GameObject gameManagerObject = GameObject.FindWithTag("GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
+        targetPlayer = GameObject.FindWithTag("Player").transform;
+        spawnController = this.gameObject.GetComponentInParent<SpawnController>();
         // Initialise variables.
         startTime = Time.time;
         enemiesSpawned = 0;
         deactivated = true;
-        enemiesToSpawn += gameManager.roomCount * gameManager.roomCount / 4;
+        //enemiesToSpawn += gameManager.roomCount * gameManager.roomCount / 4;
     }
     private void Update()
     {
@@ -39,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         if (!deactivated)
         {
             // If this spawner has not yet summoned all of its enemies:
-            if (enemiesSpawned >= enemiesToSpawn)
+            if (spawnController.enemiesToSpawn > 1)
             {
                 // Deactivate the spawner.
                 Destroy(GetComponentInChildren<ParticleSystem>());
@@ -47,8 +53,13 @@ public class EnemySpawner : MonoBehaviour
             }
             else if (Time.time > startTime + spawnTimeInterval)
             {
-                // Otherwise we still have enemies to spawn, continue spawning.
-                SpawnEnemy();
+                distToPlayer = Vector3.Distance(targetPlayer.position, transform.position);
+                //if player isnt too close to spawner
+                if (distToPlayer >= tooClose)
+                {
+                    // Otherwise we still have enemies to spawn, continue spawning.
+                    SpawnEnemy();
+                }
                 startTime = Time.time;
             }
         }
@@ -59,6 +70,6 @@ public class EnemySpawner : MonoBehaviour
         // Create an enemy from the prefab attached to this object: Increase spawned counter.
         GameObject enemyObject = Instantiate(_enemyPrefab[Random.Range(0, _enemyPrefab.Length-1)], transform.position, Quaternion.identity);
         enemyObject.transform.parent = this.transform.parent;
-        enemiesSpawned += 1;
+        spawnController.enemiesToSpawn -= 1;
     }
 }
