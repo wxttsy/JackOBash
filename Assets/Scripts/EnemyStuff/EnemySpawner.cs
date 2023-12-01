@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         if (!deactivated)
         {
             // If this spawner has not yet summoned all of its enemies:
-            if (spawnController.enemiesToSpawn > 1)
+            if (spawnController.enemiesToSpawn <= 0)
             {
                 // Deactivate the spawner.
                 Destroy(GetComponentInChildren<ParticleSystem>());

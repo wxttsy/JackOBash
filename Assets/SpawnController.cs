@@ -9,6 +9,8 @@ public class SpawnController : MonoBehaviour
     public int baseAmount;
     public int timeMultiple;
     public int doorOpenNumber;
+    public float timePlayed;
+    public int timeDiv;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +31,8 @@ public class SpawnController : MonoBehaviour
         //divide time by a time interval and round it to an int
         //Apply that to number to a multiple to get time spawn ramping
         //enemiesToSpawn = base amount of enemies (beginning of game) + above number
-        float time = FindObjectOfType<BarDisplayUI>().timePlayed;
-        time /= timeInterval;
-        int timeDiv = Mathf.RoundToInt(time);
+        timePlayed = FindObjectOfType<BarDisplayUI>().timePlayed;
+        timeDiv = Mathf.RoundToInt(timePlayed / timeInterval);
         enemiesToSpawn = baseAmount + (timeDiv * timeMultiple);
 
         //get enemies to spawn number and get 35% value and round to int
