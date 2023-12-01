@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7396014078278194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54148abe1106fc648b35afab78b5140e, type: 3}
+  m_Name: DepthNormalsFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-1565596114336814583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +70,9 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1565596114336814583}
   - {fileID: 6381359555441015512}
-  m_RendererFeatureMap: 09ea38ffa0e245ead83a1baeb4248f58
+  - {fileID: -7396014078278194232}
+  - {fileID: 7470620058553752700}
+  m_RendererFeatureMap: 09ea38ffa0e245ead83a1baeb4248f58c8ab70ae61145c997c1c01ba5cf9ac67
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -137,3 +152,18 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &7470620058553752700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f65728f2df893b43982155ca730e6ed, type: 3}
+  m_Name: OutlineFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    outlineMaterial: {fileID: 2100000, guid: 1500fe6be94695542b22e32fc4594526, type: 2}

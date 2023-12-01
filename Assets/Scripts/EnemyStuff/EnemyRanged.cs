@@ -62,14 +62,21 @@ public class EnemyRanged : MonoBehaviour
             SwitchStateTo(STATE.ATTACKING);
         }
 
-        if (distToPlayer > navMeshAgent.stoppingDistance - 2)
+        if (distToPlayer > navMeshAgent.stoppingDistance)
         {
             navMeshAgent.SetDestination(targetPlayer.position);
         }
-        else if (distToPlayer < navMeshAgent.stoppingDistance + 2)
+        else if (distToPlayer < navMeshAgent.stoppingDistance * 0.8)
         {
-            //TODO: This is buggy- Not correct implementation but it works for now - Sarah.
-            navMeshAgent.SetDestination(transform.position - targetPlayer.position*5);
+            Vector3 playerPos = targetPlayer.position;
+            Vector3 enemyPos = transform.position;
+
+            Vector3 directionTowardsPlayer = (playerPos - enemyPos).normalized;
+            float distanceToBeAwayFrom = navMeshAgent.stoppingDistance * 1.2f;
+
+            Vector3 destination = enemyPos - directionTowardsPlayer * distanceToBeAwayFrom;
+            destination.y = 1;
+            navMeshAgent.SetDestination(destination);
         }
         
         oldPosition = transform.position;

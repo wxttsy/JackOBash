@@ -40,7 +40,10 @@ public class UiManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         if (player != null)
+        {
             playerScript = player.GetComponent<Player>();
+        }
+
 
         Resume();
 

@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     // References:
-    public GameObject _enemyPrefab;
+    public GameObject[] _enemyPrefab;
     private GameManager gameManager;
     // Variables:
     public float spawnTimeInterval;
     private float startTime;
     public int enemiesToSpawn;
     private int enemiesSpawned;
-    private bool deactivated;
+    [SerializeField] private bool deactivated;
     //=============================================Unity Built-in Methods===============================================
     void Awake()
     {
@@ -21,11 +21,21 @@ public class EnemySpawner : MonoBehaviour
         // Initialise variables.
         startTime = Time.time;
         enemiesSpawned = 0;
-        deactivated = false;
+        deactivated = true;
         enemiesToSpawn += gameManager.roomCount * gameManager.roomCount / 4;
     }
     private void Update()
     {
+        if (gameManager.currentRoom == this.gameObject.transform.parent.root.gameObject)
+        {
+            deactivated = false;
+        }
+        else
+        {
+            deactivated = true;
+        }
+
+
         if (!deactivated)
         {
             // If this spawner has not yet summoned all of its enemies:
@@ -47,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         // Create an enemy from the prefab attached to this object: Increase spawned counter.
-        GameObject enemyObject = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemyObject = Instantiate(_enemyPrefab[Random.Range(0, _enemyPrefab.Length-1)], transform.position, Quaternion.identity);
         enemyObject.transform.parent = this.transform.parent;
         enemiesSpawned += 1;
     }
