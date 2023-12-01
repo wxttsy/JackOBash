@@ -87,7 +87,7 @@ public class Health : MonoBehaviour
                 }
                 //We are a Pumpkin Crawler and we died from this hit.
                 PumpkinCrawler pumpkinCrawlerScript = go.GetComponent<PumpkinCrawler>();
-                if (pumpkinCrawlerScript != null)
+                if (pumpkinCrawlerScript != null && !pumpkinCrawlerScript.isDead)
                 {
                     pumpkinCrawlerScript.isDead = true;
                     //PumpkinCrawlerDeath Sound

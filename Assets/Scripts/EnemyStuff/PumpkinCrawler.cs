@@ -65,6 +65,7 @@ public class PumpkinCrawler : MonoBehaviour
 
         if(isDead)
         {
+            navMeshAgent.velocity = Vector3.zero;
             _anim.SetTrigger("Dead");
         }
 
