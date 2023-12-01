@@ -168,11 +168,11 @@ public class Player : MonoBehaviour
         // Update movement to 'movementVelocity' variable which is used to apply movement.
         if(movementVelocity == Vector3.zero)
         {
-            _animator.SetFloat("Speed", 0);
+            _animator.SetTrigger("NotMoving");
         }
         else
         {
-            _animator.SetFloat("Speed", 1);
+            _animator.SetTrigger("Moving");
         }
 
 

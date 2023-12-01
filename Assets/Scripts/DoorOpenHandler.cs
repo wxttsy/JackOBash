@@ -16,22 +16,16 @@ public class DoorOpenHandler : MonoBehaviour
     public int killsToGet;
     public bool hasOpenedDoor;
 
-    void Start()
+    void OnEnable()
     {
-
-        //initialise the door as being closed to ensure that the player is not able to enter
-        hasOpenedDoor = false;
-
-
+        enemiesInRoom = 0;
 
         _player = FindObjectOfType<Player>();
         _gm = FindObjectOfType<GameManager>();
         _enSpawns = GetComponentsInChildren<EnemySpawner>();
 
-        if (_gm.currentRoom != this.gameObject.transform.root.gameObject)
-        {
-            this.enabled = false;
-        }
+        //initialise the door as being closed to ensure that the player is not able to enter
+        hasOpenedDoor = false;
 
 
         // get the total number of enemies in the room as an int
@@ -48,6 +42,12 @@ public class DoorOpenHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_gm.currentRoom != this.gameObject.transform.root.gameObject)
+        {
+            this.enabled = false;
+        }
+
+
         if(_player.killCounter >= killsToGet && !hasOpenedDoor)
         {
 
