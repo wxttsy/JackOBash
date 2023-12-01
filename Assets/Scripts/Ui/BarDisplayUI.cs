@@ -10,6 +10,8 @@ public class BarDisplayUI : MonoBehaviour
     //------------------------------------------Initialize Variables-----------------------------------------------------
     //*******************************************************************************************************************
     // References:
+    public TMP_Text scoreText;
+    public TMP_Text deathScoreText;
     public TMP_Text healthText;
     public Slider healthSlider;
     public Slider sugarRushSlider;
@@ -49,14 +51,18 @@ public class BarDisplayUI : MonoBehaviour
         // Do not increment the player's health if it is going to be more than the max health value: Instead display max health value.
         if (playerHealthScript.currentHealth > playerHealthScript.maxHealth)
         {
+            healthText.text = "MAX";
             playerHealthScript.currentHealth = playerHealthScript.maxHealth;
             UpdateSugarRushTimer();
             return;
         }
         //Otherwise, increment appropriately.
         UpdateSugarRushTimer();
-        healthText.text = "" + playerScript.playerScore;
         healthSlider.value = (int)playerHealthScript.currentHealth;
+
+        scoreText.text = "" + playerScript.playerScore;
+        deathScoreText.text = "" + playerScript.playerScore;
+        healthText.text = "" + (int)playerHealthScript.currentHealth;
     }
     void UpdateSugarRushTimer()
     {
@@ -70,4 +76,5 @@ public class BarDisplayUI : MonoBehaviour
             if (playerHealthScript.currentHealth > 0) playerHealthScript.currentHealth -= 1 * Time.deltaTime;
         }
     }
+
 }

@@ -16,7 +16,6 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject deathFirst;
 
 
-
     //DeathScript
     public TMP_Text finalScore;
     GameObject player;
@@ -72,20 +71,25 @@ public class UiManager : MonoBehaviour
 
 
         //=====================================================PAUSE MENU========================================================================
-        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        if (_input.pauseButtonPressed)
+
+        if (player != null)
         {
-            if (GamePaused)
+            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+
+            if (_input.pauseButtonPressed)
             {
-                
-                Resume();
-            }
-            else
-            {
-                
-                Pause();
-            }
+                if (GamePaused)
+                {
+
+                    Resume();
+                }
+                else
+                {
+
+                    Pause();
+                }
                 _input.ClearCache();
+            }
         }
 
     }
@@ -96,8 +100,9 @@ public class UiManager : MonoBehaviour
     }
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+
         eventSystem.SetSelectedGameObject(mainMenuFirst);
+        SceneManager.LoadScene("MainMenu");
     }
 
     //Quits game intended to use on a button
@@ -110,13 +115,16 @@ public class UiManager : MonoBehaviour
 
     public void Resume()
     {
-        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        _input.controls.Player.Enable();
-        _input.controls.UI.Disable();
+        if (player != null)
+        {
+            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            _input.controls.Player.Enable();
+            _input.controls.UI.Disable();
+        }
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(false);
-            
+
             gameUI.SetActive(true);
             Time.timeScale = 1.0f;
             GamePaused = false;
@@ -167,15 +175,23 @@ public class UiManager : MonoBehaviour
 
     public void BackButton()
     {
-        eventSystem.SetSelectedGameObject(mainMenuFirst);
-        eventSystem.SetSelectedGameObject(pauseFirst);
 
-        mainORpause.SetActive(true);
+        eventSystem.SetSelectedGameObject(pauseFirst);
+        eventSystem.SetSelectedGameObject(mainMenuFirst);
 
         optionsMenu.SetActive(false);
+        mainORpause.SetActive(true);
+
         Time.timeScale = 0f;
         Debug.Log("BACK CLICKED");
 
+    }
+
+    //==============================================DEATH SCREEN===========================================
+
+    public void deathFirstButton()
+    {
+        eventSystem.firstSelectedGameObject = deathFirst;
     }
 
 }
