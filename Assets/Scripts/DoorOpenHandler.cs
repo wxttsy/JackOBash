@@ -18,6 +18,7 @@ public class DoorOpenHandler : MonoBehaviour
 
     void OnEnable()
     {
+        enemiesInRoom = 0;
 
         _player = FindObjectOfType<Player>();
         _gm = FindObjectOfType<GameManager>();

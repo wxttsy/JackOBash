@@ -89,7 +89,7 @@ public class Health : MonoBehaviour
                 PumpkinCrawler pumpkinCrawlerScript = go.GetComponent<PumpkinCrawler>();
                 if (pumpkinCrawlerScript != null)
                 {
-                    Destroy(go);
+                    pumpkinCrawlerScript.isDead = true;
                     //PumpkinCrawlerDeath Sound
                     GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
                     AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
@@ -102,6 +102,7 @@ public class Health : MonoBehaviour
                         Vector3 scatter = new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
                         Instantiate(gameManager.healthCandy, transform.position + scatter, transform.rotation);
                     }
+
                     return;
                 }
                 // We are a Ranged enemy and we died from this hit.
