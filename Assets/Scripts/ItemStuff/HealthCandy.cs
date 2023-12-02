@@ -26,7 +26,16 @@ public class HealthCandy : MonoBehaviour
                 }
                 else
                 {
-                    playerHealthScript.currentHealth += candyHealthAmount;
+                    if (!other.GetComponent<Player>().sugarRushIsActivated)
+                    {
+                        playerHealthScript.currentHealth += candyHealthAmount;
+                    }
+                    else
+                    {
+                        playerHealthScript.currentHealth += candyHealthAmount / 4;
+                    }
+
+
                     Debug.Log("add time");
                 }
                 //Play Sound

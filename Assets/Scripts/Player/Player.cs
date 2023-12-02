@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
     private Vector3 rot;
     private Vector3 oldRot;
     private Vector3 moveDir;
-    
+
+    //Item check to not allow for duplicate items
+    [HideInInspector] public bool hasItem = false;
 
     // Movement/Dash:
     private Vector3 movementVelocity;

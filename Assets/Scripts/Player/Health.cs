@@ -192,24 +192,42 @@ public class Health : MonoBehaviour
         if (candyDropCheck == 0 && itemDropCheck == 0) {
             //Check if we are dropping a sugar rush item.
             int item = Random.Range(0, gameManager.items.Length);
-            GameObject itemDrop;
+            GameObject itemDrop = null;
+
             if (!playerScript.sugarRushIsActivated)
             {
-                //Get normal item
-                itemDrop = gameManager.items[item];
+
+                if (!playerScript.hasItem)
+                {
+                    //Get normal item
+                    itemDrop = gameManager.items[item];
+                    playerScript.hasItem = true;
+                }
+
             }
             else
             {
-                //Get sugar rush item
-                itemDrop = gameManager.itemsSR[item];
+
+                if (!playerScript.hasItem)
+                {
+                    //Get sugar rush item
+                    itemDrop = gameManager.itemsSR[item];
+                    playerScript.hasItem = true;
+                }
+
             }
             
-            //Play PowerPickUp sound
-            GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
-            AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
-            audioManager.PlayAudio(audioManager.sfPowerPickup);
 
-            GameObject go = Instantiate(itemDrop, player.transform);
+
+            if(itemDrop != null)
+            {
+                //Play PowerPickUp sound
+                GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
+                AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
+                audioManager.PlayAudio(audioManager.sfPowerPickup);
+                GameObject go = Instantiate(itemDrop, player.transform);
+            }
+
         }
     }
     //*******************************************************************************************************************

@@ -37,6 +37,7 @@ public class PartyPopper : MonoBehaviour
 
     public void DestroyThis()
     {
+        FindObjectOfType<Player>().hasItem = false;
         Destroy(gameObject);
     }
 }

@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 200
   itemDurationTimer: 0
-  itemDuration: 10
+  itemDuration: 2
 --- !u!1 &7285934681204231816
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.RenderGraphModule;
 
 public class EnemySpawner : MonoBehaviour
 {
     // References:
     public GameObject[] _enemyPrefab;
     private GameManager gameManager;
+    private Player _pc;
     // Variables:
     public float spawnTimeInterval;
     private float startTime;
     public int enemiesToSpawn;
     private int enemiesSpawned;
     [SerializeField] private bool deactivated;
+
+
+    //variables for player distance
+    [SerializeField] float distanceFromPlayer;
+    public float minDist;
     //=============================================Unity Built-in Methods===============================================
     void Awake()
     {
         GameObject gameManagerObject = GameObject.FindWithTag("GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
+        _pc = FindObjectOfType<Player>();
         // Initialise variables.
         startTime = Time.time;
         enemiesSpawned = 0;
@@ -26,6 +34,9 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
+
+
+
         if (gameManager.currentRoom == this.gameObject.transform.parent.root.gameObject)
         {
             deactivated = false;
@@ -36,8 +47,13 @@ public class EnemySpawner : MonoBehaviour
         }
 
 
+
+
         if (!deactivated)
         {
+
+
+
             // If this spawner has not yet summoned all of its enemies:
             if (enemiesSpawned >= enemiesToSpawn)
             {
@@ -47,9 +63,15 @@ public class EnemySpawner : MonoBehaviour
             }
             else if (Time.time > startTime + spawnTimeInterval)
             {
-                // Otherwise we still have enemies to spawn, continue spawning.
-                SpawnEnemy();
-                startTime = Time.time;
+                distanceFromPlayer = Vector3.Distance(this.transform.position, _pc.transform.position);
+
+                if (distanceFromPlayer > minDist)
+                {
+                    // Otherwise we still have enemies to spawn, continue spawning.
+                    SpawnEnemy();
+                    startTime = Time.time;
+                }
+
             }
         }
     }

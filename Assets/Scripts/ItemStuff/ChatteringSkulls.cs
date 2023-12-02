@@ -43,6 +43,7 @@ public class ChatteringSkulls : MonoBehaviour
             GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
             AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
             audioManager.StopAudio(audioManager.sfChatteringSkulls);
+            FindObjectOfType<Player>().hasItem = false;
             Destroy(this.gameObject); 
         }
     }
