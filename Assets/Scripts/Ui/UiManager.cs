@@ -18,7 +18,6 @@ public class UiManager : MonoBehaviour
 
 
     //DeathScript
-    public TMP_Text finalScore;
     GameObject player;
     Player playerScript;
     public GameObject deathUI;
@@ -31,13 +30,15 @@ public class UiManager : MonoBehaviour
     //PauseMenu
 
     //OptionsMenu
+    public GameObject mainMenuUI;
     public GameObject optionsMenu;
-    public GameObject mainORpause;
     public GameObject gameUI;
     //OptionsMenu
 
     private void Awake()
     {
+        optionsMenu.SetActive(false); 
+        pauseMenuUI.SetActive(false);
 
         player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -45,13 +46,7 @@ public class UiManager : MonoBehaviour
             playerScript = player.GetComponent<Player>();
         }
 
-
         Resume();
-
-        if (optionsMenu != null)
-        {
-            optionsMenu.SetActive(false);
-        }
     }
     private void Start()
     {
@@ -62,37 +57,39 @@ public class UiManager : MonoBehaviour
             deathUI.SetActive(false);
         }
 
+        if (player != null)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+
+        optionsMenu.SetActive(false);
 
     }
 
     void Update()
     {
+//=====================================================PAUSE MENU========================================================================
         if (player != null)
         {
-            finalScore.text = "" + playerScript.playerScore;
-
-        }
-
-
-        //=====================================================PAUSE MENU========================================================================
-        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        if (_input.pauseButtonPressed)
-        {
-            if (GamePaused)
+            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            if (_input.pauseButtonPressed)
             {
-                
-                Resume();
-            }
-            else
-            {
-                
-                Pause();
-            }
+                if (GamePaused)
+                {
+
+                    Resume();
+                }
+                else
+                {
+
+                    Pause();
+                }
                 _input.ClearCache();
+            }
         }
 
     }
-    //=============================================================MAIN MENU============================================
+//=============================================================MAIN MENU============================================
     public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");
@@ -109,17 +106,18 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
-    //===========================================PAUSE MENU==================================================================================
-
+ //===========================================PAUSE MENU==================================================================================
     public void Resume()
     {
-        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        _input.controls.Player.Enable();
-        _input.controls.UI.Disable();
-        if (pauseMenuUI != null)
+        if (player != null)
         {
+            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+
+            _input.controls.Player.Enable();
+            _input.controls.UI.Disable();
+
             pauseMenuUI.SetActive(false);
-            
+
             gameUI.SetActive(true);
             Time.timeScale = 1.0f;
             GamePaused = false;
@@ -130,18 +128,21 @@ public class UiManager : MonoBehaviour
     //Completly pauses the game setting the games time to zero and the pause menu to be active
     public void Pause()
     {
-        PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        _input.controls.UI.Enable();
-        _input.controls.Player.Disable();
-        pauseMenuUI.SetActive(true);
-        eventSystem.SetSelectedGameObject(pauseFirst);
+        if (player != null)
+        {
+            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            _input.controls.UI.Enable();
+            _input.controls.Player.Disable();
+            pauseMenuUI.SetActive(true);
+            eventSystem.SetSelectedGameObject(pauseFirst);
 
-        gameUI.SetActive(false);
+            gameUI.SetActive(false);
 
-        Time.timeScale = 0;
-        GamePaused = true;
+            Time.timeScale = 0;
+            GamePaused = true;
 
-        Debug.Log("Game Paused");
+            Debug.Log("Game Paused");
+        }
     }
 
 
@@ -152,15 +153,20 @@ public class UiManager : MonoBehaviour
         if (optionsMenu != null)
         {
             eventSystem.SetSelectedGameObject(optionsBack);
-
             optionsMenu.SetActive(true);
-            mainORpause.SetActive(false);
+
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(false);
+
+            }
         }
 
-        //if (gameUI != null)
-        //{
-        //    gameUI.SetActive(false);
-        //}
+        mainMenuUI.SetActive(false);
+        if (gameUI != null)
+        {
+            gameUI.SetActive(false);
+        }
 
         Time.timeScale = 0f;
         Debug.Log("onClickOptions CLicked");
@@ -170,12 +176,17 @@ public class UiManager : MonoBehaviour
 
     public void BackButton()
     {
-        eventSystem.SetSelectedGameObject(mainMenuFirst);
-        eventSystem.SetSelectedGameObject(pauseFirst);
-
-        mainORpause.SetActive(true);
-
         optionsMenu.SetActive(false);
+        mainMenuUI.SetActive(true);
+        eventSystem.SetSelectedGameObject(mainMenuFirst);
+        //if (player != null)
+        //{
+        //    eventSystem.SetSelectedGameObject(pauseFirst);
+        //    pauseMenuUI.SetActive(true);
+        //}
+
+
+
         Time.timeScale = 0f;
         Debug.Log("BACK CLICKED");
 

@@ -17,6 +17,8 @@ public class BarDisplayUI : MonoBehaviour
     Health playerHealthScript;
 
     public TMP_Text timeSurvived;
+    public TMP_Text timeSurvivedDeath;
+    public TMP_Text scoreDeath;
     private float timePlayed = 0;
 
     //*******************************************************************************************************************
@@ -36,7 +38,9 @@ public class BarDisplayUI : MonoBehaviour
     private void Update()
     {
         timePlayed += 1 * Time.deltaTime;
-        timeSurvived.SetText(timePlayed.ToString());
+        timeSurvived.SetText(Mathf.Round(timePlayed).ToString());
+        timeSurvivedDeath.SetText(Mathf.Round(timePlayed).ToString());
+
         Player playerScript = player.GetComponent<Player>();
 
         // Do not decrement the player's health if it is going to be less than 0: Instead display 0.
@@ -56,6 +60,7 @@ public class BarDisplayUI : MonoBehaviour
         //Otherwise, increment appropriately.
         UpdateSugarRushTimer();
         healthText.text = "" + playerScript.playerScore;
+        scoreDeath.text = "" + playerScript.playerScore;
         healthSlider.value = (int)playerHealthScript.currentHealth;
     }
     void UpdateSugarRushTimer()
