@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private DamageCollision _attackHitbox;
     public ParticleSystem _sugarRushParticleEffect;
+    public UiManager _uiManager;
 
     // Rotation:
     private Vector3 rot;
@@ -69,18 +70,12 @@ public class Player : MonoBehaviour
     [Header("****Other****")]
     [Tooltip("This is the current killCounter we have accumulated.")]
     public int killCounter = 0;
-
     public int playerScore;
-    public GameObject deadUI;
+
     //*******************************************************************************************************************
     //-------------------------------------------------Methods-----------------------------------------------------------
     //*******************************************************************************************************************
-    private void Start()
-    {
-        deadUI.SetActive(false);
-    }
-    private void Awake(){
-        deadUI.SetActive(false);
+    private void Start(){
         _characterController = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
@@ -332,9 +327,17 @@ public class Player : MonoBehaviour
     public void AttackAnimationEnd() { SwitchStateTo(STATE.FREE); }
     public void DashAnimationEnd() { SwitchStateTo(STATE.FREE); }
 
-    public void DeathAnimationEnd(){
-        deadUI.SetActive(true);
-        Time.timeScale = 0;
+    public void DeathAnimationEnd()
+    {
+        if (_uiManager == null)
+        {
+            Debug.Log("ui manager is null.");
+        }
+        else
+        {
+            _uiManager.onDeath();
+
+        }
     }
     //*******************************************************************************************************************
     //-----------------------------------------------State Change Checks-------------------------------------------------

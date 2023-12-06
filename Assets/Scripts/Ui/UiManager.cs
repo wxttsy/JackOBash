@@ -37,12 +37,13 @@ public class UiManager : MonoBehaviour
 
     private void Awake()
     {
-        optionsMenu.SetActive(false); 
-        pauseMenuUI.SetActive(false);
+        optionsMenu.SetActive(false);
 
         player = GameObject.FindWithTag("Player");
         if (player != null)
         {
+        deathUI.SetActive(false);
+            pauseMenuUI.SetActive(false);
             playerScript = player.GetComponent<Player>();
         }
 
@@ -50,46 +51,44 @@ public class UiManager : MonoBehaviour
     }
     private void Start()
     {
-        eventSystem.firstSelectedGameObject = mainMenuFirst;
+        optionsMenu.SetActive(false);
 
-        if (deathUI != null)
-        {
-            deathUI.SetActive(false);
-        }
+        eventSystem.firstSelectedGameObject = mainMenuFirst;
 
         if (player != null)
         {
+            deathUI.SetActive(false);
             pauseMenuUI.SetActive(false);
         }
 
-        optionsMenu.SetActive(false);
 
     }
 
     void Update()
     {
-//=====================================================PAUSE MENU========================================================================
+        //=====================================================PAUSE MENU========================================================================
         if (player != null)
         {
-            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-            if (_input.pauseButtonPressed)
+            if (playerScript.currentState != Player.STATE.DEAD)
             {
-                if (GamePaused)
+                    PlayerInput _input = player.GetComponent<PlayerInput>();
+                if (_input.pauseButtonPressed)
                 {
-
-                    Resume();
+                    if (GamePaused)
+                    {
+                        Resume();
+                    }
+                    else
+                    {
+                        Pause();
+                    }
+                    _input.ClearCache();
                 }
-                else
-                {
-
-                    Pause();
-                }
-                _input.ClearCache();
             }
         }
 
     }
-//=============================================================MAIN MENU============================================
+    //=============================================================MAIN MENU============================================
     public void LoadDebugScene()
     {
         SceneManager.LoadScene("DebugScene");
@@ -104,21 +103,27 @@ public class UiManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
     }
 
- //===========================================PAUSE MENU==================================================================================
+    //===========================================PAUSE MENU==================================================================================
     public void Resume()
     {
         if (player != null)
         {
-            PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-
+            PlayerInput _input = player.GetComponent<PlayerInput>();
+            if (_input.controls == null) _input.controls = new PlayerControls();
             _input.controls.Player.Enable();
             _input.controls.UI.Disable();
 
             pauseMenuUI.SetActive(false);
 
             gameUI.SetActive(true);
+
             Time.timeScale = 1.0f;
             GamePaused = false;
             Debug.Log("Game Resumed");
@@ -133,6 +138,7 @@ public class UiManager : MonoBehaviour
             PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             _input.controls.UI.Enable();
             _input.controls.Player.Disable();
+
             pauseMenuUI.SetActive(true);
             eventSystem.SetSelectedGameObject(pauseFirst);
 
@@ -155,19 +161,13 @@ public class UiManager : MonoBehaviour
             eventSystem.SetSelectedGameObject(optionsBack);
             optionsMenu.SetActive(true);
 
-            if (pauseMenuUI != null)
-            {
-                pauseMenuUI.SetActive(false);
-
-            }
+            if (pauseMenuUI != null) { pauseMenuUI.SetActive(false); }
         }
 
-        mainMenuUI.SetActive(false);
         if (gameUI != null)
-        {
-            gameUI.SetActive(false);
-        }
+        { gameUI.SetActive(false); }
 
+        if (player = null) { mainMenuUI.SetActive(false); }
         Time.timeScale = 0f;
         Debug.Log("onClickOptions CLicked");
 
@@ -177,19 +177,28 @@ public class UiManager : MonoBehaviour
     public void BackButton()
     {
         optionsMenu.SetActive(false);
-        mainMenuUI.SetActive(true);
-        eventSystem.SetSelectedGameObject(mainMenuFirst);
-        //if (player != null)
+        //if (player = null)
         //{
-        //    eventSystem.SetSelectedGameObject(pauseFirst);
-        //    pauseMenuUI.SetActive(true);
+        //    mainMenuUI.SetActive(true);
+        //    eventSystem.SetSelectedGameObject(mainMenuFirst);
         //}
-
-
+            pauseMenuUI.SetActive(true);
+            eventSystem.SetSelectedGameObject(pauseFirst);
 
         Time.timeScale = 0f;
         Debug.Log("BACK CLICKED");
 
     }
+
+    public void onDeath()
+    {
+        deathUI.SetActive(true);
+        gameUI.SetActive(false);
+
+        eventSystem.SetSelectedGameObject(deathFirst);
+        Time.timeScale = 0f;
+        Debug.Log("Ya dead");
+    }
+
 
 }

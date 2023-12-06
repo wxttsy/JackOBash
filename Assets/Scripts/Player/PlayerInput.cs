@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         //stuff that performs input actions
-        controls = new PlayerControls();
+        if (controls == null) controls = new PlayerControls();
         controls.Player.Enable();
     }
     //*******************************************************************************************************************
