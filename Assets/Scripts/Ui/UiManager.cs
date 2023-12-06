@@ -37,12 +37,14 @@ public class UiManager : MonoBehaviour
 
     private void Awake()
     {
-        optionsMenu.SetActive(false);
-
+        if (mainMenuUI != null)
+        {
+            optionsMenu.SetActive(false);
+        }
         player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-        deathUI.SetActive(false);
+            deathUI.SetActive(false);
             pauseMenuUI.SetActive(false);
             playerScript = player.GetComponent<Player>();
         }
@@ -51,14 +53,16 @@ public class UiManager : MonoBehaviour
     }
     private void Start()
     {
-        optionsMenu.SetActive(false);
-
-        eventSystem.firstSelectedGameObject = mainMenuFirst;
-
+        if (mainMenuUI != null)
+        {
+            eventSystem.firstSelectedGameObject = mainMenuFirst;
+        }
         if (player != null)
         {
             deathUI.SetActive(false);
             pauseMenuUI.SetActive(false);
+            optionsMenu.SetActive(false);
+
         }
 
 
@@ -71,7 +75,7 @@ public class UiManager : MonoBehaviour
         {
             if (playerScript.currentState != Player.STATE.DEAD)
             {
-                    PlayerInput _input = player.GetComponent<PlayerInput>();
+                PlayerInput _input = player.GetComponent<PlayerInput>();
                 if (_input.pauseButtonPressed)
                 {
                     if (GamePaused)
@@ -182,8 +186,8 @@ public class UiManager : MonoBehaviour
         //    mainMenuUI.SetActive(true);
         //    eventSystem.SetSelectedGameObject(mainMenuFirst);
         //}
-            pauseMenuUI.SetActive(true);
-            eventSystem.SetSelectedGameObject(pauseFirst);
+        pauseMenuUI.SetActive(true);
+        eventSystem.SetSelectedGameObject(pauseFirst);
 
         Time.timeScale = 0f;
         Debug.Log("BACK CLICKED");
