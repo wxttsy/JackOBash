@@ -10461,6 +10461,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
         type: 3}
+      propertyPath: candyPickUpParticle
+      value: 
+      objectReference: {fileID: 5250363253158799286, guid: 3e0d9eb3501c60a46833f27a2ffbc67d,
+        type: 3}
+    - target: {fileID: 6668090470199290481, guid: 121a6044e11ad0d46896894e91ee5357,
+        type: 3}
       propertyPath: items.Array.data[1]
       value: 
       objectReference: {fileID: 3072905123919230686, guid: 635990ebab865cc45aedbb6899c7754d,

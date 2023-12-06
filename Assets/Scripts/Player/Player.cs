@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public bool sugarRushIsActivated = false;
         [Tooltip("This is the multiplier rate to increase sugar rush decay")]
     public float sRushDecayMult;
+    float sRushDecayStorage;
 
     // Attack sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
         currentMoveSpeed = moveSpeedNormal;
         float temp = sRushDecayMult;
         sRushDecayMult = temp / 100;
+        sRushDecayStorage = sRushDecayMult;
     }
     //*******************************************************************************************************************
     //--------------------------------------------------Update-----------------------------------------------------------
@@ -238,6 +240,7 @@ public class Player : MonoBehaviour
                 audioManager.PlayAudio(audioManager.sfSugarRushExit);
 
                 _sugarRushParticleEffect.Stop();
+                sRushDecayMult = sRushDecayStorage;
                 sugarRushIsActivated = false;
                 currentMoveSpeed = moveSpeedNormal;
             }

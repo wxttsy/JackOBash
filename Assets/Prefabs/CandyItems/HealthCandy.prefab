@@ -63,7 +63,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4648e2e1c2ba54040bf8eaae0ab044c5, type: 2}
-  - {fileID: 2100000, guid: 65b932d944b1d5548adb298a6967cf9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,7 +193,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4648e2e1c2ba54040bf8eaae0ab044c5, type: 2}
-  - {fileID: 2100000, guid: 65b932d944b1d5548adb298a6967cf9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -262,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36093f5325ba63a46bea56f7ee9057c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candyHealthAmount: 1
+  candyHealthAmount: 4
   candyBarAmount: 4
 --- !u!135 &3678631295927019846
 SphereCollider:
@@ -340,7 +338,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4648e2e1c2ba54040bf8eaae0ab044c5, type: 2}
-  - {fileID: 2100000, guid: 65b932d944b1d5548adb298a6967cf9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
