@@ -15,6 +15,12 @@ public class Health : MonoBehaviour
     public float maxHealth = 100;
     public int scoreFromKill = 1;
     private int pumpkinCrawlerCandyDropAmount = 10;
+
+    //Drop Variables (Intervals for Modulus)
+    [SerializeField] private int candyInt;
+    [SerializeField] private int itemInt;
+
+
     //*******************************************************************************************************************
     //---------------------------------------------------Awake-----------------------------------------------------------
     //*******************************************************************************************************************
@@ -173,15 +179,17 @@ public class Health : MonoBehaviour
     void UpdateThisKill(GameObject player){
         // Get Player script attached to the player.
         Player playerScript = player.GetComponent<Player>();
-        
+        Health pHP = player.GetComponent<Health>();
+        candyInt = pHP.candyInt;
+        itemInt = pHP.itemInt;
         // Add score bonus from this enemy to player's total score & increase the kill counter associated with the player.
         playerScript.playerScore += scoreFromKill;
         playerScript.killCounter += 1;
 
         // Check if this enemy should drop: Item/Candy/Nothing.
         float killCounter = playerScript.killCounter;
-        float candyDropCheck = killCounter % 5; //candyDropCheck will == 0 if true.
-        float itemDropCheck = killCounter % 2; //itemDropCheck will == 0 if true.
+        float candyDropCheck = killCounter % candyInt; //candyDropCheck will == 0 if true.
+        float itemDropCheck = killCounter % itemInt; //itemDropCheck will == 0 if true.
 
         // Enemy drops a Candy:
         if (candyDropCheck == 0 && itemDropCheck != 0) {
@@ -189,7 +197,7 @@ public class Health : MonoBehaviour
             Instantiate(gameManager.healthCandy,transform.position,transform.rotation);
         }
         // Enemy drops an Item:
-        if (candyDropCheck == 0 && itemDropCheck == 0) {
+        if (itemDropCheck == 0) {
             //Check if we are dropping a sugar rush item.
             int item = Random.Range(0, gameManager.items.Length);
             GameObject itemDrop = null;

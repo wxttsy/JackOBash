@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curveprefab: {fileID: 6922542177543623857, guid: 9ea68dc09b35877499053eaa3079a970,
     type: 3}
-  curve: {fileID: 0}
   speed: 1
   arcHeight: 10
   projectileDamage: 3
@@ -5031,7 +5030,7 @@ SphereCollider:
   m_GameObject: {fileID: 7508300545167371655}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

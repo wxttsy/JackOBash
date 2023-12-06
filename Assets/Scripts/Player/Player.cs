@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     public float moveSpeedSugarRush = 10f;
         [Tooltip("A true or false value which enables and disables Sugar rush.")]
     public bool sugarRushIsActivated = false;
+        [Tooltip("This is the multiplier rate to increase sugar rush decay")]
+    public float sRushDecayMult;
 
     // Attack sliding: This is for slight movement after attacking.
     // NOTE: This will make the attack animation look smoother once implemented.
@@ -81,6 +83,8 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _attackHitbox = GetComponentInChildren<DamageCollision>();
         currentMoveSpeed = moveSpeedNormal;
+        float temp = sRushDecayMult;
+        sRushDecayMult = temp / 100;
     }
     //*******************************************************************************************************************
     //--------------------------------------------------Update-----------------------------------------------------------
@@ -225,7 +229,8 @@ public class Player : MonoBehaviour
         // Sugar rush is enabled:
         if (sugarRushIsActivated){
 
-            barDisplayUIScript.sugarRushSlider.value -= 4 * Time.deltaTime;
+            barDisplayUIScript.sugarRushSlider.value -= 4 * Time.deltaTime * (1 + sRushDecayMult);
+            sRushDecayMult += sRushDecayMult / 2 * Time.deltaTime;
             if (barDisplayUIScript.sugarRushSlider.value == barDisplayUIScript.sugarRushSlider.minValue){
                 //Play SugarRushExit sound
                 GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
