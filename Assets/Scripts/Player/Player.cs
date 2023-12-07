@@ -231,8 +231,8 @@ public class Player : MonoBehaviour
         // Sugar rush is enabled:
         if (sugarRushIsActivated){
 
-            barDisplayUIScript.sugarRushSlider.value -= 4 * Time.deltaTime * (1 + sRushDecayMult);
-            sRushDecayMult += sRushDecayMult / 2 * Time.deltaTime;
+            barDisplayUIScript.sugarRushSlider.value -= 6 * Time.deltaTime * (1 + sRushDecayMult);
+            sRushDecayMult += sRushDecayMult / 4 * Time.deltaTime;
             if (barDisplayUIScript.sugarRushSlider.value == barDisplayUIScript.sugarRushSlider.minValue){
                 //Play SugarRushExit sound
                 GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
