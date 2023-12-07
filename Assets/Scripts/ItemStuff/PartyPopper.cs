@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 
-/// Party popper quickly appears and disapears, the DestroyThis() function is for the animation event when it
-/// comes time to implement in the final release, and the timer will be deleted at the same time.
+/// Party popper is a passive ability that quickly appears and disapears, dealing damage to enemies. 
 /// 
 /// </summary>
 public class PartyPopper : MonoBehaviour
@@ -34,6 +33,13 @@ public class PartyPopper : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// 
+    /// The DestroyThis() function is for the animation event when it
+    /// comes time to implement in the final release, and the timer will be deleted at the same time.
+    /// 
+    /// </summary>
 
     public void DestroyThis()
     {
