@@ -771,7 +771,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1804075890}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: LoadDebugScene
+        m_MethodName: LoadSplashScreens
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
