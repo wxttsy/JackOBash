@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
-/// Added the basic framework for you @Jemma. I'll go over it with you when you're ready to work on it. Just let me know :)
+/// An enemy that upon death drops an abundance of candy. 
 /// </summary>
 public class PumpkinCrawler : MonoBehaviour
 {
@@ -76,6 +76,9 @@ public class PumpkinCrawler : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Destroys pumpkin crawler upon the end of the death animation (animation event). 
+    /// </summary>
     void DeathAnimEnd()
     {
         Destroy(this.gameObject);

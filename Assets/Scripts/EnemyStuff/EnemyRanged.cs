@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// An enemy that attacks the player at range with projectiles. 
+/// </summary>
 public class EnemyRanged : MonoBehaviour
 {
     // References:
@@ -54,6 +57,9 @@ public class EnemyRanged : MonoBehaviour
         }    
     }
     //=============================================Calculate Movement===============================================
+    /// <summary>
+    /// Calculates the movement trajectory of the ranged enemy. 
+    /// </summary>
     private void CalculateEnemyMovement()
     {
         distToPlayer = Vector3.Distance(targetPlayer.position, transform.position);
@@ -81,6 +87,11 @@ public class EnemyRanged : MonoBehaviour
         
         oldPosition = transform.position;
     }
+
+    /// <summary>
+    /// Changes enemy state to desired state upon function call. 
+    /// </summary>
+    /// <param name="_newState">The state to change to. Type: EnemyRanged.STATE</param>
     public void SwitchStateTo(STATE _newState)
     {
         // Enter new state
@@ -101,6 +112,10 @@ public class EnemyRanged : MonoBehaviour
         }
         currentState = _newState;
     }
+
+    /// <summary>
+    /// Called at the end of the attack animation (animation event). 
+    /// </summary>
     public void AttackAnimationEnd()
     {
         //This method is called in an animation event at the end of the attack animation.
@@ -111,6 +126,9 @@ public class EnemyRanged : MonoBehaviour
         parentScript.SwitchStateTo(EnemyMelee.STATE.CHASE);
     }
 
+    /// <summary>
+    /// Called at the end of the death animation (animation event). 
+    /// </summary>
     public void DeathAnimationEnd()
     {
         //This method is called in an animation event at the end of the attack animation.

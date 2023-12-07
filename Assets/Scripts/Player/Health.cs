@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Class responsible for managing health. 
+/// </summary>
 public class Health : MonoBehaviour
 {
     //*******************************************************************************************************************
@@ -36,6 +40,11 @@ public class Health : MonoBehaviour
     //*******************************************************************************************************************
     //------------------------------------------------Apply Damage-------------------------------------------------------
     //*******************************************************************************************************************
+
+    /// <summary>
+    /// Applies specified damage amount to this game object. 
+    /// </summary>
+    /// <param name="damage">The amount of damage to apply. Type: Health.int </param>
     public void ApplyDamage(int damage){
         // Get current game object this health script is attached to.
         GameObject go = this.gameObject;
@@ -176,6 +185,11 @@ public class Health : MonoBehaviour
     //*******************************************************************************************************************
     //-----------------------------------------------UpdateThisKill------------------------------------------------------
     //*******************************************************************************************************************
+
+    /// <summary>
+    /// Updates player score values and rewards after kills. 
+    /// </summary>
+    /// <param name="player"> The player to update the kills for. Type: Health.GameObject </param>
     void UpdateThisKill(GameObject player){
         // Get Player script attached to the player.
         Player playerScript = player.GetComponent<Player>();
@@ -241,6 +255,11 @@ public class Health : MonoBehaviour
     //*******************************************************************************************************************
     //------------------------------------------Apply Hit Particle Effect------------------------------------------------
     //*******************************************************************************************************************
+
+
+    /// <summary>
+    /// Spawns a hit effect upon damage. 
+    /// </summary>
     void ApplyHitEffect(){
         //Create a the hit effect particle object prefab that is being held in the effects manager.
         GameObject effect = Instantiate(gameManager.hitParticle, transform.position, transform.rotation);

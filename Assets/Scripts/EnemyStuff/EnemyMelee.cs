@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Windows;
 
+/// <summary>
+/// An enemy that attacks the player at close range with melee attacks. 
+/// </summary>
 public class EnemyMelee : MonoBehaviour
 {
     // References:
@@ -50,6 +53,9 @@ public class EnemyMelee : MonoBehaviour
         }
     }
     //=============================================Calculate Movement===============================================
+    /// <summary>
+    /// Calculates enemy's movement and trajectory. 
+    /// </summary>
     private void CalculateEnemyMovement(){
         if (Vector3.Distance(targetPlayer.position, transform.position) >= navMeshAgent.stoppingDistance){
             navMeshAgent.SetDestination(targetPlayer.position);
@@ -58,6 +64,11 @@ public class EnemyMelee : MonoBehaviour
             SwitchStateTo(STATE.ATTACKING);
         }
     }
+
+    /// <summary>
+    /// Changes enemy state to desired state upon function call. 
+    /// </summary>
+    /// /// <param name="_newState">The state to change to. Type: EnemyMelee.STATE</param>
     public void SwitchStateTo(STATE _newState)
     {
         // Enter new state
@@ -82,6 +93,10 @@ public class EnemyMelee : MonoBehaviour
         }
         currentState = _newState;
     }
+
+    /// <summary>
+    /// Called at the end of the attack animation (animation event). 
+    /// </summary>
     public void AttackAnimationEnd()
     {
         //This method is called in an animation event at the end of the attack animation.
@@ -91,17 +106,29 @@ public class EnemyMelee : MonoBehaviour
         EnemyMelee parentScript = parentObject.GetComponent<EnemyMelee>();
         parentScript.SwitchStateTo(STATE.CHASE);
     }
+
+    /// <summary>
+    /// Enables damage collider responsible for doing damage to the player. 
+    /// </summary>
     public void EnableDamageCollider()
     {
         attackHitbox.EnableDamageCollider();
 
     }
+
+    /// <summary>
+    /// Disables damage collider responsible for doing damage to the player. 
+    /// </summary>
     public void DisableDamageCollider()
     {
         attackHitbox.DisableDamageCollider();
 
     }
 
+
+    /// <summary>
+    /// Called at the end of the death animation (animation event). 
+    /// </summary>
     public void DeathAnimationEnd()
     {
         //This method is called in an animation event at the end of the attack animation.

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// An item that replenishes some health and contributes to sugar rush. 
+/// 
+/// </summary>
 public class HealthCandy : MonoBehaviour
 {
     //*******************************************************************************************************************

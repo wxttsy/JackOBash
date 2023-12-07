@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// This script is for controlling the player state machine, sugar rush mechanic and store the player's score.
+/// </summary>
 public class Player : MonoBehaviour
 {
     //*******************************************************************************************************************
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour
     //[HideInInspector]
     public STATE currentState;
 
-    // Other: ????
+    // Other: 
     [Header("****Other****")]
     [Tooltip("This is the current killCounter we have accumulated.")]
     public int killCounter = 0;
@@ -92,8 +94,6 @@ public class Player : MonoBehaviour
     //--------------------------------------------------Update-----------------------------------------------------------
     //*******************************************************************************************************************
     private void Update() {
-        
-        
         // Update Player based on state:
         switch (currentState){
             case STATE.FREE: 
@@ -110,20 +110,17 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(oldRot);
 
                 // Slide the player in that direction slightly when attacking.
-                if (Time.time < attackStartTime + attackSlideDuration)
-                {
+                if (Time.time < attackStartTime + attackSlideDuration) {
                     float timePassed = Time.time - attackStartTime;
                     float lerpTime = timePassed / attackSlideDuration;
                     movementVelocity = Vector3.Lerp(rot * attackSlideSpeed, Vector3.zero, lerpTime);
                 }
 
-                if (_input.attackButtonPressed && _characterController.isGrounded)
-                {
+                if (_input.attackButtonPressed && _characterController.isGrounded) {
                     string currentClipName = _animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
                     attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
-                    if (currentClipName != "Attack_03" && attackAnimationDuration > 0.5f && attackAnimationDuration < 0.7f)
-                    {
+                    if (currentClipName != "Attack_03" && attackAnimationDuration > 0.5f && attackAnimationDuration < 0.7f)  {
                         _input.attackButtonPressed = false;
                         SwitchStateTo(STATE.ATTACKING);
                         CalculateMovement();
@@ -157,12 +154,18 @@ public class Player : MonoBehaviour
     //*******************************************************************************************************************
     //---------------------------------------------Calculate Movement----------------------------------------------------
     //*******************************************************************************************************************
+    /// <summary>
+    /// FOR THE PLAYER: This is for updating the movementvelocity variable to apply movement in update.
+    /// </summary>
     private void CalculateMovement(){
-        
         // Update states:
         ChangeToAttackCheck(_input.attackButtonPressed, UiManager.wasPaused);
-        ChangeToDashCheck(_input.dashButtonPressed);
-        
+
+        if (currentState != STATE.ATTACKING) {
+            ChangeToDashCheck(_input.dashButtonPressed);
+
+        }
+       
         // Calculate Movement based on Input.
         movementVelocity.Set(_input.horizontalInput, 0f, _input.verticalInput);
         movementVelocity.Normalize();
@@ -172,18 +175,13 @@ public class Player : MonoBehaviour
         movementVelocity = Quaternion.Euler(0, -45, 0) * movementVelocity;
 
         // Update movement to 'movementVelocity' variable which is used to apply movement.
-        if(movementVelocity == Vector3.zero)
-        {
+        if(movementVelocity == Vector3.zero){
             _animator.SetTrigger("NotMoving");
-        }
-        else
-        {
+        } else {
             _animator.SetTrigger("Moving");
         }
 
-
         movementVelocity *= currentMoveSpeed * Time.deltaTime;
-
         //*********************************************************************
         //     New rotation working with xbox controller. (right stick)
         //*********************************************************************
@@ -196,7 +194,6 @@ public class Player : MonoBehaviour
         rot = Quaternion.Euler(0, -45, 0) * rot;
         // If player isnt moving:
         if (moveDir == Vector3.zero) {
-
             // If player isnt looking around (right stick 0):
             if (rot == Vector3.zero){
                 // Player transform looks in movement direction before they stopped.
@@ -209,8 +206,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        //*** New movement direction with controller (left stick)
-        //update movement direction
+        // Movement direction with controller (left stick)
+        // Update movement direction:
         moveDir = new Vector3(_input.horizontalInput, 0f, _input.verticalInput);
         moveDir = Quaternion.Euler(0, -45, 0) * moveDir;
 
@@ -222,18 +219,21 @@ public class Player : MonoBehaviour
             if (rot == Vector3.zero)
                 rot = moveDir;
         }
-
     }
     //*******************************************************************************************************************
     //-------------------------------------------------Sugar Rush--------------------------------------------------------
     //*******************************************************************************************************************
+    /// <summary>
+    /// Method for updating the all of the sugar rush mechanic variables.
+    /// Including: Playing sound effects, updating the sugar rush slider value in UI, increasing player movement 
+    /// in this state and reverting it back when not in this state.
+    /// </summary>
     private void ManageSugarRushCheck(){
         GameObject barDisplayUIObject = GameObject.FindWithTag("BarDisplayUI");
         BarDisplayUI barDisplayUIScript = barDisplayUIObject.GetComponent<BarDisplayUI>();
 
         // Sugar rush is enabled:
         if (sugarRushIsActivated){
-
             barDisplayUIScript.sugarRushSlider.value -= 6 * Time.deltaTime * (1 + sRushDecayMult);
             sRushDecayMult += sRushDecayMult / 4 * Time.deltaTime;
             if (barDisplayUIScript.sugarRushSlider.value == barDisplayUIScript.sugarRushSlider.minValue){
@@ -250,8 +250,7 @@ public class Player : MonoBehaviour
         }else{ // Sugar rush is disabled:
             currentMoveSpeed = moveSpeedNormal;
           
-            if (barDisplayUIScript.sugarRushSlider.value >= barDisplayUIScript.sugarRushSlider.maxValue)
-            {
+            if (barDisplayUIScript.sugarRushSlider.value >= barDisplayUIScript.sugarRushSlider.maxValue){
                 //Play SugarRushEntry sound
                 GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
                 AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
@@ -263,43 +262,22 @@ public class Player : MonoBehaviour
             }
         }
     }
-
     //*******************************************************************************************************************
     //------------------------------------------------State Management---------------------------------------------------
     //*******************************************************************************************************************
+    /// <summary>
+    /// For changing the state the player is in.
+    /// </summary>
+    /// <param name="_newState">The state to change to. Type: Player.STATE</param>
     public void SwitchStateTo(STATE _newState){
         // Update variables:
-
         GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
         AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
         _input.ClearCache();
+
         // Enter new state:
         switch (_newState) {
             case STATE.FREE:
-                //Get random number for footstep type
-                //int rand;
-                //rand = Random.Range(0, 4);
-                ////Footstep1 sound
-                //if (rand == 0)
-                //{
-                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps1);
-                //}
-                ////Footstep2 sound
-                //else if (rand == 1)
-                //{
-                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps2);
-                //}
-                ////Footstep3 sound
-                //else if (rand == 2)
-                //{
-                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps3);
-                //}
-                ////Footstep4 sound
-                //else if (rand == 3)
-                //{
-                //    audioManager.PlayAudio(audioManager.sfPlayerFootsteps4);
-                //}
-
                 break;
 
             case STATE.ATTACKING:
@@ -308,7 +286,6 @@ public class Player : MonoBehaviour
                 movementVelocity = Vector3.zero;
                 // Get time from entering new state for attack sliding.
                 attackStartTime = Time.time;
-
                 if (_attackHitbox != null)
                     _attackHitbox.DisableDamageCollider();
                 break;
@@ -333,55 +310,79 @@ public class Player : MonoBehaviour
     //*******************************************************************************************************************
     //-------------------------------------Colliders & Animation Event Methods-------------------------------------------
     //*******************************************************************************************************************
+    /// <summary>
+    /// This is called through animation events.
+    /// Enable the hitbox attached to this player.
+    /// </summary>
     public void EnableDamageCollider(){ _attackHitbox.EnableDamageCollider(); }
+    /// <summary>
+    /// /// This is called through animation events.
+    /// Disable the hitbox attached to this player.
+    /// </summary>
     public void DisableDamageCollider(){ _attackHitbox.DisableDamageCollider(); }
+    /// <summary>
+    /// This is called through animation events.
+    /// Switch state to free after attacking.
+    /// </summary>
     public void AttackAnimationEnd() { SwitchStateTo(STATE.FREE); }
+    /// <summary>
+    /// This is called through animation events.
+    /// Switch state to free after dashing.
+    /// </summary>
     public void DashAnimationEnd() { SwitchStateTo(STATE.FREE); }
 
-    public void DeathAnimationEnd()
-    {
-        if (_uiManager == null)
-        {
+    /// <summary>
+    /// This is called through animation events.
+    /// Enable the death screen and end the game loop at the end of death animation.
+    /// </summary>
+    public void DeathAnimationEnd() {
+        if (_uiManager == null){
             Debug.Log("ui manager is null.");
-        }
-        else
-        {
+        } else {
             _uiManager.onDeath();
-
         }
     }
     //*******************************************************************************************************************
     //-----------------------------------------------State Change Checks-------------------------------------------------
     //*******************************************************************************************************************
+    /// <summary>
+    /// Switch state to STATE.DASH after recieving dash input.
+    /// </summary>
     private void ChangeToDashCheck(bool dashInputPressed){
         if (dashInputPressed) {
             SwitchStateTo(STATE.DASH);
         }
     }
+    /// <summary>
+    /// Switch state to STATE.ATTACKING after recieving attack input.
+    /// </summary>
     private void ChangeToAttackCheck(bool attackButtonPressed, bool gameIsPaused) {
         if (attackButtonPressed && !gameIsPaused){
             SwitchStateTo(STATE.ATTACKING);
         }
     }
     //*******************************************************************************************************************
-    public void SpawnDashParticle()
-    {
+    /// <summary>
+    /// Display dash particle effect.
+    /// </summary>
+    public void SpawnDashParticle(){
         GameObject gameManagerObject = GameObject.FindWithTag("GameManager");
         GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
-
         Instantiate(gameManager.dashParticle, transform.position, transform.rotation);
     }
-
-    public void PlayBatSwing()
-    {
+    /// <summary>
+    /// Play Bat swing sound effect.
+    /// </summary>
+    public void PlayBatSwing() {
         GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
         AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
         //Play bat swing sound
         audioManager.PlayAudio(audioManager.sfBatSwing);
     }
-
-    public void PlayDeathSound()
-    {
+    /// <summary>
+    /// Play death sound effect.
+    /// </summary>
+    public void PlayDeathSound() {
         GameObject audioManagerObject = GameObject.FindWithTag("AudioManager");
         AudioManager audioManager = audioManagerObject.GetComponent<AudioManager>();
         audioManager.PlayAudio(audioManager.sfPlayerDeath);
