@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   candyHealthAmount: 4
-  candyBarAmount: 4
+  candyBarAmount: 8
 --- !u!135 &3678631295927019846
 SphereCollider:
   m_ObjectHideFlags: 0
