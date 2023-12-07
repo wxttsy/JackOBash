@@ -37,7 +37,7 @@ public class HealthCandy : MonoBehaviour
                     }
                     else
                     {
-                        playerHealthScript.currentHealth += candyHealthAmount / 4;
+                        playerHealthScript.currentHealth += candyHealthAmount / 2;
                     }
 
 

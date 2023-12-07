@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 100;
     public int scoreFromKill = 1;
-    private int pumpkinCrawlerCandyDropAmount = 10;
+    public int pumpkinCrawlerCandyDropAmount = 10;
 
     //Drop Variables (Intervals for Modulus)
     [SerializeField] private int candyInt;
