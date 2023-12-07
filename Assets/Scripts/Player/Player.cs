@@ -160,9 +160,12 @@ public class Player : MonoBehaviour
     private void CalculateMovement(){
         // Update states:
         ChangeToAttackCheck(_input.attackButtonPressed, UiManager.wasPaused);
-        ChangeToDashCheck(_input.dashButtonPressed);
-        
-        
+
+        if (currentState != STATE.ATTACKING) {
+            ChangeToDashCheck(_input.dashButtonPressed);
+
+        }
+       
         // Calculate Movement based on Input.
         movementVelocity.Set(_input.horizontalInput, 0f, _input.verticalInput);
         movementVelocity.Normalize();
