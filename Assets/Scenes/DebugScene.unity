@@ -2113,91 +2113,6 @@ MonoBehaviour:
   timeSurvived: {fileID: 1096294800}
   timeSurvivedDeath: {fileID: 1941995092}
   scoreDeath: {fileID: 2007269240}
---- !u!1001 &584120482
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 220713877}
-    m_Modifications:
-    - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.304
-      objectReference: {fileID: 0}
-    - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: c95bfbc7d3c97c04a8dce08250e6ed76,
-        type: 2}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7782553504273229618, guid: d996401a28377e04c99e59f155dcf29b,
-        type: 3}
-      propertyPath: m_Name
-      value: BGM
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d996401a28377e04c99e59f155dcf29b, type: 3}
 --- !u!1 &593942306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4482,12 +4397,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 175072109}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 25
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2119154758}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: SetBGMVol
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1001 &1066391856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7504,12 +7431,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1181213646}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1664632655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7782553504273229618, guid: d996401a28377e04c99e59f155dcf29b,
-    type: 3}
-  m_PrefabInstance: {fileID: 584120482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1673511021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7792,12 +7713,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1597857264}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 25
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2119154758}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: SetSFXVol
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1705709472 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3067908218881074117, guid: 552ff67b57abc684792e1c2502371b16,
@@ -10372,6 +10305,8 @@ MonoBehaviour:
   optionsBack: {fileID: 35517701}
   pauseFirst: {fileID: 1004176093}
   deathFirst: {fileID: 593942306}
+  _sfxaus: {fileID: 24100000, guid: d2fd8bb519e9ad94888cfddff276b76b, type: 2}
+  _bgmaus: {fileID: 24100000, guid: c95bfbc7d3c97c04a8dce08250e6ed76, type: 2}
   deathUI: {fileID: 1104771432}
   pauseMenuUI: {fileID: 1551685135}
   mainMenuUI: {fileID: 0}
@@ -10993,7 +10928,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bgmGameLoop
       value: 
-      objectReference: {fileID: 1664632655}
+      objectReference: {fileID: 0}
     - target: {fileID: 4588922986210294581, guid: f3b85e75a496c864ab362e9254e2bf0d,
         type: 3}
       propertyPath: sfMenuClick
@@ -11212,8 +11147,18 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 220713877}
     m_Modifications:
+    - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 170008095312809720, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -11223,22 +11168,22 @@ PrefabInstance:
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.32398987
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.07575202
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.3110484
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
@@ -11248,17 +11193,17 @@ PrefabInstance:
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6904527257139072740, guid: d996401a28377e04c99e59f155dcf29b,
         type: 3}
