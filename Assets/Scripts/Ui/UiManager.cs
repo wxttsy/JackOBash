@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
@@ -14,7 +15,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject optionsBack;
     [SerializeField] GameObject pauseFirst;
     [SerializeField] GameObject deathFirst;
-
+    [SerializeField] public AudioMixer _sfxaus;
+    [SerializeField] public AudioMixer _bgmaus;
 
 
     //DeathScript
@@ -37,6 +39,7 @@ public class UiManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (mainMenuUI != null)
         {
             optionsMenu.SetActive(false);
@@ -209,5 +212,16 @@ public class UiManager : MonoBehaviour
         Debug.Log("Ya dead");
     }
 
+
+    public void SetSFXVol(float sfxVol)
+    {
+        _sfxaus.SetFloat("SFXVolFloat", -1 * sfxVol);
+        Debug.Log(sfxVol);
+    }
+
+    public void SetBGMVol(float bgmVol)
+    {
+        _bgmaus.SetFloat("GameVolFloat", -1 * bgmVol);
+    }
 
 }
