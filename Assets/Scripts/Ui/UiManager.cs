@@ -97,6 +97,11 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene("DebugScene");
     }
+
+    public void LoadSplashScreens()
+    {
+        SceneManager.LoadScene("SplashScreen");
+    }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
