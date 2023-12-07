@@ -103,7 +103,9 @@ public class Player : MonoBehaviour
             case STATE.ATTACKING: 
                 _animator.SetFloat("Speed", 0f);
                 //stop movement??
-                movementVelocity = Vector3.zero;
+                CalculateMovement();
+                Vector3 temp = movementVelocity;
+                movementVelocity = temp / 2;
                 //look in direction of right stick (aim)
                 transform.rotation = Quaternion.LookRotation(oldRot);
 
