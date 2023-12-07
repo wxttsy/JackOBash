@@ -137,6 +137,7 @@ public class Player : MonoBehaviour
             case STATE.DEAD:
                 // Stop Movement
                 _animator.SetFloat("Speed", 0f);
+                dashSpeed = 0f;
                 movementVelocity = Vector3.zero;
                 break;
         }

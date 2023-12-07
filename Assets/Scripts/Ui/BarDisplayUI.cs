@@ -38,11 +38,10 @@ public class BarDisplayUI : MonoBehaviour
     private void Update()
     {
         timePlayed += 1 * Time.deltaTime;
-        timeSurvived.SetText(Mathf.Round(timePlayed).ToString());
         timeSurvivedDeath.SetText(Mathf.Round(timePlayed).ToString());
-
+        timeSurvived.SetText(Mathf.Round(playerHealthScript.currentHealth).ToString());
         Player playerScript = player.GetComponent<Player>();
-
+        
         // Do not decrement the player's health if it is going to be less than 0: Instead display 0.
         if (playerHealthScript.currentHealth < 0)
         {
