@@ -91,6 +91,7 @@ public class EnemyRanged : MonoBehaviour
     /// <summary>
     /// Changes enemy state to desired state upon function call. 
     /// </summary>
+    /// <param name="_newState">The state to change to. Type: EnemyRanged.STATE</param>
     public void SwitchStateTo(STATE _newState)
     {
         // Enter new state
