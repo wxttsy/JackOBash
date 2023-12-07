@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36093f5325ba63a46bea56f7ee9057c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candyHealthAmount: 4
+  candyHealthAmount: 2
   candyBarAmount: 8
 --- !u!135 &3678631295927019846
 SphereCollider:
