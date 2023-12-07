@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+/// <summary>
+/// 
+/// Skulls that rotate around the player, dealing damage to nearby enemies on collision.  
+/// 
+/// </summary>
 public class ChatteringSkulls : MonoBehaviour
 {
     //*******************************************************************************************************************
