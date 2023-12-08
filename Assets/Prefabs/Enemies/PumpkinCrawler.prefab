@@ -92,7 +92,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 20
   scoreFromKill: 20
-  pumpkinCrawlerCandyDropAmount: 2
+  pumpkinCrawlerCandyDropAmount: 3
   candyInt: 0
   itemInt: 0
 --- !u!114 &956581588120377484
