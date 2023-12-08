@@ -93,6 +93,7 @@ public class UiManager : MonoBehaviour
                 }
             }
         }
+        
 
     }
     //=============================================================MAIN MENU============================================
@@ -125,6 +126,7 @@ public class UiManager : MonoBehaviour
     //===========================================PAUSE MENU==================================================================================
     public void Resume()
     {
+        player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             PlayerInput _input = player.GetComponent<PlayerInput>();
@@ -140,6 +142,8 @@ public class UiManager : MonoBehaviour
             GamePaused = false;
             Debug.Log("Game Resumed");
         }
+        
+
     }
 
     //Completly pauses the game setting the games time to zero and the pause menu to be active
@@ -161,6 +165,7 @@ public class UiManager : MonoBehaviour
 
             Debug.Log("Game Paused");
         }
+        
     }
 
 
@@ -198,7 +203,7 @@ public class UiManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(pauseFirst);
 
         Time.timeScale = 0f;
-        Debug.Log("BACK CLICKED");
+       // Debug.Log(eventSystem.currentSelectedGameObject);
 
     }
 
