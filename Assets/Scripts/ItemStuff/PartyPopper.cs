@@ -18,6 +18,8 @@ public class PartyPopper : MonoBehaviour
         _damageCollider = GetComponentInChildren<BoxCollider>();
 
         timeActive = 0f;
+
+        transform.parent = null;
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class PartyPopper : MonoBehaviour
         {
             DestroyThis();
         }
-
 
     }
 

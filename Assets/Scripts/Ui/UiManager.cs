@@ -209,7 +209,6 @@ public class UiManager : MonoBehaviour
 
     public void onDeath()
     {
-
         PlayerInput _input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         _input.controls.UI.Enable();
         _input.controls.Player.Disable();
